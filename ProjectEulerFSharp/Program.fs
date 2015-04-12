@@ -15,6 +15,7 @@ let main argv =
   printfn "Problem 2 = %A" problem2
   printfn "Problem 3 = %i" problem3
   printfn "Problem 4 = %i" problem4
+  printfn "Problem 5 = %i" problem5
   printfn "Problem 6 = %i" problem6
   printfn "Problem 7 = %i" problem7
   

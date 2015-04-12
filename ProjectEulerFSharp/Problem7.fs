@@ -26,9 +26,3 @@ let ``answer``() =
 [<Test>]
 let ``6th prime is 13``() =
   getPrime 5 |> should equal 13
-
-[<Test>]
-let ``scratch``()=
-  //  let ans = primesSequence |> Seq.skip 10001 |> Seq.head
-  //  printfn "%i" ans
-  ()
