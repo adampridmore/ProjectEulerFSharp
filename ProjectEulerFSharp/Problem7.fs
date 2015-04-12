@@ -10,11 +10,12 @@ open FsUnit
 //
 //What is the 10,001st prime number?
 
-let getNthPrime n =
-  primesSequence |> Seq.skip n |> Seq.head
+let getPrime i =
+  primesSequence |> Seq.skip i |> Seq.head
 
 let problem7 = 
-  getNthPrime 10001
+  // 10,001st prime is at 10,000 index
+  getPrime 10000
 
 [<Test>]
 let ``answer``() =
@@ -24,7 +25,7 @@ let ``answer``() =
 
 [<Test>]
 let ``6th prime is 13``() =
-  getNthPrime 6 |> should equal 13
+  getPrime 5 |> should equal 13
 
 [<Test>]
 let ``scratch``()=

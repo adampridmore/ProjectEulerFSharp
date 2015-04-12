@@ -15,7 +15,7 @@ let isXDivisibleByNumsUpTo x upTo =
 
 let getProductOfPrimesUpTo x = 
   let product = (primesSequence 
-    |> Seq.takeWhile (fun i -> i < (int64 x) )
+    |> Seq.takeWhile (fun i -> i < x )
     |> Seq.reduce (fun acc ele -> acc * ele))
   int product
 
