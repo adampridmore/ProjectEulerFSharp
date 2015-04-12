@@ -13,8 +13,8 @@ open Problem9
 
 [<EntryPoint>]
 let main argv = 
-  printfn "Problem 1 = %A" problem1
-  printfn "Problem 2 = %A" problem2
+  printfn "Problem 1 = %i" problem1
+  printfn "Problem 2 = %i" problem2
   printfn "Problem 3 = %i" problem3
   printfn "Problem 4 = %i" problem4
   printfn "Problem 5 = %i" problem5
