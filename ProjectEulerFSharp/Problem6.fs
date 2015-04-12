@@ -17,8 +17,8 @@ open FsUnit
 
 let sqr i = i * i
 
-let solver (maxNumber:int64) = 
-  let numbers = seq{1L..maxNumber}
+let solver maxNumber = 
+  let numbers = seq{1..maxNumber}
  
   let squareSum = (numbers
     |> Seq.map sqr
@@ -28,14 +28,14 @@ let solver (maxNumber:int64) =
   (sqr sum) - squareSum
 
 let problem6 = 
-  solver 100L
+  solver 100
 
 [<Test>]
 let ``answer``() =
   let ans = problem6
   printfn "%i" ans
-  ans |> should equal 25164150L
+  ans |> should equal 25164150
 
 [<Test>]
 let ``solver for 10 is 2640``()=
-  solver 10L |> should equal 2640L
+  solver 10 |> should equal 2640
