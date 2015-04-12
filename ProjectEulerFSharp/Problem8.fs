@@ -8,7 +8,7 @@ open FsUnit
 //
 // Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 
-let numberCharacters = 
+let getNumbersList = 
   let numberLines = [ "73167176531330624919225119674426574742355349194934";
                       "96983520312774506326239578318016984801869478851843";
                       "85861560789112949495459501737958331952853208805511";
@@ -34,13 +34,15 @@ let numberCharacters =
   numberText.ToCharArray() |> Array.toList |> List.map (fun c -> System.Int32.Parse(c.ToString()))
 
 let solver numbersToTake =
+  let numbersList = getNumbersList
+  
   let getNumbersFromBigNumber startIndex length =
-    numberCharacters |> Seq.skip startIndex |> Seq.take length
+    numbersList |> Seq.skip startIndex |> Seq.take length
 
   let productOf seq =
     seq |> Seq.map (fun i -> int64 i) |> Seq.reduce (*)
 
-  seq{0..numberCharacters.Length - numbersToTake} 
+  seq{0..numbersList.Length - numbersToTake} 
     |> Seq.map (fun i -> (getNumbersFromBigNumber i numbersToTake) |> productOf)
     |> Seq.max
 
