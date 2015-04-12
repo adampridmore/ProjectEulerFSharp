@@ -12,17 +12,16 @@ let isPalindrome i =
   let reversedCharacters = Array.rev(numberCharacters)
   numberCharacters = reversedCharacters
 
-let problem4 = 
-  let maxNum = 999
-  let nums = (Seq.unfold (fun state -> 
-      match state with 
-      | 0,0 -> None
-      | 0,y -> Some((maxNum * y),(maxNum, y-1))
-      | x,y -> Some((x * y),(x - 1, y))
-    ) (maxNum, maxNum)
-  )
+let getAllProductsOfNumbersUpTo maxNum =
+  Seq.unfold (fun state ->
+    match state with 
+    | 0,0 -> None
+    | 0,y -> Some(0,(maxNum, y-1))
+    | x,y -> Some((x * y),(x - 1, y))
+  ) (maxNum, maxNum)
 
-  nums 
+let problem4 = 
+  getAllProductsOfNumbersUpTo 999
   |> Seq.filter (fun i -> isPalindrome i)
   |> Seq.max 
 
@@ -31,6 +30,10 @@ let ``answer``() =
   let ans = problem4
   printfn "%i" ans
   ans |> should equal 906609
+
+[<Test>]
+let ``get all products up to 2``()=
+  getAllProductsOfNumbersUpTo 2 |> should equal [|4;2;0;2;1;0;0;0|]
 
 [<Test>]
 let ``123 is not a palindrome``() =
