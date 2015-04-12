@@ -18,7 +18,7 @@ let solver upperBound =
         seq{1..upperBound-1}
         |> Seq.filter isMultipleOf3Or5
         |> Seq.sum
-    
+
 let problem1 = 
     // Find the sum of all the multiples of 3 or 5 below 1000.
     solver 1000
