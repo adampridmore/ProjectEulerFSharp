@@ -41,11 +41,10 @@ let ``10 is not prime``() =
 let ``11 is prime``() =
     isPrime 11L |> should equal true
 
-[<Test>]
-let ``List primes``() =
-  let listOfPrimes = seq{0L..1000L} 
-                        |> Seq.filter isPrime 
-                        |> Seq.toList
+let primesSequence = 
+  Seq.initInfinite (fun i -> int64(i+1))
+  |> Seq.filter (fun i -> isPrime i)
 
-  printfn "Number of primes: %i" (List.length listOfPrimes)
-  printfn "Primes: %A" listOfPrimes
+[<Test>]
+let ``primes sequence``() =
+  primesSequence |> Seq.take 5 |> should equal [|1L;2L;3L;5L;7L|]

@@ -1,5 +1,6 @@
 ﻿module Problem5
 
+open primes
 open NUnit.Framework
 open FsUnit
 
@@ -12,17 +13,24 @@ let isXDivisibleByNumsUpTo x upTo =
   |> Seq.exists (fun i -> x % i <> 0)
   |> not
 
-let smallestNumberDivisibleUpTo upTo increment =
+let getProductOfPrimesUpTo x = 
+  let product = (primesSequence 
+    |> Seq.takeWhile (fun i -> i < (int64 x) )
+    |> Seq.reduce (fun acc ele -> acc * ele))
+  int product
+
+let smallestNumberDivisibleUpTo upTo =
+  let increment = getProductOfPrimesUpTo upTo
+
   Seq.initInfinite (fun i -> (i+1) * increment)
   |> Seq.find(fun i -> isXDivisibleByNumsUpTo i upTo)
 
 let problem5 = 
-  // Count up in multiples of all primes lower thatn the up to value.
-  smallestNumberDivisibleUpTo 20 (2*3*5*7*11*13*17*19)
-  
+  smallestNumberDivisibleUpTo 20 
+
 [<Test>]
 let ``smallest number divisible up to 10``() =
-  smallestNumberDivisibleUpTo 10 (7*5*3*2) |> should equal 2520
+  smallestNumberDivisibleUpTo 10 |> should equal 2520
 
 [<Test>]
 let ``answer``() =
