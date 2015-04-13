@@ -18,7 +18,8 @@ let findFirstFactor x =
     |> Seq.filter (fun (i:int64) -> isXFactorOf i x)
     |> Seq.head
 
-// not sure how to return the last item and terminate the fold. Uses -1 as a magic state to terminate the unfold. Ugly.
+// not sure how to return the last item and terminate the fold. Uses -1 as a 
+// magic state to terminate the unfold. Ugly.
 let problem3Solver num =
   Seq.unfold (fun (state) -> 
     let ans = findFirstFactor state
