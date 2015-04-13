@@ -14,22 +14,24 @@ open NUnit.Framework
 open FsUnit
 open Fibonacci
 
-let solver n = 
-    fibseq 
-    |> Seq.takeWhile (fun i -> i<=n)
-    |> Seq.filter (fun i -> i % 2 = 0)
-    |> Seq.sum
+let evenFibSum maxValue = 
+  let isEven i = i % 2 = 0
+  
+  fibseq 
+  |> Seq.takeWhile (fun i -> i<=maxValue)
+  |> Seq.filter isEven
+  |> Seq.sum
 
 let problem2 = 
-    solver 4000000
+  evenFibSum 4000000
 
 [<Test>]
 let ``test``() =
-    solver 89 |> should equal 44
+  evenFibSum 89 |> should equal 44
    
 [<Test>]
 let ``answer``() = 
-    let answer = problem2
-    answer |> should equal 4613732
-    printfn "%i" answer  
+  let answer = problem2
+  answer |> should equal 4613732
+  printfn "%i" answer  
     
