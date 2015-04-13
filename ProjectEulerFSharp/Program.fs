@@ -10,6 +10,7 @@ open Problem6
 open Problem7
 open Problem8
 open Problem9
+open Problem10
 
 [<EntryPoint>]
 let main argv = 
@@ -22,5 +23,6 @@ let main argv =
   printfn "Problem 7 = %i" problem7
   printfn "Problem 8 = %i" problem8
   printfn "Problem 9 = %i" problem9
+  printfn "Problem 10 = %i" problem10
   
   0 // return an integer exit code
