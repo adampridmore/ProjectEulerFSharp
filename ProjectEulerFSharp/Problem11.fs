@@ -60,27 +60,21 @@ let problem11 =
   let width = numbersGrid.Length + 1
   let height = numbersGrid.[0].Length + 1
   let lineLength = 4
-
+  
   let productsOfCellLine x y = 
-    let products = [
-        numbersGrid 
-        |> getCells x y lineLength (fun x y i-> (x+i, y))
-        |> Seq.reduce (*)
-      ;
-        numbersGrid 
-        |> getCells x y lineLength (fun x y i-> (x+i, y+i))  
-        |> Seq.reduce (*)
-      ;
-        numbersGrid 
-        |> getCells x y lineLength (fun x y i-> (x+i, y-i))
-        |> Seq.reduce (*)
-      ;
-        numbersGrid 
-        |> getCells x y lineLength (fun x y i-> (x, y+i))  
-        |> Seq.reduce (*)
-    ]
+    let cellLineOperators = [ (fun x y i -> (x+i, y))
+                              (fun x y i -> (x+i, y+i))
+                              (fun x y i -> (x+i, y-i))
+                              (fun x y i -> (x, y+i)) ]
+    
+    let getProductForCell operator = 
+      numbersGrid 
+      |> getCells x y lineLength operator
+      |> Seq.reduce (*)
 
-    List.max products
+    cellLineOperators 
+    |> Seq.map getProductForCell
+    |> Seq.max
 
   let productOfCellLine x y = 
     numbersGrid 
