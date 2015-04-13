@@ -15,11 +15,10 @@ let isXDivisibleByNumsUpTo (x:bigint) upTo =
   |> not
 
 let getProductOfPrimesUpTo x : bigint = 
-  let product = (primesSequence 
-    |> Seq.takeWhile (fun i -> i < x )
-    |> Seq.map (fun i -> (bigint i))
-    |> Seq.reduce (fun (acc:bigint) (ele:bigint) -> acc * ele))
-  product
+  primesSequence 
+  |> Seq.takeWhile (fun i -> i < x )
+  |> Seq.map (fun i -> (bigint i))
+  |> Seq.reduce (fun (acc:bigint) (ele:bigint) -> acc * ele)
 
 let smallestNumberDivisibleUpTo upTo =
   let increment = getProductOfPrimesUpTo upTo
