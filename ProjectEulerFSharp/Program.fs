@@ -1,5 +1,4 @@
-﻿open primes
-open Problem1
+﻿open Problem1
 open Problem2
 open Problem3
 open Problem4
@@ -9,6 +8,7 @@ open Problem7
 open Problem8
 open Problem9
 open Problem10
+open Problem11
 
 [<EntryPoint>]
 let main argv = 
@@ -22,5 +22,6 @@ let main argv =
   printfn "Problem 8 = %i" problem8
   printfn "Problem 9 = %i" problem9
   printfn "Problem 10 = %i" problem10
+  printfn "Problem 11 = %i" problem11
   
-  0 // return an integer exit code
+  0
