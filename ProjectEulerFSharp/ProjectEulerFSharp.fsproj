@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="primes.fs" />
     <Compile Include="Fibonacci.fs" />
+    <Compile Include="textUtils.fs" />
     <Compile Include="Problem001.fs" />
     <Compile Include="Problem002.fs" />
     <Compile Include="Problem003.fs" />
@@ -71,6 +72,7 @@
     <Compile Include="Problem010.fs" />
     <Compile Include="Problem011.fs" />
     <Compile Include="Problem012.fs" />
+    <Compile Include="Problem013.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="packages.config" />

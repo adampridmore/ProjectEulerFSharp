@@ -10,6 +10,7 @@ open problem009
 open problem010
 open problem011
 open problem012
+open problem013
 
 open primes
 
@@ -18,7 +19,8 @@ open System
 [<EntryPoint>]
 let main argv = 
 
-  let printProblem i x = printfn "Problem %i = %A" i x
+  let printProblem i x = 
+    printfn "Problem %i = %O" i x
 
   problem1 |> printProblem 1
   problem2 |> printProblem 2
@@ -32,5 +34,6 @@ let main argv =
   problem10 |> printProblem 10
   problem11 |> printProblem 11
   problem12 |> printProblem 12
+  problem13 |> printProblem 13
 
   0
