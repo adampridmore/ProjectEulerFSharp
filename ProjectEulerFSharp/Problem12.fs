@@ -23,9 +23,14 @@ open primes
 //
 //What is the value of the first triangle number to have over five hundred divisors?
 
-let triangleNumber i = 
-  seq{1..i} |> Seq.sum 
+let triangleNumbers = 
+  Seq.unfold (fun (cur, i) -> Some(cur, (cur+i, i+1) ) ) (1,2)
 
+let triangleNumber i = 
+  triangleNumbers 
+  |> Seq.take i 
+  |> Seq.last
+    
 let getFactors i =
   Seq.init i (fun j -> i - j)
   |> Seq.filter (fun j -> i % j = 0)
@@ -41,33 +46,27 @@ let getFactorsCount i =
           |> Seq.reduce (*)
 
 let solver numberOfDivisors =
-    Seq.initInfinite (fun i -> triangleNumber i)
-    |> Seq.find (fun i -> (getFactorsCount i) >= numberOfDivisors)
-
-type solution = { 
-  i: int;
-  tn: int; 
-  fc:int
-}
-
-let solver2 numberOfDivisors =
-  Seq.unfold (fun (i, lastfactorcount, tn) -> 
-                if lastfactorcount > numberOfDivisors then None
-                else 
-                  let factorCount = getFactorsCount tn
-                  Some( ({i=i; tn=tn; fc=factorCount}) , (i+1, factorCount , tn+i+1 ) )
-             ) (1,1,1)
-  |> Seq.last
-
+  triangleNumbers 
+  |> Seq.find (fun i -> getFactorsCount i>= numberOfDivisors)
 
 let problem12 = 
   solver 500
-
+  
 [<Test>]
 let ``answer``() =
   let ans = problem12
   printfn "%i" ans
   ans |> should equal 76576500
+
+[<Test>]
+let ``3rd triangle number is``()=
+  triangleNumber 3 |> should equal 6
+
+[<Test>]
+let ``first 4 triangle numbers``()=
+  let ans = triangleNumbers |> Seq.take 4 
+  ans |> printfn "%A"
+  ans |> should equal [|1;3;6;10|]
 
 [<Test>]
 let ``first triangle number to have over five divisors is 28``()=
@@ -91,24 +90,4 @@ let ``Number of factors of 30 is 8``()=
 
 [<Test>]
 let ``scratch``() = 
- ()
-//  {1..10}
-//  |> Seq.map (fun i -> i, getFactorsCount i, getFactors i)
-//  |> Seq.iter (fun (i, c, facs) -> printfn "%i: %i (%A)" i c facs)
-
-  
-//  primeFactors 4
-//  |> Seq.groupBy (fun i -> i)
-//  |> Seq.map (fun (_, nums) -> nums |> Seq.length)
-//  |> Seq.map (fun i -> i + 1)
-////  |> Seq.reduce (*)
-//  |> printfn "%A"
-//  
-
-
-
-
-//  let factorsOf30 = getFactors 30 
-//  factorsOf30 |> Seq.iter (fun i -> i |> (printfn "%A" ))
-//
-//  getFactorsCount 30 |> should equal (Seq.length factorsOf30)
+ triangleNumbers |> Seq.take 100|> Seq.iter (fun i-> i |> printfn "%i")
