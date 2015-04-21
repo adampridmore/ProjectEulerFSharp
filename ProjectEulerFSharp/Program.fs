@@ -1,15 +1,15 @@
-﻿open Problem1
-open Problem2
-open Problem3
-open Problem4
-open Problem5
-open Problem6
-open Problem7
-open Problem8
-open Problem9
-open Problem10
-open Problem11
-open Problem12
+﻿open problem001
+open problem002
+open problem003
+open problem004
+open problem005
+open problem006
+open problem007
+open problem008
+open problem009
+open problem010
+open problem011
+open problem012
 
 open primes
 

@@ -1,4 +1,4 @@
-﻿module Problem2
+﻿module problem002
 
 // Even Fibonacci numbers
 //

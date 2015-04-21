@@ -1,4 +1,4 @@
-﻿module Problem12
+﻿module problem012
 
 open NUnit.Framework
 open FsUnit
@@ -77,8 +77,8 @@ let ``Number of factors of 30 is 8``()=
 [<Test>]
 let ``scratch``() = 
  triangleNumbers |> Seq.take 100|> Seq.iter (printfn "%i")
- 
- 
+  
+
 // Not used in solution
 let triangleNumber i = 
   triangleNumbers 

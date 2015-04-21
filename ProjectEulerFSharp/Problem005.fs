@@ -1,4 +1,4 @@
-﻿module Problem5
+﻿module problem005
 
 open NUnit.Framework
 open FsUnit

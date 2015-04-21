@@ -1,4 +1,4 @@
-﻿module Problem7
+﻿module problem007
 
 open primes
 open NUnit.Framework
