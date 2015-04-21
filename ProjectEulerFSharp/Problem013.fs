@@ -9,8 +9,7 @@ open textUtils
 //Problem 13
 //Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 
-let numText = "
-37107287533902102798797998220837590246510135740250
+let numberText = "37107287533902102798797998220837590246510135740250
 46376937677490009712648124896970078050417018260538
 74324986199524741059474233309513058123726617309629
 91942213363574161572522430563301811072406154908250
@@ -112,14 +111,19 @@ let numText = "
 53503534226472524250874054075591789781264330331690"
 
 let problem13 = 
-  numText 
+  let takeFirstDigits numberOfDigits number =
+    number
+    |> toCharArray 
+    |> Seq.take numberOfDigits
+    |> Seq.map toString
+    |> Seq.reduce (+)
+    |> System.Int64.Parse
+    
+  numberText 
   |> splitLines 
-  |> Seq.map bigint.Parse
+  |> Seq.map bigint.Parse 
   |> Seq.sum
-  |> (fun num -> num |> toCharArray |> Seq.take 10)
-  |> Seq.map toString
-  |> Seq.reduce (+)
-  |> System.Int64.Parse
+  |> takeFirstDigits 10
 
 [<Test>]
 let ans()=
