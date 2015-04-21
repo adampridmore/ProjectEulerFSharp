@@ -26,3 +26,10 @@ let ``answer``() =
   let answer = problem1                                                      
   answer |> should equal 233168
   printfn "%i" answer  
+
+
+[<Test>]
+let ``answer for up to 10 is 23``() = 
+  let answer = solver 10
+  answer |> should equal 23
+  printfn "%i" answer  

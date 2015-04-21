@@ -9,6 +9,11 @@ open Problem8
 open Problem9
 open Problem10
 open Problem11
+open Problem12
+
+open primes
+
+open System
 
 [<EntryPoint>]
 let main argv = 
@@ -23,5 +28,6 @@ let main argv =
   printfn "Problem 9 = %i" problem9
   printfn "Problem 10 = %i" problem10
   printfn "Problem 11 = %i" problem11
-  
+  printfn "Problem 12 = %i" problem12
+
   0
