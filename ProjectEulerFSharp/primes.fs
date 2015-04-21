@@ -3,10 +3,12 @@
 open NUnit.Framework
 open FsUnit
 
-let isPrime numToCheck =
-    seq{2L..numToCheck-1L} 
-        |> Seq.exists (fun i -> numToCheck % i = 0L)
-        |> not
+let isPrime n = 
+    let upperBound = int (sqrt (float n))
+    let hasDivisor =     
+        [2..upperBound]
+        |> List.exists (fun i -> n % i = 0)
+    not hasDivisor
 
 let primes =
   let a = ResizeArray[2]
@@ -31,16 +33,45 @@ let primesSequence =
   Seq.initInfinite (fun i -> i)
     |> Seq.map (fun i -> primes i)
 
+let primeFactors i = 
+  let rec fac n x a = 
+    if x = n then
+      x::a
+    elif n % x = 0 then 
+      fac (n/x) x (x::a)
+    else
+      fac n (x+1) a
+  
+  fac i 2 []
+
 [<Test>]
 let ``10 is not prime``() =
-    isPrime 10L |> should equal false
+    isPrime 10 |> should equal false
 
 [<Test>]
 let ``11 is prime``() =
-    isPrime 11L |> should equal true
+    isPrime 11 |> should equal true
   
 [<Test>]
 let ``primes sequence``() =
   let ans = primesSequence |> Seq.take 5 ;
   ans |> Seq.iter (fun i -> printfn "%i" i)
   ans |> should equal [|2;3;5;7;11|]
+
+[<Test>]
+let ``prime factorisation of 10``() =
+  let ans = primeFactors 10 |> Seq.sort
+  ans |> Seq.iter (fun prime -> printfn "%i" prime)
+  ans |> should equal [|2;5|]
+
+[<Test>]
+let ``prime factorisation of 25``() =
+  let ans = primeFactors 25 
+  ans |> Seq.iter (fun prime -> printfn "%i" prime)
+  ans |> should equal [|5;5|]
+
+[<Test>]
+let ``prime factorisation of prime 17``() =
+  let ans = primeFactors 17
+  ans |> Seq.iter (fun prime -> printfn "%i" prime)
+  primeFactors 17 |> should equal [|17|]
