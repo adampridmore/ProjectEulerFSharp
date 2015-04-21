@@ -26,28 +26,18 @@ open primes
 let triangleNumbers = 
   Seq.unfold (fun (cur, i) -> Some(cur, (cur+i, i+1) ) ) (1,2)
 
-let triangleNumber i = 
-  triangleNumbers 
-  |> Seq.take i 
-  |> Seq.last
-    
-let getFactors i =
-  Seq.init i (fun j -> i - j)
-  |> Seq.filter (fun j -> i % j = 0)
-
 let getFactorsCount i =
-  match i with
-  | 0 -> 0
-  | 1 -> 1
-  | _ ->  primeFactors i
+  let factors = primeFactors i
+  match factors with 
+  | [] -> 0
+  | _ ->  factors 
           |> Seq.groupBy (fun i -> i)
           |> Seq.map (fun (_, nums) -> nums |> Seq.length)
           |> Seq.map (fun i -> i + 1)
           |> Seq.reduce (*)
 
 let solver numberOfDivisors =
-  triangleNumbers 
-  |> Seq.find (fun i -> getFactorsCount i>= numberOfDivisors)
+  triangleNumbers |> Seq.find (fun i -> getFactorsCount i >= numberOfDivisors)
 
 let problem12 = 
   solver 500
@@ -57,10 +47,6 @@ let ``answer``() =
   let ans = problem12
   printfn "%i" ans
   ans |> should equal 76576500
-
-[<Test>]
-let ``3rd triangle number is``()=
-  triangleNumber 3 |> should equal 6
 
 [<Test>]
 let ``first 4 triangle numbers``()=
@@ -82,12 +68,27 @@ let ``Number of factors of 0 is 0``()=
 
 [<Test>]
 let ``Number of factors of 1 is 1``()=
-  getFactorsCount 1 |> should equal 1
+  getFactorsCount 1 |> should equal 0
 
 [<Test>]
 let ``Number of factors of 30 is 8``()=
-  getFactorsCount 1 |> should equal 1
+  getFactorsCount 30 |> should equal 8
 
 [<Test>]
 let ``scratch``() = 
- triangleNumbers |> Seq.take 100|> Seq.iter (fun i-> i |> printfn "%i")
+ triangleNumbers |> Seq.take 100|> Seq.iter (printfn "%i")
+ 
+ 
+// Not used in solution
+let triangleNumber i = 
+  triangleNumbers 
+  |> Seq.take i 
+  |> Seq.last
+    
+let getFactors i =
+  Seq.init i (fun j -> i - j)
+  |> Seq.filter (fun j -> i % j = 0)
+
+[<Test>]
+let ``3rd triangle number is``()=
+  triangleNumber 3 |> should equal 6

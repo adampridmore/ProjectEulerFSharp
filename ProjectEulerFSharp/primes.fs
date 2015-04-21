@@ -41,8 +41,11 @@ let primeFactors i =
       fac (n/x) x (x::a)
     else
       fac n (x+1) a
-  
-  fac i 2 []
+
+  match i with
+  | 0 -> []
+  | 1 -> []
+  | _ -> fac i 2 []
 
 [<Test>]
 let ``10 is not prime``() =
@@ -59,13 +62,33 @@ let ``primes sequence``() =
   ans |> should equal [|2;3;5;7;11|]
 
 [<Test>]
-let ``prime factorisation of 10``() =
+let ``prime factorisation of 0 is nothing``() =
+  primeFactors 0 |> Seq.sort |> should equal [||]  
+
+[<Test>]
+let ``prime factorisation of 1 is nothing``() =
+  primeFactors 1 |> Seq.sort |> should equal [||]  
+
+[<Test>]
+let ``prime factorisation of 2 is 2``() =
+  primeFactors 2 |> Seq.sort |> should equal [|2|]  
+
+[<Test>]
+let ``prime factorisation of 3 is 3``() =
+  primeFactors 3 |> Seq.sort |> should equal [|3|]  
+
+[<Test>]
+let ``prime factorisation of 4  2 & 2``() =
+  primeFactors 4 |> Seq.sort |> should equal [|2;2|]  
+  
+[<Test>]
+let ``prime factorisation of 10 are ...``() =
   let ans = primeFactors 10 |> Seq.sort
   ans |> Seq.iter (fun prime -> printfn "%i" prime)
   ans |> should equal [|2;5|]
 
 [<Test>]
-let ``prime factorisation of 25``() =
+let ``prime factorisation of 25 are ...``() =
   let ans = primeFactors 25 
   ans |> Seq.iter (fun prime -> printfn "%i" prime)
   ans |> should equal [|5;5|]
@@ -75,3 +98,9 @@ let ``prime factorisation of prime 17``() =
   let ans = primeFactors 17
   ans |> Seq.iter (fun prime -> printfn "%i" prime)
   primeFactors 17 |> should equal [|17|]
+
+[<Test>]
+let ``get prime factors of first 5 numbers``()=
+  seq{0..5} 
+  |> Seq.map primeFactors
+  |> Seq.iter (printfn "%A")
