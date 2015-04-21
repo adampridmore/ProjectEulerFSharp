@@ -17,17 +17,20 @@ open System
 
 [<EntryPoint>]
 let main argv = 
-  printfn "Problem 1 = %i" problem1
-  printfn "Problem 2 = %i" problem2
-  printfn "Problem 3 = %i" problem3
-  printfn "Problem 4 = %i" problem4
-  printfn "Problem 5 = %A" problem5
-  printfn "Problem 6 = %i" problem6
-  printfn "Problem 7 = %i" problem7
-  printfn "Problem 8 = %i" problem8
-  printfn "Problem 9 = %i" problem9
-  printfn "Problem 10 = %i" problem10
-  printfn "Problem 11 = %i" problem11
-  printfn "Problem 12 = %i" problem12
+
+  let printProblem i x = printfn "Problem %i = %A" i x
+
+  problem1 |> printProblem 1
+  problem2 |> printProblem 2
+  problem3 |> printProblem 3
+  problem4 |> printProblem 4
+  problem5 |> printProblem 5
+  problem6 |> printProblem 6
+  problem7 |> printProblem 7
+  problem8 |> printProblem 8
+  problem9 |> printProblem 9
+  problem10 |> printProblem 10
+  problem11 |> printProblem 11
+  problem12 |> printProblem 12
 
   0
