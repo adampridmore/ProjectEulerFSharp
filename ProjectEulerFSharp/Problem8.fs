@@ -40,7 +40,7 @@ let solver numbersToTake =
     numbersList |> Seq.skip startIndex |> Seq.take length
 
   let productOf seq =
-    seq |> Seq.map (fun i -> int64 i) |> Seq.reduce (*)
+    seq |> Seq.map int64 |> Seq.reduce (*)
 
   seq{0..numbersList.Length - numbersToTake} 
     |> Seq.map (fun i -> (getNumbersFromBigNumber i numbersToTake) |> productOf)

@@ -21,7 +21,7 @@ let getAllProductsOfNumbersUpTo minNum maxNum =
 
 let problem4 = 
   getAllProductsOfNumbersUpTo 900 999
-  |> Seq.filter (fun i -> isPalindrome i)
+  |> Seq.filter isPalindrome
   |> Seq.max 
 
 [<Test>]

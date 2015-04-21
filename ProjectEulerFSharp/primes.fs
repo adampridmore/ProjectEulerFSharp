@@ -30,8 +30,7 @@ let primes =
     a.[n]
 
 let primesSequence = 
-  Seq.initInfinite (fun i -> i)
-    |> Seq.map (fun i -> primes i)
+  Seq.initInfinite (fun i -> i) |> Seq.map primes
 
 let primeFactors i = 
   let rec fac n x a = 
@@ -58,7 +57,7 @@ let ``11 is prime``() =
 [<Test>]
 let ``primes sequence``() =
   let ans = primesSequence |> Seq.take 5 ;
-  ans |> Seq.iter (fun i -> printfn "%i" i)
+  ans |> Seq.iter (printfn "%i")
   ans |> should equal [|2;3;5;7;11|]
 
 [<Test>]
@@ -84,19 +83,19 @@ let ``prime factorisation of 4  2 & 2``() =
 [<Test>]
 let ``prime factorisation of 10 are ...``() =
   let ans = primeFactors 10 |> Seq.sort
-  ans |> Seq.iter (fun prime -> printfn "%i" prime)
+  ans |> Seq.iter (printfn "%i")
   ans |> should equal [|2;5|]
 
 [<Test>]
 let ``prime factorisation of 25 are ...``() =
   let ans = primeFactors 25 
-  ans |> Seq.iter (fun prime -> printfn "%i" prime)
+  ans |> Seq.iter (printfn "%i")
   ans |> should equal [|5;5|]
 
 [<Test>]
 let ``prime factorisation of prime 17``() =
   let ans = primeFactors 17
-  ans |> Seq.iter (fun prime -> printfn "%i" prime)
+  ans |> Seq.iter (printfn "%i")
   primeFactors 17 |> should equal [|17|]
 
 [<Test>]

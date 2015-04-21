@@ -46,10 +46,3 @@ let ``is x divisible by nums for 100``()=
 [<Test>]
 let ``is x divisible by nums for 2520``()=
   isXDivisibleByNumsUpTo (bigint 2520) 10 |> should equal true
-
-//[<Test>]
-//let ``scratch``() =
-//  seq{20..25} 
-//  |> Seq.map (fun i -> (i, smallestNumberDivisibleUpTo i)) 
-//  |> Seq.iter (fun (i, ans) -> printfn "%i -> %i" i ans)
-  
