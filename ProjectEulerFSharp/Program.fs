@@ -11,6 +11,7 @@ open problem010
 open problem011
 open problem012
 open problem013
+open problem014
 
 open primes
 
@@ -35,5 +36,7 @@ let main argv =
   problem11 |> printProblem 11
   problem12 |> printProblem 12
   problem13 |> printProblem 13
+  problem14 |> printProblem 14
 
   0
+
