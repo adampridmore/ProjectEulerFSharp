@@ -21,58 +21,61 @@ open FsUnit
 
 let nextNum n = 
   let isOdd x =
-    x % 2 = 0
+    x % 2L = 0L
 
   match n with 
-  | 1 -> 1
-  | n when n |> isOdd -> n / 2
-  | n -> 3 * n + 1
+  | 1L -> 1L
+  | n when n |> isOdd -> n / 2L
+  | n -> 3L * n + 1L
 
-let collatzSeq n = 
+let collatzSeq (n:int64) = 
   match n with
-  | 0 -> Seq.empty
+  | 0L -> Seq.empty
   | _ -> 
     let nums = (
       Seq.unfold (fun state -> 
                     match state with
-                    | 1 -> None
+                    | 1L -> None
                     | state -> Some(state, nextNum state)
         ) n
       )
 
-    Seq.append nums [|1|]
-    
-let problem14 = 
-  14
-
+    Seq.append nums [|1L|]
+   
 let solver upTo =
-  Seq.initInfinite (fun i -> i+1)
+  Seq.initInfinite (fun i -> int64 i+1L)
   |> Seq.takeWhile (fun i-> i < upTo)
   |> Seq.map (fun i -> i, collatzSeq i |> Seq.length)
   |> Seq.maxBy (fun (i, len) -> len)
 
+let problem14 = 
+  let ans, _ = solver 1000000L
+  printfn "Answer = %i" ans
+  ans |> should equal 837799L
+  ans
+
 [<Test>]
 let scratch()=
-  let i, len = solver 1000
+  let i, len = solver 1000000L
   printfn "Answer = %i, len=%i" i len
   collatzSeq i |> Seq.iter (printfn "%i")
   
 [<Test>]
 let ``collatzSeq for 13``()=
-  let s = collatzSeq 13 
+  let s = collatzSeq 13L
   s |> Seq.iter (printfn "%i")
-  s |> should equal [|13;40;20;10;5;16;8;4;2;1|]
+  s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
 
 [<Test>]
 let ``collatzSeq for 0``()=
-  let s = collatzSeq 0 
+  let s = collatzSeq 0L
   s |> Seq.iter (printfn "%i")
   s |> should equal [||]
   
 [<Test>]
 let ``nextNum for 13 is 40``()=
-  nextNum 13 |> should equal 40
+  nextNum 13L |> should equal 40L
 
 [<Test>]
 let ``nextNum for 40 is 20``()=
-  nextNum 40 |> should equal 20
+  nextNum 40L |> should equal 20L
