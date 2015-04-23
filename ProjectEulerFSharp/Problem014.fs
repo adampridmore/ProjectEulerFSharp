@@ -31,19 +31,16 @@ let nextNum n =
   
 let collatzLengthCache = new System.Collections.Generic.Dictionary<_,_>() 
 
-let collatzLength (n:int64) = 
-  let rec collatzLengthRec n = 
-    match collatzLengthCache.TryGetValue(n) with
-    | (true, v) -> v
-    | _ ->  let temp =  match n with
-                        | n when n <= 0L -> 0L
-                        | 1L -> 1L
-                        | n -> (nextNum n |> collatzLengthRec) + 1L
-            collatzLengthCache.Add(n, temp)
-            temp
-
-  collatzLengthRec n
-
+let rec collatzLength (n:int64) = 
+  match collatzLengthCache.TryGetValue(n) with
+  | (true, v) -> v
+  | _ ->  let temp =  match n with
+                      | n when n <= 0L -> 0L
+                      | 1L -> 1L
+                      | n -> (nextNum n |> collatzLength) + 1L
+          collatzLengthCache.Add(n, temp)
+          temp
+          
 let solver upTo =
   Seq.initInfinite (fun i -> int64 i+1L)
   |> Seq.takeWhile (fun i-> i < upTo)
