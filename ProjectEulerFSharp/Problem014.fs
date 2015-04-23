@@ -28,24 +28,38 @@ let nextNum n =
   | 1L -> 1L
   | n when n |> isOdd -> n / 2L
   | n -> 3L * n + 1L
-   
-let rec collatzLength (n:int64) = 
-  match n with 
-  | 1L -> 1L
-  | n -> (nextNum n |> collatzLength) + 1L
+  
+let collatzLengthCache = new System.Collections.Generic.Dictionary<_,_>() 
+
+let collatzLength (n:int64) = 
+  let rec collatzLengthRec n = 
+    match collatzLengthCache.TryGetValue(n) with
+    | (true, v) -> v
+    | _ ->  let temp =  match n with
+                        | n when n <= 0L -> 0L
+                        | 1L -> 1L
+                        | n -> (nextNum n |> collatzLengthRec) + 1L
+            collatzLengthCache.Add(n, temp)
+            temp
+
+  collatzLengthRec n
 
 let solver upTo =
   Seq.initInfinite (fun i -> int64 i+1L)
   |> Seq.takeWhile (fun i-> i < upTo)
   |> Seq.map (fun i -> i, collatzLength i)
   |> Seq.maxBy (fun (i, len) -> len)
+  
 
-//[<Test>]
-//let problem14 = 
-//  let ans, _ = solver 1000000L
-//  printfn "Answer = %i" ans
-//  ans |> should equal 837799L
-//  ans
+let problem14 = 
+  let ans, _ = solver 1000000L
+  printfn "Answer = %i" ans
+  ans |> should equal 837799L
+  ans
+
+[<Test>]
+let ans()=
+  problem14 |> should equal 837799L
 
 [<Test>]
 let ``Solution for up to 100``() = 
@@ -53,11 +67,6 @@ let ``Solution for up to 100``() =
   printfn "Answer = %i" ans
   ans |> should equal 97L
 
-[<Test>]
-let ``Solution for up to a large value``() = 
-  let ans, _ = solver 10000L
-  printfn "Answer = %i" ans
-  
 [<Test>]
 let ``nextNum for 13 is 40``()=
   nextNum 13L |> should equal 40L
@@ -69,6 +78,10 @@ let ``nextNum for 40 is 20``()=
 [<Test>]
 let ``collatzLength for 1 is 1``()=
   collatzLength 1L |> should equal 1L
+
+[<Test>]
+let ``collatzLength for 0 is 0``()=
+  collatzLength 0L |> should equal 0L
 
 [<Test>]
 let ``collatzLength for 3 is 8``()=
@@ -90,14 +103,12 @@ let collatzSeq (n:int64) =
     Seq.append nums [|1L|]
 
 let collatzSeq2 (n:int64) =
-  let rec fnm = 
-    memoize fn
-  and fn (n:int64) rest = 
+  let rec fn (n:int64) rest = 
     match n with
     | 1L -> [1L]
-    | n ->  n :: fnm (nextNum n) rest
+    | n ->  n :: fn (nextNum n) rest
 
-  fnm n []
+  fn n []
   
 [<Test>]
 let ``collatzSeq for 13``()=
@@ -114,12 +125,10 @@ let ``collatzSeq2 for 13``()=
 [<Test>]
 let ``collatzSeq for large``()=
   collatzSeq 1000000L |> Seq.iter (printfn "%O")
-  ()
 
 [<Test>]
 let ``collatzSeq2 for large``()=
   collatzSeq 1000000L |> Seq.iter (printfn "%O")
-  ()
 
 [<Test>]
 let ``collatzSeq for 0``()=
