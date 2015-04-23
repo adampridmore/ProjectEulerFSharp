@@ -2,6 +2,7 @@
 
 open NUnit.Framework
 open FsUnit
+open memoize
 
 //Longest Collatz sequence
 //
@@ -27,7 +28,53 @@ let nextNum n =
   | 1L -> 1L
   | n when n |> isOdd -> n / 2L
   | n -> 3L * n + 1L
+   
+let rec collatzLength (n:int64) = 
+  match n with 
+  | 1L -> 1L
+  | n -> (nextNum n |> collatzLength) + 1L
 
+let solver upTo =
+  Seq.initInfinite (fun i -> int64 i+1L)
+  |> Seq.takeWhile (fun i-> i < upTo)
+  |> Seq.map (fun i -> i, collatzLength i)
+  |> Seq.maxBy (fun (i, len) -> len)
+
+//[<Test>]
+//let problem14 = 
+//  let ans, _ = solver 1000000L
+//  printfn "Answer = %i" ans
+//  ans |> should equal 837799L
+//  ans
+
+[<Test>]
+let ``Solution for up to 100``() = 
+  let ans, _ = solver 100L
+  printfn "Answer = %i" ans
+  ans |> should equal 97L
+
+[<Test>]
+let ``Solution for up to a large value``() = 
+  let ans, _ = solver 10000L
+  printfn "Answer = %i" ans
+  
+[<Test>]
+let ``nextNum for 13 is 40``()=
+  nextNum 13L |> should equal 40L
+
+[<Test>]
+let ``nextNum for 40 is 20``()=
+  nextNum 40L |> should equal 20L
+
+[<Test>]
+let ``collatzLength for 1 is 1``()=
+  collatzLength 1L |> should equal 1L
+
+[<Test>]
+let ``collatzLength for 3 is 8``()=
+  collatzLength 3L |> should equal 8L
+    
+// Below not used in solution anymore
 let collatzSeq (n:int64) = 
   match n with
   | 0L -> Seq.empty
@@ -41,24 +88,16 @@ let collatzSeq (n:int64) =
       )
 
     Seq.append nums [|1L|]
-   
-let solver upTo =
-  Seq.initInfinite (fun i -> int64 i+1L)
-  |> Seq.takeWhile (fun i-> i < upTo)
-  |> Seq.map (fun i -> i, collatzSeq i |> Seq.length)
-  |> Seq.maxBy (fun (i, len) -> len)
 
-let problem14 = 
-  let ans, _ = solver 1000000L
-  printfn "Answer = %i" ans
-  ans |> should equal 837799L
-  ans
+let collatzSeq2 (n:int64) =
+  let rec fnm = 
+    memoize fn
+  and fn (n:int64) rest = 
+    match n with
+    | 1L -> [1L]
+    | n ->  n :: fnm (nextNum n) rest
 
-[<Test>]
-let scratch()=
-  let i, len = solver 1000000L
-  printfn "Answer = %i, len=%i" i len
-  collatzSeq i |> Seq.iter (printfn "%i")
+  fnm n []
   
 [<Test>]
 let ``collatzSeq for 13``()=
@@ -67,15 +106,31 @@ let ``collatzSeq for 13``()=
   s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
 
 [<Test>]
+let ``collatzSeq2 for 13``()=
+  let s = collatzSeq2 13L
+  s |> Seq.iter (printfn "%i")
+  s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
+
+[<Test>]
+let ``collatzSeq for large``()=
+  collatzSeq 1000000L |> Seq.iter (printfn "%O")
+  ()
+
+[<Test>]
+let ``collatzSeq2 for large``()=
+  collatzSeq 1000000L |> Seq.iter (printfn "%O")
+  ()
+
+[<Test>]
 let ``collatzSeq for 0``()=
   let s = collatzSeq 0L
   s |> Seq.iter (printfn "%i")
   s |> should equal [||]
-  
-[<Test>]
-let ``nextNum for 13 is 40``()=
-  nextNum 13L |> should equal 40L
 
 [<Test>]
-let ``nextNum for 40 is 20``()=
-  nextNum 40L |> should equal 20L
+let scratch()=
+  collatzSeq2 100L 
+  |> Seq.iter (printfn "%O")
+
+  collatzSeq 100L 
+  |> Seq.iter (printfn "%O")
