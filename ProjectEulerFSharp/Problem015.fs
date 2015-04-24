@@ -23,23 +23,27 @@ let rec factorial (x:bigint) =
   | x when x = bigint.One -> bigint.One
   | x -> x * factorial (x - bigint.One)
 
-let solver n =
+let solver (i:int32) =
+  let n = bigint (i * 2)
   (factorial n) / ( factorial (n/bigint 2) * factorial (n/bigint 2))
+
+let problem15 =
+  solver 20
 
 [<Test>]
 let scratch()=
-  let n = bigint 4
+  let n = 4
   let ans = solver n
   printfn "%O" ans
 
 [<Test>]
 let scratch2()=
-  let n = bigint 40
+  let n = 40
   let ans = solver n
   printfn "%O" ans
 
 [<Test>]
 let ans()=
-  let ans = solver (bigint 40)
+  let ans = solver 20
   printfn "%O" ans
   ans |> should equal (bigint 137846528820L)
