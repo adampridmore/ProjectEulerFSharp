@@ -13,8 +13,8 @@ open problem012
 open problem013
 open problem014
 open problem015
+open problem016
 
-open primes
 open System
 
 type s = Skipped
@@ -35,8 +35,9 @@ let main argv =
     problem11 ;
     problem12 ;
     problem13 ;
-    Skipped; // problem14;
+    Skipped ; //problem14;
     problem15 ;
+    problem16;
   ]
 
   let sw = System.Diagnostics.Stopwatch.StartNew()
