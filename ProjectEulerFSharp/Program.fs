@@ -15,30 +15,37 @@ open problem014
 open problem015
 
 open primes
-
 open System
+
+type s = Skipped
 
 [<EntryPoint>]
 let main argv = 
+  let problems : System.Object list = [
+    problem1 ;
+    problem2 ;
+    problem3 ;
+    problem4 ;
+    problem5 ;
+    problem6 ;
+    problem7 ;
+    problem8 ;
+    problem9 ;
+    problem10 ;
+    problem11 ;
+    problem12 ;
+    problem13 ;
+    Skipped; // problem14;
+    problem15 ;
+  ]
 
-  let printProblem i x = 
-    printfn "Problem %i = %O" i x
+  let sw = System.Diagnostics.Stopwatch.StartNew()
 
-  problem1 |> printProblem 1
-  problem2 |> printProblem 2
-  problem3 |> printProblem 3
-  problem4 |> printProblem 4
-  problem5 |> printProblem 5
-  problem6 |> printProblem 6
-  problem7 |> printProblem 7
-  problem8 |> printProblem 8
-  problem9 |> printProblem 9
-  problem10 |> printProblem 10
-  problem11 |> printProblem 11
-  problem12 |> printProblem 12
-  problem13 |> printProblem 13
-  problem14 |> printProblem 14
-  problem15 |> printProblem 15
+  problems 
+  |> Seq.zip (Seq.initInfinite (fun i->i+1))
+  |> Seq.iter (fun (i, problem) -> printfn "Problem %3i Answer = %A" i problem)
+    
+  printfn "Total duration %fms" sw.Elapsed.TotalMilliseconds
 
   0
 

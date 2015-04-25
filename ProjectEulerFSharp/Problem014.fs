@@ -48,9 +48,8 @@ let solver upTo =
   |> Seq.maxBy (fun (i, len) -> len)
   
 
-let problem14 = 
+let problem14= 
   let ans, _ = solver 1000000L
-  printfn "Answer = %i" ans
   ans |> should equal 837799L
   ans
 
