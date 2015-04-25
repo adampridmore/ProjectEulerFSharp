@@ -54,18 +54,23 @@ let numberAndWord =
     (1000,"one thousand");
   ]
 
-let biggestNumberAndWord n = numberAndWord |> List.rev |> Seq.find (fun (x,_)-> n - x >= 0)  
+let biggestNumberAndWord numberToFind = 
+  numberAndWord 
+  |> List.rev
+  |> Seq.find (fun (number,_) -> numberToFind - number >= 0)  
 
 let numberToWords number =
-  let needsPostAnd n = 
-    (n % 100 <> 0) && (n / 100 > 0)
+  let andIfNeeded number word =
+    let needsPostAnd n = (n % 100 <> 0) && (n / 100 > 0)
+
+    if needsPostAnd number then sprintf "%s and" word
+    else word
   
   let action remainder = 
     if remainder = 0 then None
-    else  let num, word = biggestNumberAndWord remainder
-          // TODO - Duplicate Some(X) code
-          if needsPostAnd remainder then Some( (word + " and"), remainder - num)
-          else Some(word , remainder - num)
+    else  
+      let num, word = biggestNumberAndWord remainder
+      Some(andIfNeeded remainder word, remainder - num)
   
   Seq.unfold action number
   |> Seq.reduce (fun a b -> sprintf "%s %s" a b)
