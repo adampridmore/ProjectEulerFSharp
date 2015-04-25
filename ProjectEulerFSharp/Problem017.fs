@@ -114,14 +114,6 @@ let ``scratch``()=
   |> Seq.iter (fun (i, txt) -> printfn "%i '%s'" i txt)
 
 [<Test>]
-let ``scratch 2``()=
-  {1..1000} 
-  |> Seq.map numberToWords
-  |> Seq.map numberTextLength
-  |> Seq.sum
-  |> (printfn "%i")
-
-[<Test>]
 let ``number text length for 'twenty one' is 9``()=
   numberTextLength "twenty one" |> should equal 9
 
