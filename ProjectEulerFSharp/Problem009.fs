@@ -23,7 +23,7 @@ let isPythagoreanTriplet a b c =
 let problem9 = 
   let (a,b,c) = (seq { 
       for a in 1..1000 do
-        for b in a..1000 do 
+        for b in a + 1..1000 do 
             yield (a,b, 1000 - a - b)
       }
     |> Seq.find (fun (a,b,c) -> isPythagoreanTriplet a b c))

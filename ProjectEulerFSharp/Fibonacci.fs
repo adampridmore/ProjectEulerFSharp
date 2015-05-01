@@ -7,7 +7,9 @@ open FsUnit
 // can lead to off by one errors. In problem 2 it assume 1,1
 let fibseq = 
     let firstTwoTerms = (1,1)
-    let restOfSequence = (Seq.unfold (fun (a,b) -> Some( a+b, (b, a+b) )) firstTwoTerms)
+    let action (a,b) = Some( a+b, (b, a+b) )
+    let restOfSequence = Seq.unfold action firstTwoTerms
+    
     Seq.append  [|fst firstTwoTerms; snd firstTwoTerms|] restOfSequence
 
 [<Test>]

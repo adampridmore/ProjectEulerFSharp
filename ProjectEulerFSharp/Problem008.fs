@@ -3,6 +3,7 @@
 open primes
 open NUnit.Framework
 open FsUnit
+open textUtils
 
 // The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 //
@@ -31,7 +32,7 @@ let getNumbersList =
                       "71636269561882670428252483600823257530420752963450"
                      ]
   let numberText = numberLines |> List.reduce (+)
-  numberText.ToCharArray() |> Array.toList |> List.map (fun c -> System.Int32.Parse(c.ToString()))
+  numberText.ToCharArray() |> Array.toList |> List.map charToInt
 
 let solver numbersToTake =
   let numbersList = getNumbersList

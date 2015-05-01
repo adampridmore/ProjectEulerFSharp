@@ -20,11 +20,9 @@ let sqr i = i * i
 let solver maxNumber = 
   let numbers = seq{1..maxNumber}
 
-  let squareSum,sum = 
-    numbers 
-    |> Seq.fold (fun (accSqr,accSum) cur -> 
-      (accSqr + sqr cur, accSum + cur)
-    ) (0,0)
+  let action (accSqr,accSum) cur =  (accSqr + sqr cur, accSum + cur)
+  let initialValue = (0,0)
+  let squareSum, sum = numbers  |> Seq.fold action initialValue
  
   (sqr sum) - squareSum
 

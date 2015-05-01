@@ -21,15 +21,16 @@ let findFirstFactor x =
 // not sure how to return the last item and terminate the fold. Uses -1 as a 
 // magic state to terminate the unfold. Ugly.
 let problem3Solver num =
-  Seq.unfold (fun (state) -> 
+  let action state = 
     let ans = findFirstFactor state
     match ans with 
     | x when x = -1L -> None
     | x when x >= state -> Some(ans, -1L)
     | _ -> Some(ans, state / ans)
-  ) num
-  |> Seq.last
   
+  Seq.unfold action num 
+  |> Seq.last
+
 let problem3 =
   let numToTry = 600851475143L
   problem3Solver numToTry

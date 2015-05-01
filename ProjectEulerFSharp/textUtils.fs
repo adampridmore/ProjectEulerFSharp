@@ -16,13 +16,17 @@ let toString x =
 let toCharArray x = 
   let s = x |> toString
   s.ToCharArray()
-
+ 
+let charToInt c =
+  System.Int32.Parse(c.ToString())
 
 let trimLines lines = 
   lines |> Seq.map (fun (s:string) -> s.Trim()) |> Seq.toArray
   
-
-
+[<Test>]
+let ``char to int for 3``()=
+  charToInt '3' |> should equal 3
+  
 [<Test>]
 let ``number to string``()=
   123 |> toString |> should equal "123"
