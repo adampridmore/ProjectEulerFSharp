@@ -113,12 +113,6 @@ let ``20``() = numberToWords 20 |> should equal "twenty"
 let ``21``() = numberToWords 21 |> should equal "twenty one"
 
 [<Test>]
-let ``scratch``()=
-  {1..1000} 
-  |> Seq.map (fun i -> i, (numberToWords i) )
-  |> Seq.iter (fun (i, txt) -> printfn "%i '%s'" i txt)
-
-[<Test>]
 let ``number text length for 'twenty one' is 9``()=
   numberTextLength "twenty one" |> should equal 9
 

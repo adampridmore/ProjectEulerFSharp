@@ -50,7 +50,7 @@ let getCells x y numberToGet translator cells =
   |> Seq.toArray
   
 let problem11 =
-  let numbersGrid = gridString |> splitLines |> trimLines |> Array.map lineToNumbers
+  let numbersGrid = gridString |> stringToLines |> trimLines |> Array.map lineToNumbers
 
   let width = numbersGrid.Length + 1
   let height = numbersGrid.[0].Length + 1

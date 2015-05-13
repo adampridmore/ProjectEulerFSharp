@@ -32,7 +32,7 @@ let getNumbersList =
                       "71636269561882670428252483600823257530420752963450"
                      ]
   let numberText = numberLines |> List.reduce (+)
-  numberText.ToCharArray() |> Array.toList |> List.map charToInt
+  numberText.ToCharArray() |> Array.toList |> List.map toInt
 
 let solver numbersToTake =
   let numbersList = getNumbersList

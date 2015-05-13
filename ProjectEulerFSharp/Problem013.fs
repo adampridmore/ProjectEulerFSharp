@@ -120,7 +120,7 @@ let problem13 =
     |> System.Int64.Parse
     
   numberText 
-  |> splitLines 
+  |> stringToLines 
   |> Seq.map bigint.Parse 
   |> Seq.sum
   |> takeFirstDigits 10
