@@ -38,117 +38,56 @@ let p2 = @"              75
 //
 //    NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
+type Tree = 
+  | Node of int * Tree * Tree
+  | Leaf of int
+
+let rec parseLines lines =
+  match lines with
+  | [] -> Seq.empty
+  | [row] -> row |> Seq.map (fun i -> Leaf(i))
+  | row::rest -> 
+        let nextRow = parseLines rest
+        Seq.zip row (nextRow |> Seq.pairwise)
+        |> Seq.map (fun (v,(l,r)) -> Node(v,l,r ))
+
+let parseTextToNode text =
+  let nonWhiteSpace text = not (System.String.IsNullOrWhiteSpace(text))
+
+  text
+  |> stringToLines
+  |> Seq.filter nonWhiteSpace
+  |> Seq.map textLineToNumbers
+  |> Seq.toList
+  |> parseLines 
+
 let problem18 = 18
+
+//let printTree tree = 
+//  match tree with 
+//  | Leaf v -> printfn "%i" v
+//  | Node (_,_,_) -> printfn "Node"
+
 
 [<Test>]
 let ans()=
   let ans = problem18
   printfn "%i" ans
   ans |> should equal 1
-
-
-
-type Tree = 
-  | Node of int * Tree * Tree
-  | Leaf of int
   
 [<Test>]
 let scratch()=
-  
-  let a = Leaf(1)
-  let b = Leaf(2)
-  let c = Node(3,a,b)
-
-//  printfn "%A" c
-
   let p1 = @"
        3
       7 4
      2 4 6
     8 5 9 3
   "
-
-  let d1 = Leaf(8)
-  let d2 = Leaf(5)
-  let d3 = Leaf(9)
-  let d4 = Leaf(3)
-  let c1 = Node(2,d1,d2)
-  let c2 = Node(4,d2,d3)
-  let c3 = Node(6,d3,d4)
-  let b1 = Node(7,c1,d2)
-  let b2 = Node(4,c2,c3)
-  let a1 = Node(3,b1,b2)
-  
-  let nonWhiteSpace text =
-    not (System.String.IsNullOrWhiteSpace(text))
-
-  let numberRows = (p1 
-    |> stringToLines
-    |> Seq.filter nonWhiteSpace
-    |> Seq.map textLineToNumbers
-    |> Seq.toList
-    |> List.rev
-  )
-
-  let row4 = numberRows |> Seq.skip 0 |> Seq.head
-  let row3= numberRows |> Seq.skip 1 |> Seq.head
-  let row2= numberRows |> Seq.skip 2 |> Seq.head
-  let row1= numberRows |> Seq.skip 3 |> Seq.head
-
-  let row4Leaf = row4 |> Seq.map (fun i -> Leaf(i))
-  
-  let row3Node = (row3 
-      |> Seq.zip (row4Leaf |> Seq.pairwise)
-      |> Seq.map (fun ((l,r),value)-> Node(value, l,r))
-    )
-
-  let row2Node = (row2
-      |> Seq.zip (row3Node|> Seq.pairwise)
-      |> Seq.map (fun ((l,r),value)-> Node(value, l,r))
-    )
-
-  let row1Node = (row1
-    |> Seq.zip (row2Node|> Seq.pairwise)
-    |> Seq.map (fun ((l,r),value)-> Node(value, l,r))
-  )
-
-  let parsedNode = row1Node |> Seq.head 
-  
-  parsedNode |> (printfn "%A")
-
-
-
-[<Test>]
-let scratch2()=
-  let p1 = @"
-       3
-      7 4
-     2 4 6
-    8 5 9 3
-  "
-        
-  let rec parseLines lines =
-    match lines with
-    | [] -> Seq.empty
-    | [row] -> row |> Seq.map (fun i -> Leaf(i))
-    | row::rest -> 
-          let nextRow = parseLines rest
-          Seq.zip row (nextRow |> Seq.pairwise)
-          |> Seq.map (fun (v,(l,r)) -> Node(v,l,r ))
-
-  let parseTextToNode text =
-    let nonWhiteSpace text = not (System.String.IsNullOrWhiteSpace(text))
-
-    text
-    |> stringToLines
-    |> Seq.filter nonWhiteSpace
-    |> Seq.map textLineToNumbers
-    |> Seq.toList
-    |> parseLines 
-    
   parseLines [[2;3]] |> (printfn "%A")
   parseLines [[1];[2;3]] |> (printfn "%A")
   p1 |> parseTextToNode |> (printfn "%A")
   p2 |> parseTextToNode |> (printfn "%A")
+
+//  p1 |> parseTextToNode |> printTree
   
   
