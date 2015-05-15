@@ -38,8 +38,8 @@ let p2 = @"              75
 //
 //    NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
-type Tree = 
-  | Node of int * Tree * Tree
+type TreeNode = 
+  | Node of int * TreeNode * TreeNode
   | Leaf of int
 
 let rec parseLines lines =
