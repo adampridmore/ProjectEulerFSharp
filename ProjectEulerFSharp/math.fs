@@ -3,7 +3,7 @@
 open NUnit.Framework
 open FsUnit
 
-let rec pow x y = 
+let pow x y = 
   let rec powInt x y acc =
     match y with
     | 0 -> 1 
@@ -28,4 +28,8 @@ let ``pow: 0 to the power of anything is 0``()=
 [<Test>]
 let ``pow: anything to the power of 0 is 1``()=
   pow 3 0 |> should equal 1
+
+[<Test>]
+let ``pow: 1 to the power of a large is 1``()=
+  pow 1 1000000 |> should equal 1
   
