@@ -66,13 +66,11 @@ let rec getDepth tree  =
   match tree with
   | Leaf(_) -> 1
   | Node(v,l,_) -> 1 + getDepth(l)
-  
-let pow x y = 
-  match x,y with 
-  | _ , 0 -> 1
-  | 0 , _ -> 0
-  | _  -> Seq.init y (fun i -> x)
-          |> Seq.reduce (*)
+let rec pow x y = 
+  match y with
+  | 0 -> 1
+  | 1 -> x
+  | n -> x * (pow x n-1)
 
 type direction = |Left|Right
 
@@ -88,11 +86,14 @@ let intToDirections i length =
             | 0 -> Left::intToDirectionsInternal (i/2)
             | 1 -> Right::intToDirectionsInternal (i/2)
             | _ -> failwith "Error"
-  
-  let digits = (intToDirectionsInternal i) |> Seq.toList |> List.rev |> List.toSeq
-  let paddingLength = length - (Seq.length digits)
-  let padding = sequenceOf Left paddingLength
-  Seq.concat [padding;digits] |> List.ofSeq
+
+  match length with
+  | 0 -> []
+  | _ ->  
+    let digits = (intToDirectionsInternal i) |> Seq.toList |> List.rev |> List.toSeq
+    let paddingLength = length - (Seq.length digits)
+    let padding = sequenceOf Left paddingLength
+    Seq.concat [padding;digits] |> List.ofSeq
 
 let rec totalDirections tree directions =
   match tree, directions with
@@ -156,6 +157,7 @@ let ``parse text to tree``()=
 
 [<Test>]
 let ``int to directions for length``()=
+  intToDirections 0 0 |> should equal []
   intToDirections 0 1 |> should equal [Left]
   intToDirections 1 1 |> should equal [Right]
   intToDirections 0 2 |> should equal [Left;Left]
