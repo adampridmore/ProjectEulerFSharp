@@ -60,6 +60,7 @@
     <Compile Include="primes.fs" />
     <Compile Include="Fibonacci.fs" />
     <Compile Include="textUtils.fs" />
+    <Compile Include="math.fs" />
     <Compile Include="memoize.fs" />
     <Compile Include="Problem001.fs" />
     <Compile Include="Problem002.fs" />

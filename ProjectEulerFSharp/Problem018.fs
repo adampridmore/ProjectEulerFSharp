@@ -3,6 +3,7 @@
 open NUnit.Framework
 open FsUnit
 open textUtils
+open math
 
 //    Maximum path sum I
 //    Problem 18
@@ -66,11 +67,6 @@ let rec getDepth tree  =
   match tree with
   | Leaf(_) -> 1
   | Node(v,l,_) -> 1 + getDepth(l)
-let rec pow x y = 
-  match y with
-  | 0 -> 1
-  | 1 -> x
-  | n -> x * (pow x n-1)
 
 type direction = |Left|Right
 
@@ -115,18 +111,6 @@ let solver treeText =
  
 let problem18 = 
   solver p2
-
-[<Test>]
-let ``2 to the power of 3 is 8``()=
-  pow 2 3 |> should equal 8
-
-[<Test>]
-let ``0 to the power of anything is 0``()=
-  pow 0 3 |> should equal 0
-
-[<Test>]
-let ``anything to the power of 0 is 1``()=
-  pow 3 0 |> should equal 1
 
 [<Test>]
 let ans()=
