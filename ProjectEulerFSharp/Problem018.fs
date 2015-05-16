@@ -63,52 +63,17 @@ let parseTextToTree text =
   |> parseLines 
   |> Seq.head
 
-let rec getDepth tree  = 
-  match tree with
-  | Leaf(_) -> 1
-  | Node(v,l,_) -> 1 + getDepth(l)
+let max a b = if (a > b) then a else b
 
-type direction = |Left|Right
+let rec getTreeNodeMax = function 
+  | Leaf(v) -> v
+  | Node(v,l,r) -> v + max (getTreeNodeMax l) (getTreeNodeMax r)
 
-let intToDirections i length =
-  let sequenceOf item length =
-    Seq.init length (fun _ -> item)
-
-  let rec intToDirectionsInternal i =
-    match i with
-    | 0 -> [Left]
-    | 1 -> [Right]
-    | _ -> match (i%2) with
-            | 0 -> Left::intToDirectionsInternal (i/2)
-            | 1 -> Right::intToDirectionsInternal (i/2)
-            | _ -> failwith "Error"
-
-  match length with
-  | 0 -> []
-  | _ ->  
-    let digits = (intToDirectionsInternal i) |> Seq.toList |> List.rev |> List.toSeq
-    let paddingLength = length - (Seq.length digits)
-    let padding = sequenceOf Left paddingLength
-    Seq.concat [padding;digits] |> List.ofSeq
-
-let rec totalDirections tree directions =
-  match tree, directions with
-  | Leaf(v),_ -> v
-  | Node(v,l,r), nextDir::remainingDirs -> 
-                          v + match nextDir with
-                              |Left -> totalDirections l remainingDirs
-                              |Right -> totalDirections r remainingDirs
-  | _ -> failwith "Error"
-  
 let solver treeText = 
   let tree = treeText |> parseTextToTree
-  let depth = (tree |> getDepth)
+  getTreeNodeMax tree
+  
 
-  Seq.init (pow 2 (depth-1)) (fun i -> i)
-  |> Seq.map (fun i -> intToDirections i (depth - 1))
-  |> Seq.map (fun directions -> directions |> (totalDirections tree))
-  |> Seq.max
- 
 let problem18 = 
   solver p2
 
@@ -117,14 +82,6 @@ let ans()=
   let ans = problem18
   printfn "%i" ans
   ans |> should equal 1074
-
-[<Test>]
-let ``get tree depth``()=
-  let text = @"
-   1
-  2 3
- 4 5 6"
-  text |> parseTextToTree |> getDepth |> should equal 3
 
 [<Test>]
 let ``parse text to tree``()=
@@ -140,16 +97,6 @@ let ``parse text to tree``()=
   tree |> should equal a
 
 [<Test>]
-let ``int to directions for length``()=
-  intToDirections 0 0 |> should equal []
-  intToDirections 0 1 |> should equal [Left]
-  intToDirections 1 1 |> should equal [Right]
-  intToDirections 0 2 |> should equal [Left;Left]
-  intToDirections 1 2 |> should equal [Left;Right]
-  intToDirections 2 2 |> should equal [Right;Left]
-  intToDirections 3 2 |> should equal [Right;Right]
-
-[<Test>]
 let ``simple pyramid solution``()=
   solver p1 |> should equal 23
 
@@ -162,16 +109,14 @@ let scratch()=
     8 5 9 3
    1 2 3 4 5
 "
-  let simpleTree = "1\r\n2 3"
-
   let tree = p2 |> parseTextToTree
-  let depth = (tree |> getDepth)
 
-  printfn "Depth %i" depth
+  getTreeNodeMax tree |> (printfn "%A")
 
-  Seq.init (pow 2 (depth-1)) (fun i -> i)
-  |> Seq.map (fun i -> intToDirections i (depth - 1))
-  |> Seq.map (fun directions -> directions, directions |> (totalDirections tree))
-  //|> Seq.iter (fun (dir, total) -> printfn "%i %A" total dir)
-  |> Seq.maxBy (fun (_, total) -> total)
-  |> (printfn "%A")
+[<Test>]
+let ``max when a > b should be a``()=
+  max 6 5 |> should equal 6
+
+[<Test>]
+let ``max when a < b should be b``()=
+  max 4 5 |> should equal 5
