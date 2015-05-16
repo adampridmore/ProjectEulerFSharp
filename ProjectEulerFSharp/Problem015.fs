@@ -2,6 +2,7 @@
 
 open NUnit.Framework
 open FsUnit
+open math
 
 
 //Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
@@ -17,11 +18,6 @@ open FsUnit
 //
 //
 //4!/ 2!.2!
-
-let rec factorial (x:bigint) = 
-  match x with
-  | x when x = bigint.One -> bigint.One
-  | x -> x * factorial (x - bigint.One)
 
 let solver (i:int32) =
   let n = bigint (i * 2)

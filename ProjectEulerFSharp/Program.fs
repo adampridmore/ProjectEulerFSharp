@@ -17,6 +17,7 @@ open problem016
 open problem017
 open problem018
 open problem019
+open problem020
 
 open System
 
@@ -43,7 +44,8 @@ let main argv =
     problem16;
     problem17;
     problem18;
-    problem19
+    problem19;
+    problem20
   ]
 
   let sw = System.Diagnostics.Stopwatch.StartNew()
