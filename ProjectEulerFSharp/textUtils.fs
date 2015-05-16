@@ -5,11 +5,10 @@ open FsUnit
 
 let stringToLines (str:string) = 
   let split (s:string) = 
-    s.Split([|System.Environment.NewLine|], System.StringSplitOptions.RemoveEmptyEntries)
+    s.Split([|System.Environment.NewLine;"\n"|], System.StringSplitOptions.RemoveEmptyEntries)
 
   str |> split |> List.ofSeq
   
-
 let toString x =
    x.ToString()
 
@@ -18,7 +17,10 @@ let toCharArray x =
   s.ToCharArray()
  
 let toInt x =
-  System.Int32.Parse(x.ToString())
+  let (res, v) = System.Int32.TryParse(x.ToString());
+  match res with 
+  | true -> v
+  | false -> failwith (sprintf "Invalid int: %A" x)
 
 let trimLines lines = 
   lines |> Seq.map (fun (s:string) -> s.Trim()) |> Seq.toArray
@@ -28,6 +30,12 @@ let textLineToNumbers line =
     s.Split([|' '|], System.StringSplitOptions.RemoveEmptyEntries)
 
   line |> split |> Seq.map toInt
+
+let loadResourceAsText name =
+  let assembly = System.Reflection.Assembly.GetExecutingAssembly()
+  let stream  = assembly.GetManifestResourceStream(name)
+  let reader = new System.IO.StreamReader(stream);
+  reader.ReadToEnd()  
 
 [<Test>]
 let ``"01 02 03" to numbers``() =
