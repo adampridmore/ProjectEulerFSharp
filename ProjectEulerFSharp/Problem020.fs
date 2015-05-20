@@ -25,4 +25,4 @@ let problem20 =
 let ans() = 
   let ans = problem20
   printfn "%A" ans
-  ans |> should equal 658
+  ans |> should equal (bigint 648)
