@@ -46,24 +46,25 @@ let max a b =
   | a,b when a > b -> a
   | _,b -> b
 
-let solver treeText =
-  let compressLine line =
-    match line with
-    | [] -> line
-    | [a] -> line
-    | _ ->  line
-            |> Seq.pairwise 
-            |> Seq.map (fun (a,b) -> max a b)
-            |> Seq.toList
+// This iterates through a row, a of values pair at a time and picks the max 
+let compressLine line =
+  match line with
+  | [] | [_]  -> line
+  | _ -> line
+          |> Seq.pairwise 
+          |> Seq.map (fun (a,b) -> max a b)
+          |> Seq.toList
 
+let solver treeText =
   let rec processLines (lines:list<list<int>>) = 
-    match lines with
-    | [] -> [0]
-    | [lastRow] -> lastRow |> compressLine
-    | hd::rest -> 
-          List.zip (processLines rest) hd 
-          |> List.map (fun (a,b) -> a + b)
-          |> compressLine
+    let joinRows = function 
+          | [] -> [0]
+          | [lastRow] -> lastRow
+          | hd::rest -> 
+              List.zip (processLines rest) hd 
+              |> List.map (fun (a,b) -> a + b)
+
+    lines |> joinRows |> compressLine
 
   treeText
   |> stringToLines
@@ -93,3 +94,7 @@ let ``max when a > b should be a``()=
 [<Test>]
 let ``max when a < b should be b``()=
   max 4 5 |> should equal 5
+
+[<Test>]
+let ``compress line picks max of all pairs of values``()=
+  [1;2;3;4;5] |> compressLine |> should equal [2;3;4;5]
