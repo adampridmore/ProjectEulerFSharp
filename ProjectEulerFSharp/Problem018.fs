@@ -39,41 +39,40 @@ let p2 = @"              75
 //
 //    NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
-type TreeNode = 
-  | Node of int * TreeNode * TreeNode
-  | Leaf of int
+let nonWhiteSpace text = not (System.String.IsNullOrWhiteSpace(text))
+   
+let max a b = 
+  match a,b with  
+  | a,b when a > b -> a
+  | _,b -> b
 
-let rec parseLines lines =
-  match lines with
-  | [] -> Seq.empty
-  | [row] -> row |> Seq.map (fun i -> Leaf(i))
-  | row::rest -> 
-        let nextRow = parseLines rest
-        Seq.zip row (nextRow |> Seq.pairwise)
-        |> Seq.map (fun (v,(l,r)) -> Node(v,l,r ))
+let solver treeText =
+  let compressLine line =
+    match line with
+    | [] -> line
+    | [a] -> line
+    | _ ->  line
+            |> Seq.pairwise 
+            |> Seq.map (fun (a,b) -> max a b)
+            |> Seq.toList
 
-let parseTextToTree text =
-  let nonWhiteSpace text = not (System.String.IsNullOrWhiteSpace(text))
+  let rec processLines (lines:list<list<int>>) = 
+    match lines with
+    | [] -> [0]
+    | [lastRow] -> lastRow |> compressLine
+    | hd::rest -> 
+          List.zip (processLines rest) hd 
+          |> List.map (fun (a,b) -> a + b)
+          |> compressLine
 
-  text
+  treeText
   |> stringToLines
   |> Seq.filter nonWhiteSpace
-  |> Seq.map textLineToNumbers
+  |> Seq.map (fun text -> textLineToNumbers text |> Seq.toList)
   |> Seq.toList
-  |> parseLines 
+  |> processLines
   |> Seq.head
-
-let max a b = if (a > b) then a else b
-
-let rec getTreeNodeMax = function 
-  | Leaf(v) -> v
-  | Node(v,l,r) -> v + max (getTreeNodeMax l) (getTreeNodeMax r)
-
-let solver treeText = 
-  let tree = treeText |> parseTextToTree
-  getTreeNodeMax tree
   
-
 let problem18 = 
   solver p2
 
@@ -84,34 +83,8 @@ let ans()=
   ans |> should equal 1074
 
 [<Test>]
-let ``parse text to tree``()=
-  let text = @"
-   1
-  2 3"
-  let tree = parseTextToTree text
-
-  let b = Leaf(2)
-  let c = Leaf(3)
-  let a = Node(1, b,c)
-
-  tree |> should equal a
-
-[<Test>]
 let ``simple pyramid solution``()=
   solver p1 |> should equal 23
-
-[<Test>]
-let scratch()=
-  let p3 = @"
-       3
-      7 4
-     2 4 6
-    8 5 9 3
-   1 2 3 4 5
-"
-  let tree = p2 |> parseTextToTree
-
-  getTreeNodeMax tree |> (printfn "%A")
 
 [<Test>]
 let ``max when a > b should be a``()=
