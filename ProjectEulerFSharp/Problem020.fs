@@ -24,5 +24,5 @@ let problem20 =
 [<Test>]
 let ans() = 
   let ans = problem20
-  printfn "%A" problem20
+  printfn "%A" ans
   ans |> should equal 658
