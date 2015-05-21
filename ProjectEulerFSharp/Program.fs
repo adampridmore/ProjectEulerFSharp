@@ -28,7 +28,7 @@ type s = Skipped
 [<EntryPoint>]
 let main argv = 
   let problems : System.Object list = [
-    problem1 ;
+    problem1;
     problem2 ;
     problem3 ;
     problem4 ;
@@ -55,8 +55,8 @@ let main argv =
   let sw = System.Diagnostics.Stopwatch.StartNew()
 
   problems 
-  |> Seq.zip (Seq.initInfinite (fun i->i+1))
-  |> Seq.iter (fun (i, problem) -> printfn "Problem %3i Answer = %A" i problem)
+  |> Seq.mapi (fun i p -> (i,p))
+  |> Seq.iter(fun (i,problem) -> printfn "Problem %3i Answer = %A" i problem)
     
   printfn "Total duration %fms" sw.Elapsed.TotalMilliseconds
 
