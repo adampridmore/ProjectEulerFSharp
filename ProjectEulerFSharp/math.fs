@@ -2,6 +2,7 @@
 
 open NUnit.Framework
 open FsUnit
+open primes
 
 let pow x y = 
   let rec powInt x y acc =
@@ -21,6 +22,30 @@ let rec factorial (x:bigint) =
     | x -> facInt (x - bigint.One) (newAcc)
 
   facInt x bigint.One
+
+let properDivisors n = 
+  [1..n-1]
+  |> Seq.filter (fun i -> n % i = 0)
+
+// Taken from 
+// http://math.stackexchange.com/questions/22721/is-there-a-formula-to-calculate-the-sum-of-all-proper-divisors-of-a-number
+let properDivisorsSum n = 
+  match primeFactors n with
+  | [] -> 0
+  | x ->  ( x 
+            |> Seq.countBy (fun x -> x) 
+            |> Seq.map (fun (x,count) -> seq{for i in 0..count do yield pow x i} |> Seq.sum)
+            |> Seq.reduce (*)   
+          ) - n  
+
+[<Test>]
+let ``proper divisors sum of 120 is 240``()=
+  120 |> properDivisorsSum |> should equal 240
+
+
+[<Test>]
+let ``get proper divisors of 10``()=
+  10 |> properDivisors |> should equal [1;2;5]
 
 [<Test>]
 let ``pow: 2 to the power of 3 is 8``()=
