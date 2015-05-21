@@ -19,7 +19,10 @@ open problem018
 open problem019
 open problem020
 open problem021
+open problem022
+
 open problem067
+
 
 open System
 
@@ -49,13 +52,16 @@ let main argv =
     problem19;
     problem20;
     problem21;
+    problem22;
+
+
     problem67
   ]
 
   let sw = System.Diagnostics.Stopwatch.StartNew()
 
   problems 
-  |> Seq.mapi (fun i p -> (i,p))
+  |> Seq.mapi (fun i p -> (i+1,p))
   |> Seq.iter(fun (i,problem) -> printfn "Problem %3i Answer = %A" i problem)
     
   printfn "Total duration %fms" sw.Elapsed.TotalMilliseconds

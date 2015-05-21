@@ -3,13 +3,10 @@
 open problem018
 open NUnit.Framework
 open FsUnit
+open resources
 
 let problem67 = 
-  let r = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream("p067_triangle.txt")
-  let reader = new System.IO.StreamReader(r)
-  let text = reader.ReadToEnd()
-    
-  solver text
+  loadResourceAsText "p067_triangle.txt" |> solver
 
 [<Test>]
 let ans() = 

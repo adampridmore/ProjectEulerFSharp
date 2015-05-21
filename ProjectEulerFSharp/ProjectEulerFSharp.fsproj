@@ -61,6 +61,7 @@
     <Compile Include="textUtils.fs" />
     <Compile Include="math.fs" />
     <Compile Include="memoize.fs" />
+    <Compile Include="resources.fs" />
     <Compile Include="Problem001.fs" />
     <Compile Include="Problem002.fs" />
     <Compile Include="Problem003.fs" />
@@ -82,11 +83,13 @@
     <Compile Include="Problem019.fs" />
     <Compile Include="Problem020.fs" />
     <Compile Include="Problem021.fs" />
+    <Compile Include="Problem022.fs" />
     <Compile Include="Problem067.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="p067_triangle.txt" />
+    <EmbeddedResource Include="p022_names.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.PowerPack">
