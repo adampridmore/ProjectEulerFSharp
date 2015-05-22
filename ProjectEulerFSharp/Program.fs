@@ -20,6 +20,7 @@ open problem019
 open problem020
 open problem021
 open problem022
+open problem023
 
 open problem067
 
@@ -53,6 +54,7 @@ let main argv =
     problem20;
     problem21;
     problem22;
+    problem23;
 
 
     problem67
