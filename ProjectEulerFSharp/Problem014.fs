@@ -53,9 +53,9 @@ let problem14() =
   ans |> should equal 837799L
   ans
 
-[<Test>]
-let ans()=
-  problem14() |> should equal 837799L
+//[<Test>]
+//let ans()=
+//  problem14() |> should equal 837799L
 
 [<Test>]
 let ``Solution for up to 100``() = 
