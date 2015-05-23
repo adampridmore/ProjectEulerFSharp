@@ -48,14 +48,14 @@ let solver upTo =
   |> Seq.maxBy (fun (i, len) -> len)
   
 
-let problem14= 
+let problem14() = 
   let ans, _ = solver 1000000L
   ans |> should equal 837799L
   ans
 
 [<Test>]
 let ans()=
-  problem14 |> should equal 837799L
+  problem14() |> should equal 837799L
 
 [<Test>]
 let ``Solution for up to 100``() = 
