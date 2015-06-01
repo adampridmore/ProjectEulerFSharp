@@ -22,6 +22,7 @@ open problem021
 open problem022
 open problem023
 open problem024
+open problem025
 
 open problem067
 
@@ -57,6 +58,7 @@ let main argv =
     problem22;
     Skipped; // problem23();
     Skipped;// problem24();
+    problem25;
     
     problem67
   ]

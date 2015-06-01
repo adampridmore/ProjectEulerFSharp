@@ -86,6 +86,7 @@
     <Compile Include="Problem022.fs" />
     <Compile Include="Problem023.fs" />
     <Compile Include="Problem024.fs" />
+    <Compile Include="Problem025.fs" />
     <Compile Include="Problem067.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />

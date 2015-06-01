@@ -6,11 +6,18 @@ open FsUnit
 // It seems to be undefined if the first two terms are 0,1 or 1,1 which 
 // can lead to off by one errors. In problem 2 it assume 1,1
 let fibseq = 
-    let firstTwoTerms = (1,1)
-    let action (a,b) = Some( a+b, (b, a+b) )
-    let restOfSequence = Seq.unfold action firstTwoTerms
+  let firstTwoTerms = (1,1)
+  let action (a,b) = Some( a+b, (b, a+b) )
+  let restOfSequence = Seq.unfold action firstTwoTerms
     
-    Seq.append  [|fst firstTwoTerms; snd firstTwoTerms|] restOfSequence
+  Seq.append  [|fst firstTwoTerms; snd firstTwoTerms|] restOfSequence
+
+let fibseqbig = 
+  let firstTwoTerms = (bigint 1, bigint 1)
+  let action (a,b) = Some( a+b, (b, a+b) )
+  let restOfSequence = Seq.unfold action firstTwoTerms
+    
+  Seq.append  [|fst firstTwoTerms; snd firstTwoTerms|] restOfSequence
 
 [<Test>]
 let small_set() = 
