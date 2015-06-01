@@ -56,7 +56,7 @@ let main argv =
     problem21;
     problem22;
     Skipped; // problem23();
-    problem24();
+    Skipped;// problem24();
     
     problem67
   ]

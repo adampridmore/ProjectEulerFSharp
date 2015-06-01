@@ -44,7 +44,7 @@ let solver index numbers =
   |> arrayToText
   |> toInt64
 
-let problem024() = 
+let problem24() = 
   seq{0..9} |> solver (1000000-1) // Zero indexed, so -1 for millionth
 
 [<Test>]
@@ -73,9 +73,9 @@ let ``solver for two ``()=
   [1;2] |> solver 0 |> should equal 12
   [1;2] |> solver 1 |> should equal 21
 
-[<Test>]
-let ``ans``()=
-  let ans = problem024()
-  
-  ans |> printfn "%i"
-  ans |> should equal 2783915460L
+//[<Test>]
+//let ``ans``()=
+//  let ans = problem24()
+//  
+//  ans |> printfn "%i"
+//  ans |> should equal 2783915460L
