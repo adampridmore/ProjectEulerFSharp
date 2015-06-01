@@ -22,6 +22,12 @@ let toInt x =
   | true -> v
   | false -> failwith (sprintf "Invalid int: %A" x)
 
+let toInt64 x =
+  let (res, v) = System.Int64.TryParse(x.ToString());
+  match res with 
+  | true -> v
+  | false -> failwith (sprintf "Invalid int: %A" x)
+
 let trimLines lines = 
   lines |> Seq.map (fun (s:string) -> s.Trim()) |> Seq.toArray
   
