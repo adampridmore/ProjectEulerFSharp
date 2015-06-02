@@ -5,7 +5,13 @@ open FsUnit
 
 let stringToLines (str:string) = 
   let split (s:string) = 
-    s.Split([|System.Environment.NewLine;"\n"|], System.StringSplitOptions.RemoveEmptyEntries)
+    let newLineChars = [|
+      System.Environment.NewLine;
+      "\n";
+      "\r\n"
+    |]
+
+    s.Split(newLineChars, System.StringSplitOptions.RemoveEmptyEntries)
 
   str |> split |> List.ofSeq
   

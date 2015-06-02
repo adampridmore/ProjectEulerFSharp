@@ -22,7 +22,7 @@ let rec permutation list =
   let getCombinationsThatStartWith item =
     let otherItems = list |> List.filter (fun x -> x <> item)
     let innerCombinations = permutation otherItems
-    innerCombinations |> List.map (fun combination -> List.concat [[item];combination])
+    innerCombinations |> List.map (fun combination -> item :: combination)
     
   match list with
   | [] -> []

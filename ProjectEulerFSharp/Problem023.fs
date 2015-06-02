@@ -23,7 +23,7 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 *)
 
 let oppositeListOfInt list = 
-  (Seq.concat [[0];list])
+  0::list
   |> Seq.pairwise 
   |> Seq.collect (fun (a,b) -> seq{a+1..b-1})
 
