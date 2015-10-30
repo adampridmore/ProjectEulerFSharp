@@ -33,6 +33,8 @@ type s = Skipped
 
 [<EntryPoint>]
 let main argv = 
+  let sw = System.Diagnostics.Stopwatch.StartNew()
+
   let problems : System.Object list = [
     problem1;
     problem2 ;
@@ -62,8 +64,6 @@ let main argv =
     
     problem67
   ]
-
-  let sw = System.Diagnostics.Stopwatch.StartNew()
 
   problems 
   |> Seq.mapi (fun i p -> (i+1,p))
