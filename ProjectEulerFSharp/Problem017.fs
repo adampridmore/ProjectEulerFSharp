@@ -20,7 +20,7 @@ let numberAndWord =
     (3,"three");
     (4,"four");
     (5,"five");
-    (6,"six");  
+    (6,"six");
     (7,"seven");
     (8,"eight");
     (9,"nine");
@@ -86,11 +86,11 @@ let solver n =
   |> Seq.map numberTextLength
   |> Seq.sum
 
-let problem17 = solver 1000
+let problem17() = solver 1000
 
 [<Test>]
 let ans()=
-  let ans = problem17 
+  let ans = problem17() 
   printfn "%i" ans
   ans |> should equal 21124
       

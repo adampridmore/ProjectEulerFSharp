@@ -12,17 +12,18 @@ open textUtils
 //
 //  Find the sum of the digits in the number 100!
 
-let problem20 = 
+let problem20() =
+// TODO 
   factorial (bigint 100)
   |> toString
   |> toCharArray
   |> Seq.map (fun c -> new string([|c|]))
   |> Seq.map (fun n -> bigint.Parse(n))
-  |> Seq.sum   
+  |> Seq.sum
   
 
 [<Test>]
 let ans() = 
-  let ans = problem20
+  let ans = problem20()
   printfn "%A" ans
   ans |> should equal (bigint 648)

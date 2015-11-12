@@ -32,7 +32,7 @@ let solver =
   |> Seq.length
 
 
-let problem19 = 
+let problem19() = 
   solver
 
 [<Test>]

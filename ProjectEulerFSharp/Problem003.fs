@@ -8,30 +8,27 @@ open FsUnit
 //
 //What is the largest prime factor of the number 600851475143 ?
 
-let isXFactorOf (x:int64) (y:int64) =
+let isXFactorOf x y =
   y % x = 0L
 
-let findFirstFactor x = 
-  if x <= 2L then x 
-  else
-    seq{2L..x}
-    |> Seq.filter (fun (i:int64) -> isXFactorOf i x)
-    |> Seq.head
+let findFirstFactor =
+    function
+    | x when x < 2L -> x
+    | x ->  seq{2L..x}
+            |> Seq.filter (fun (i:int64) -> isXFactorOf i x)
+            |> Seq.head
 
-// not sure how to return the last item and terminate the fold. Uses -1 as a 
-// magic state to terminate the unfold. Ugly.
 let problem3Solver num =
-  let action state = 
-    let ans = findFirstFactor state
-    match ans with 
-    | x when x = -1L -> None
-    | x when x >= state -> Some(ans, -1L)
-    | _ -> Some(ans, state / ans)
+  let action (state, more) = 
+    match (state |> findFirstFactor), more with 
+    | _, false -> None
+    | fstFactor, _ when fstFactor >= state -> Some(fstFactor, (0L, false))
+    | fstFactor, _ -> Some(fstFactor, ((state / fstFactor), true))
   
-  Seq.unfold action num 
+  Seq.unfold action (num , true)
   |> Seq.last
 
-let problem3 =
+let problem3() =
   let numToTry = 600851475143L
   problem3Solver numToTry
 
@@ -57,6 +54,6 @@ let ``first factor of 25 is 5 ``()=
 
 [<Test>]
 let ``answer``() = 
-  let answer = problem3
+  let answer = problem3()
   answer |> should equal 6857
-  printfn "%i" answer  
+  printfn "%i" answer

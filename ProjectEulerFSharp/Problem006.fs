@@ -20,18 +20,18 @@ let sqr i = i * i
 let solver maxNumber = 
   let numbers = seq{1..maxNumber}
 
-  let action (accSqr,accSum) cur =  (accSqr + sqr cur, accSum + cur)
-  let initialValue = (0,0)
-  let squareSum, sum = numbers  |> Seq.fold action initialValue
+  let action (accSqr,accSum) cur =
+    (accSqr + sqr cur, accSum + cur)
+  let squareSum, sum = numbers  |> Seq.fold action (0,0)
  
   (sqr sum) - squareSum
 
-let problem6 = 
+let problem6() = 
   solver 100
 
 [<Test>]
 let ``answer``() =
-  let ans = problem6
+  let ans = problem6()
   printfn "%i" ans
   ans |> should equal 25164150
 

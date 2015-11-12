@@ -33,7 +33,9 @@ let gridString = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
                   01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48"
                   
 let lineToNumbers (line:string) = 
-  line.Split([|' '|]) |> Seq.map (fun numText -> System.Int32.Parse(numText)) |> Seq.toArray
+  line.Split([|' '|]) 
+  |> Seq.map (fun numText -> System.Int32.Parse(numText)) 
+  |> Seq.toArray
   
 let getCell x y (cells:int[][]) =
   match (x,y) with
@@ -49,8 +51,12 @@ let getCells x y numberToGet translator cells =
   )
   |> Seq.toArray
   
-let problem11 =
-  let numbersGrid = gridString |> stringToLines |> trimLines |> Array.map lineToNumbers
+let problem11() =
+  let numbersGrid = 
+    gridString 
+    |> stringToLines 
+    |> trimLines 
+    |> Array.map lineToNumbers
 
   let width = numbersGrid.Length + 1
   let height = numbersGrid.[0].Length + 1
@@ -73,7 +79,7 @@ let problem11 =
 
   let productOfCellLine x y = 
     numbersGrid 
-    |> getCells x y lineLength (fun x y i-> (x+i, y+i))  
+    |> getCells x y lineLength (fun x y i-> (x+i, y+i))
     |> Seq.reduce (*)
   
   seq{
@@ -86,14 +92,14 @@ let problem11 =
 
 [<Test>]
 let ``answer``() =
-  let ans = problem11
+  let ans = problem11()
   printfn "%i" ans
   ans |> should equal 70600674
 
 [<Test>]
 let ``scratch``() =
   // 70600674
-  printfn "Product: %d" problem11
+  printfn "Product: %d" (problem11())
 
 [<Test>]
 let ``line to numbers``()=

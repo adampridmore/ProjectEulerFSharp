@@ -21,8 +21,7 @@ open memoize
 //NOTE: Once the chain starts the terms are allowed to go above one million.
 
 let nextNum n = 
-  let isOdd x =
-    x % 2L = 0L
+  let isOdd x = x % 2L = 0L
 
   match n with 
   | 1L -> 1L
@@ -46,7 +45,6 @@ let solver upTo =
   |> Seq.takeWhile (fun i-> i < upTo)
   |> Seq.map (fun i -> i, collatzLength i)
   |> Seq.maxBy (fun (i, len) -> len)
-  
 
 let problem14() = 
   let ans, _ = solver 1000000L

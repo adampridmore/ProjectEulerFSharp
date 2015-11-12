@@ -10,13 +10,13 @@ open FsUnit
 //
 //What is the 10,001st prime number?
 
-let problem7 = 
+let problem7() = 
   // 10,001st prime is at 10,000 index
  primes 10000
 
 [<Test>]
 let ``answer``() =
-  let ans = problem7
+  let ans = problem7()
   printfn "%i" ans
   ans |> should equal 104743
 

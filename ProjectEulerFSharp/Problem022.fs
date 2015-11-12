@@ -21,7 +21,7 @@ let scoreName (name:string) =
   |> Seq.map charToScore 
   |> Seq.sum
  
-let problem22 =
+let problem22() =
   (resources.loadResourceAsText "p022_names.txt").Split(',')
   |> Seq.map (fun quotedName -> quotedName |> removeQuotes)
   |> Seq.sort
@@ -31,7 +31,7 @@ let problem22 =
   
 [<Test>]
 let ans()=
-  problem22 |> should equal 871198282
+  problem22() |> should equal 871198282
   
 [<Test>]
 let ``a is scored 1``()=

@@ -14,19 +14,20 @@ let isPalindrome i =
   characters = Array.rev characters
   
 let getAllProductsOfNumbersFromTo minNum maxNum =
-  seq { for x in minNum..maxNum do 
-          for y in minNum..maxNum do 
+  seq { 
+    for x in minNum..maxNum do 
+        for y in minNum..maxNum do 
             yield x*y
-      }
+  }
 
-let problem4 = 
+let problem4() = 
   getAllProductsOfNumbersFromTo 900 999
   |> Seq.filter isPalindrome
   |> Seq.max 
 
 [<Test>]
 let ``answer``() =
-  let ans = problem4
+  let ans = problem4()
   printfn "%i" ans
   ans |> should equal 906609
 

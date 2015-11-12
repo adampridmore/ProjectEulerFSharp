@@ -23,8 +23,7 @@ let solver (i:int32) =
   let n = bigint (i * 2)
   (factorial n) / ( factorial (n/bigint 2) * factorial (n/bigint 2))
 
-let problem15 =
-  solver 20
+let problem15() = solver 20
 
 [<Test>]
 let scratch()=

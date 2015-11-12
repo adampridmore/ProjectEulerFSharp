@@ -18,15 +18,14 @@ let sumPrimesBelow maxPrime =
   |> Seq.map int64
   |> Seq.sum
 
-let problem10 =
-  sumPrimesBelow 2000000
+let problem10() = sumPrimesBelow 2000000
 
 [<Test>]
 let ``sum of all primes below 10 is 17``() =
-  sumPrimesBelow 10 |> should equal 17  
+  sumPrimesBelow 10 |> should equal 17
    
 [<Test>]
 let ``answer``() =
-  let ans = problem10
+  let ans = problem10()
   printfn "%i" ans
   ans |> should equal 142913828922L

@@ -110,7 +110,7 @@ let numberText = "37107287533902102798797998220837590246510135740250
 20849603980134001723930671666823555245252804609722
 53503534226472524250874054075591789781264330331690"
 
-let problem13 = 
+let problem13() = 
   let takeFirstDigits numberOfDigits number =
     number
     |> toCharArray 
@@ -127,5 +127,5 @@ let problem13 =
 
 [<Test>]
 let ans()=
-  problem13 |> should equal 5537376230L
+  problem13() |> should equal 5537376230L
   

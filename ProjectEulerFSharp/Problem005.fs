@@ -16,18 +16,17 @@ let isXDivisibleByNumsUpTo (x:bigint) upTo =
 
 let getProductOfPrimesUpTo x : bigint = 
   primesSequence 
-  |> Seq.takeWhile (fun i -> i < x )
-  |> Seq.map (fun i -> (bigint i))
-  |> Seq.reduce (fun (acc:bigint) (ele:bigint) -> acc * ele)
+  |> Seq.takeWhile  (fun i -> i < x )
+  |> Seq.map bigint
+  |> Seq.reduce (*)
 
 let smallestNumberDivisibleUpTo upTo =
-  let increment = getProductOfPrimesUpTo upTo
+  let increment = upTo |> getProductOfPrimesUpTo 
 
   Seq.initInfinite (fun i -> (bigint i + bigint.One) * increment)
   |> Seq.find(fun i -> isXDivisibleByNumsUpTo i upTo)
 
-let problem5 = 
-  smallestNumberDivisibleUpTo 20 
+let problem5() = smallestNumberDivisibleUpTo 20 
 
 [<Test>]
 let ``smallest number divisible up to 10``() =
@@ -35,7 +34,7 @@ let ``smallest number divisible up to 10``() =
 
 [<Test>]
 let ``answer``() =
-  let ans = problem5
+  let ans = problem5()
   printfn "%A" ans
   ans |> should equal (bigint 232792560)
 

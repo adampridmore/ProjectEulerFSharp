@@ -24,7 +24,7 @@ let evenFibSum maxValue =
   |> Seq.filter isEven
   |> Seq.sum
 
-let problem2 = 
+let problem2() = 
   evenFibSum 4000000
 
 [<Test>]
@@ -33,7 +33,7 @@ let ``test``() =
    
 [<Test>]
 let ``answer``() = 
-  let answer = problem2
+  let answer = problem2()
   answer |> should equal 4613732
   printfn "%i" answer  
     

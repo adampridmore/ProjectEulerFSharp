@@ -21,7 +21,7 @@ let solver n =
   |> Seq.filter isAmicable
   |> Seq.sum
 
-let problem21 =
+let problem21() =
   solver 10000
 
 [<Test>]
@@ -38,7 +38,7 @@ let ``496 is not amicable number as proper divisors sum is itself``()=
       
 [<Test>]
 let ans() = 
-  let ans = problem21
+  let ans = problem21()
   printfn "%A" ans
-  ans |> should equal 31626  
+  ans |> should equal 31626
 

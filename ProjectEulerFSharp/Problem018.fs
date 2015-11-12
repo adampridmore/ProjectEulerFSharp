@@ -20,7 +20,7 @@ let p1 = @"
 //
 //    Find the maximum total from top to bottom of the triangle below:
 //
-let p2 = @"              75  
+let p2 = @"              75
                         95 64
                       17 47 82
                     18 35 87 10
@@ -42,7 +42,7 @@ let p2 = @"              75
 let nonWhiteSpace text = not (System.String.IsNullOrWhiteSpace(text))
    
 let max a b = 
-  match a,b with  
+  match a,b with
   | a,b when a > b -> a
   | _,b -> b
 
@@ -50,7 +50,7 @@ let max a b =
 let compressLine line =
   match line with
   | [] | [_]  -> line
-  | _ -> line
+  | _ ->  line
           |> Seq.pairwise 
           |> Seq.map (fun (a,b) -> max a b)
           |> Seq.toList
@@ -63,7 +63,7 @@ let solver treeText =
           | hd::rest -> 
               List.zip (processLines rest) hd 
               |> List.map (fun (a,b) -> a + b)
-
+                
     lines |> joinRows |> compressLine
 
   treeText
@@ -74,12 +74,12 @@ let solver treeText =
   |> processLines
   |> Seq.head
   
-let problem18 = 
+let problem18() = 
   solver p2
 
 [<Test>]
 let ans()=
-  let ans = problem18
+  let ans = problem18()
   printfn "%i" ans
   ans |> should equal 1074
 

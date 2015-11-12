@@ -16,27 +16,30 @@ open FsUnit
 
 let sqr a = a*a
 
-let isPythagoreanTriplet a b c =
-  if a>b || b>c then false
-  else sqr a + sqr b = sqr c
+let isPythagoreanTriplet a b c= 
+    match a,b,c with
+    | a, b, c when a>b || b>c -> false
+    | a, b, c -> sqr a + sqr b = sqr c
 
-let problem9 = 
-  let (a,b,c) = (seq { 
-      for a in 1..1000 do
-        for b in a + 1..1000 do 
-            yield (a,b, 1000 - a - b)
-      }
-    |> Seq.find (fun (a,b,c) -> isPythagoreanTriplet a b c))
+let problem9() = 
+    let sequence = 
+        seq {
+            for a in 1..1000 do
+                for b in a + 1..1000 do 
+                    yield (a,b, 1000 - a - b)
+        }
+
+    let (a,b,c) = sequence |> Seq.find (fun (a,b,c) -> isPythagoreanTriplet a b c)
     
-  a*b*c
+    a*b*c
 
 [<Test>]
 let ``scratch``() =
-  printfn "%i" problem9
+  printfn "%i" (problem9())
    
 [<Test>]
 let ``answer``() =
-  let ans = problem9
+  let ans = problem9()
   printfn "%i" ans
   ans |> should equal 31875000
     

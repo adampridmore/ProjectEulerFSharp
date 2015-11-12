@@ -31,20 +31,21 @@ let getFactorsCount i =
   match factors with 
   | [] -> 0
   | _ ->  factors 
-          |> Seq.groupBy (fun i -> i)
+          |> Seq.groupBy id
           |> Seq.map (fun (_, nums) -> nums |> Seq.length)
           |> Seq.map (fun i -> i + 1)
           |> Seq.reduce (*)
 
 let solver numberOfDivisors =
-  triangleNumbers |> Seq.find (fun i -> getFactorsCount i >= numberOfDivisors)
+  triangleNumbers 
+  |> Seq.find (fun i -> getFactorsCount i >= numberOfDivisors)
 
-let problem12 = 
+let problem12() = 
   solver 500
   
 [<Test>]
 let ``answer``() =
-  let ans = problem12
+  let ans = problem12()
   printfn "%i" ans
   ans |> should equal 76576500
 

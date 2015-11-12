@@ -9,25 +9,23 @@ open FsUnit
 //
 //What is the sum of the digits of the number 2^1000?
 
-let pow e v =
-  bigint.Pow(v,e)
+let pow e v = bigint.Pow(v,e)
 
-let charToNum c =
-  System.Int32.Parse (string c)
+let charToNum c = System.Int32.Parse (string c)
 
-let strToChars s =
-  s.ToString().ToCharArray()
+let strToChars s = s.ToString().ToCharArray()
 
 let numberToDigits s =
-  s |> strToChars |> Seq.map charToNum
+  s 
+  |> strToChars 
+  |> Seq.map charToNum
 
 let solver (v:int32) e =
   bigint v |> pow e
   |> numberToDigits
   |> Seq.sum
 
-let problem16 =
-  solver 2 1000
+let problem16() = solver 2 1000
   
 [<Test>]
 let ``2 to pow 15 digit sum is 26``()=
@@ -35,6 +33,6 @@ let ``2 to pow 15 digit sum is 26``()=
 
 [<Test>]
 let ``ans``()=
-  let ans = problem16 
+  let ans = problem16()
   printfn "%A" ans
   ans |> should equal 1366
