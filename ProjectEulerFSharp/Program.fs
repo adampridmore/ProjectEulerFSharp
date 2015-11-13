@@ -23,9 +23,10 @@ open problem022
 open problem023
 open problem024
 open problem025
-
+open problem026
+open problem027
+open problem028
 open problem067
-
 
 open System
 
@@ -61,7 +62,10 @@ let main argv =
     Skipped; // problem23();
     Skipped;// problem24();
     problem25();
-    
+    Skipped; //problem26(); Not solved...
+    problem27();
+    problem28();
+
     problem67()
   ]
 

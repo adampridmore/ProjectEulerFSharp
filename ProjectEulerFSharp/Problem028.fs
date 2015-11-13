@@ -1,5 +1,7 @@
-﻿//#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
-// #load ".\primes.fs"
+﻿module problem028
+
+open FsUnit
+open NUnit.Framework
 
 type Side = Top | Bottom | Left | Right
 
@@ -59,41 +61,32 @@ let nextBlock (prevBlock : int array array) side =
 
     ( (getNextSide nextSide), nextSide)
     
-//let text = 
-//    """
-//    21 22 23 24 25
-//    20  7  8  9 10
-//    19  6  1  2 11
-//    18  5  4  3 12
-//    17 16 15 14 13"""
-
-//nextBlock blocks Right
-
-// #time 
-
 let seedBlock = 
     [|
         [|1|]
     |]
 
-let width = 1001
-let blocks =
+let createBlock width = 
     Seq.unfold (fun (prevBlock, prevSide) -> let (block, side) = nextBlock prevBlock prevSide
                                              Some((block, side), (block, side) ) ) (seedBlock,Top)
     |> Seq.takeWhile (fun (block, _) -> (block |> blockWidth) <= width) 
     |> Seq.last
     |> (fun (block, _) -> block)
 
-blocks |> printBlocks
+let sumDiagonals block =
+    let width = block |> blockWidth
+     
+    (seq{0..(width-1)} 
+    |> Seq.map (fun i -> block.[i].[i] + block.[(width-1-i)].[i] ) 
+    |> Seq.sum) - 1
+    
+let problem28() = 
+    let width = 1001
+    createBlock width |> sumDiagonals
 
-let subOne x = x - 1
-
-let topLeftBottomRight = 
-    seq{0..(width-1)} 
-    |> Seq.map (fun i -> blocks.[i].[i] + blocks.[(width-1-i)].[i] ) 
-    |> Seq.sum
-    |> subOne
-
+[<Test>]
+let ans() = 
+    problem28() |> should equal 669171001
  // 669171001
 
 

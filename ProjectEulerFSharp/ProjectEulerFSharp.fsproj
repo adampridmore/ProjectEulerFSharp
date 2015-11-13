@@ -11,8 +11,9 @@
     <AssemblyName>ProjectEulerFSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFSharpCoreVersion>4.3.1.0</TargetFSharpCoreVersion>
+    <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>ProjectEulerFSharp</Name>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +91,7 @@
     <Compile Include="Problem025.fs" />
     <Compile Include="Problem026.fs" />
     <Compile Include="Problem027.fs" />
+    <Compile Include="Problem028.fs" />
     <None Include="Scratch.fsx" />
     <Compile Include="Problem067.fs" />
     <Compile Include="Program.fs" />
