@@ -85,6 +85,7 @@ let problem28() =
     createBlock width |> sumDiagonals
 
 [<Test>]
+[<Ignore>] // Slow
 let ans() = 
     problem28() |> should equal 669171001
  // 669171001
