@@ -25,6 +25,7 @@ let problem26() = 26
 let ( ** ) (a: bigint) (b: bigint) = bigint.Pow(a,b |> int)
 
 [<Test>]
+[<Ignore>]
 let scratch()=
 //  seq{1..999} 
 //  |> Seq.map (fun x -> 1N / bignum.FromInt x)

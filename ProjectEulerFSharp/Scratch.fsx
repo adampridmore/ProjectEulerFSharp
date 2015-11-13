@@ -1,28 +1,35 @@
-﻿//let action =
-//    function
-//    | _, false -> None
-//    | state, _ when state = 20 -> Some(state, (20, false))
-//    | state, _-> Some(state, (state+1, true))
-//Seq.unfold action (0, true)
-//|> Seq.iter (printfn "%d")
-//
+﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
 
-//Seq.initInfinite id
-//|> Seq.takeWhile (fun x -> x < 100)
-////|> Seq.takeWhile ( > 100 )
-//|> Seq.iter (printfn "%d")
-//
-//Seq.initInfinite id 
-//|> Seq.truncate 100
-//|> Seq.iter (printfn "%d")
+#load ".\primes.fs"
 
-let double x = x * 2
-let addOne x = x + 1
-let fn = Seq.take 100 >> Seq.map double >> Seq.map addOne >> Seq.iter (printfn "%d")
-Seq.initInfinite id |> fn
-//|> Seq.take 100
-//|> Seq.map double
-//|> Seq.map addOne 
+open primes
+open Microsoft.FSharp.Collections
 
-double (addOne (double 10))
-10 |> double |> addOne |> double
+let sqr x = x * x
+
+let f a b n = (n |> sqr) + (a * n) + b
+
+let abs = 
+    function
+    | x when x >= 0 -> x
+    | x -> -x
+
+let tester a b = 
+    Seq.initInfinite id
+    |> Seq.map (f a b)
+    |> Seq.map abs
+    |> Seq.map (fun x -> isPrime x)
+    |> Seq.takeWhile id
+    |> Seq.length
+
+let minMaxRange = 999
+
+seq{ for a in -minMaxRange..minMaxRange do
+       for b in -minMaxRange..minMaxRange do
+            yield (a,b)
+}
+|> PSeq.map (fun (a,b) -> (a,b,(tester a b) ) )
+|> Seq.maxBy(fun (_,_,length) -> length)
+|> (fun (a,b,l) -> (a,b,l,(a * b)) )
+
+//  Answers is   -59231
