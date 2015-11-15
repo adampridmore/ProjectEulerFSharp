@@ -66,6 +66,7 @@ let main argv =
     problem27();
     problem28();
     problem029.problem29();
+    problem030.problem30();
     problem67()
   ]
 
