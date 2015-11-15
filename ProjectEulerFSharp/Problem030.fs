@@ -2,6 +2,7 @@
 
 open FsUnit
 open NUnit.Framework
+open Microsoft.FSharp.Collections
 
 let charToNumber (c:char) = System.Convert.ToInt32(c.ToString()) 
 let pow b e = 
@@ -21,7 +22,7 @@ let isSumPowerOfDigits number exponent =
 
 let problem30() = 
     seq{10..999999}
-    |> Seq.filter(fun x -> isSumPowerOfDigits x 5)
+    |> PSeq.filter(fun x -> isSumPowerOfDigits x 5)
     |> Seq.sum
 
 [<Test>]
