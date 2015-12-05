@@ -15,7 +15,7 @@ open textUtils
 let problem20() =
 // TODO 
   factorial (bigint 100)
-  |> toString
+  |> toString 
   |> toCharArray
   |> Seq.map (fun c -> new string([|c|]))
   |> Seq.map (fun n -> bigint.Parse(n))

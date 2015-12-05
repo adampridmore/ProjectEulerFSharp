@@ -15,10 +15,7 @@ let charToNum c = System.Int32.Parse (string c)
 
 let strToChars s = s.ToString().ToCharArray()
 
-let numberToDigits s =
-  s 
-  |> strToChars 
-  |> Seq.map charToNum
+let numberToDigits = strToChars >> Seq.map charToNum
 
 let solver (v:int32) e =
   bigint v |> pow e

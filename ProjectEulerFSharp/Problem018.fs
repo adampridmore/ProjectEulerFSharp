@@ -55,7 +55,7 @@ let compressLine line =
           |> Seq.map (fun (a,b) -> max a b)
           |> Seq.toList
 
-let solver treeText =
+let solver =
   let rec processLines (lines:list<list<int>>) = 
     let joinRows = function 
           | [] -> [0]
@@ -66,13 +66,12 @@ let solver treeText =
                 
     lines |> joinRows |> compressLine
 
-  treeText
-  |> stringToLines
-  |> Seq.filter nonWhiteSpace
-  |> Seq.map (fun text -> textLineToNumbers text |> Seq.toList)
-  |> Seq.toList
-  |> processLines
-  |> Seq.head
+  stringToLines
+  >> Seq.filter nonWhiteSpace
+  >> Seq.map (textLineToNumbers >> Seq.toList)
+  >> Seq.toList
+  >> processLines
+  >> Seq.head
   
 let problem18() = 
   solver p2

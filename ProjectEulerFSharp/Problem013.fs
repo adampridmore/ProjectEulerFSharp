@@ -111,13 +111,12 @@ let numberText = "37107287533902102798797998220837590246510135740250
 53503534226472524250874054075591789781264330331690"
 
 let problem13() = 
-  let takeFirstDigits numberOfDigits number =
-    number
-    |> toCharArray 
-    |> Seq.take numberOfDigits
-    |> Seq.map toString
-    |> Seq.reduce (+)
-    |> System.Int64.Parse
+  let takeFirstDigits numberOfDigits =
+    toCharArray 
+    >> Seq.take numberOfDigits
+    >> Seq.map toString
+    >> Seq.reduce (+)
+    >> System.Int64.Parse
     
   numberText 
   |> stringToLines 

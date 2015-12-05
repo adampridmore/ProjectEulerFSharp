@@ -57,7 +57,7 @@ let numberAndWord =
 let biggestNumberAndWord numberToFind = 
   numberAndWord 
   |> List.rev
-  |> Seq.find (fun (number,_) -> numberToFind - number >= 0)  
+  |> Seq.find (fun (number,_) -> numberToFind - number >= 0)
 
 let numberToWords number =
   let andIfNeeded number word =
@@ -68,7 +68,7 @@ let numberToWords number =
   
   let action remainder = 
     if remainder = 0 then None
-    else  
+    else
       let num, word = biggestNumberAndWord remainder
       Some(andIfNeeded remainder word, remainder - num)
   
@@ -82,8 +82,7 @@ let numberTextLength numberText =
 
 let solver n = 
   {1..n} 
-  |> Seq.map numberToWords
-  |> Seq.map numberTextLength
+  |> Seq.map (numberToWords >> numberTextLength)
   |> Seq.sum
 
 let problem17() = solver 1000
