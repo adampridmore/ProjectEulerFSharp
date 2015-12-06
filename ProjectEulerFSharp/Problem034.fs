@@ -1,4 +1,7 @@
-﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
+﻿module problem034
+
+open FsUnit
+open NUnit.Framework
 
 open Microsoft.FSharp.Collections
 
@@ -13,11 +16,8 @@ let toDigits =
     >> Seq.map charToString 
     >> Seq.map stringToInt
 
-let rec factorial x =
-    match x with
-    | 0-> 1
-    | 1-> 1
-    | x -> x * ( (x - 1) |> factorial )
+let rec factorial (x:int) =
+    math.factorial (bigint x)
 
 let isCurious x =
     let ans = 
@@ -25,11 +25,14 @@ let isCurious x =
         |> toDigits
         |> Seq.map factorial
         |> Seq.sum
-    x = ans
+    (bigint x) = ans
 
-seq{3..100000}
-|> PSeq.filter isCurious
-|> PSeq.sum
-|> (printfn "%d")
-
+let problem034() = 
+    seq{3..100000}
+    |> PSeq.filter isCurious
+    |> PSeq.sum
+    
+[<Test>]
+let ans()=
+    problem034() |> should equal 40730
  

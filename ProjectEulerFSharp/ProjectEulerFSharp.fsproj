@@ -95,6 +95,7 @@
     <Compile Include="Problem029.fs" />
     <Compile Include="Problem030.fs" />
     <Compile Include="Problem032.fs" />
+    <Compile Include="Problem034.fs" />
     <None Include="Scratch.fsx" />
     <Compile Include="Problem067.fs" />
     <Compile Include="Program.fs" />

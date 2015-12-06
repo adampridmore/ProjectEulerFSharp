@@ -69,6 +69,8 @@ let main argv =
     problem030.problem30();
     Skipped; //problem31() - not solved...
     problem032.problem32();
+    Skipped; // not solved
+    problem034.problem034();
     problem67()
   ]
 

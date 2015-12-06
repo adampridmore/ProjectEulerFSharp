@@ -18,6 +18,7 @@ let rec factorial (x:bigint) =
   let rec facInt (x:bigint) acc =
     let newAcc = acc * x
     match x with
+    | x when x = bigint.Zero -> bigint.One
     | x when x = bigint.One -> newAcc
     | x -> facInt (x - bigint.One) (newAcc)
 
@@ -33,10 +34,10 @@ let properDivisorsSum n =
   match primeFactors n with
   | [] -> 0
   | x ->  ( x 
-            |> Seq.countBy (fun x -> x) 
+            |> Seq.countBy id 
             |> Seq.map (fun (x,count) -> seq{for i in 0..count do yield pow x i} |> Seq.sum)
-            |> Seq.reduce (*)   
-          ) - n  
+            |> Seq.reduce (*)
+          ) - n
 
 [<Test>]
 let ``proper divisors sum of 120 is 240``()=
@@ -74,3 +75,11 @@ let ``factorial 3 equals 6``()=
 [<Test>]
 let ``factorial 10 equals 3,628,800``()=
   factorial (bigint  10) |> should equal (bigint 3628800 )
+
+[<Test>]
+let ``factorial 0 equals 1``()=
+  factorial (bigint 0) |> should equal (bigint.One) 
+
+[<Test>]
+let ``factorial 1 equals 1``()=
+  factorial (bigint 1) |> should equal (bigint.One) 
