@@ -20,7 +20,7 @@ let solver width =
     |> Seq.sum
     |> addOne
 
-
+[<ProjectEuler.Problem(28)>]
 let problem28() = 
     solver 1001
 

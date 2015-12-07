@@ -22,6 +22,7 @@ let tester a b =
     |> Seq.takeWhile id
     |> Seq.length
 
+[<ProjectEuler.Problem(27)>]
 let problem27() = 
     let minMaxRange = 999
 

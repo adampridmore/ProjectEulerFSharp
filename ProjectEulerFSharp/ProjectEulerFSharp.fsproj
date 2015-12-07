@@ -57,6 +57,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="ProjectEuler.fs" />
     <Compile Include="primes.fs" />
     <Compile Include="primesTests.fs" />
     <Compile Include="Fibonacci.fs" />

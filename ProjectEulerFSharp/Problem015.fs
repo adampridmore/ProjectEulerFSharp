@@ -23,6 +23,7 @@ let solver (i:int32) =
   let n = bigint (i * 2)
   (factorial n) / ( factorial (n/bigint 2) * factorial (n/bigint 2))
 
+[<ProjectEuler.Problem(15)>]
 let problem15() = solver 20
 
 [<Test>]

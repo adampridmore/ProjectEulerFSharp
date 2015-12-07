@@ -51,6 +51,7 @@ let getCells x y numberToGet translator cells =
   )
   |> Seq.toArray
   
+[<ProjectEuler.Problem(11)>]
 let problem11() =
   let numbersGrid = 
     gridString 

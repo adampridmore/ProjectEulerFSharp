@@ -18,6 +18,7 @@ let sumPrimesBelow maxPrime =
   |> Seq.map int64
   |> Seq.sum
 
+[<ProjectEuler.Problem(10)>]
 let problem10() = sumPrimesBelow 2000000
 
 [<Test>]

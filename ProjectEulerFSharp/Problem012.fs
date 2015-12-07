@@ -40,6 +40,7 @@ let solver numberOfDivisors =
   triangleNumbers 
   |> Seq.find (fun i -> getFactorsCount i >= numberOfDivisors)
 
+[<ProjectEuler.Problem(12)>]
 let problem12() = 
   solver 500
   

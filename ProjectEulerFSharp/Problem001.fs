@@ -1,5 +1,6 @@
 ﻿module problem001
 
+open ProjectEuler
 open NUnit.Framework
 open FsUnit
 
@@ -16,6 +17,7 @@ let solver upperBound =
   |> Seq.filter isDivisibleBy5or3
   |> Seq.sum
 
+[<Problem(1)>]
 let problem1() = 
   // Find the sum of all the multiples of 3 or 5 below 1000.
   solver 1000

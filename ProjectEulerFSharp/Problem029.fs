@@ -15,7 +15,8 @@ let solver min max =
     |> Seq.map (fun (a,b) -> f a b)
     |> Seq.distinct
     |> Seq.length
-    
+
+[<ProjectEuler.Problem(29)>]    
 let problem29() = 
     solver 2 100
 

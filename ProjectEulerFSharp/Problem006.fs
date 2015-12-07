@@ -26,6 +26,7 @@ let solver maxNumber =
  
   (sqr sum) - squareSum
 
+[<ProjectEuler.Problem(6)>]
 let problem6() = 
   solver 100
 

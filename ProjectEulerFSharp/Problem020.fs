@@ -12,6 +12,7 @@ open textUtils
 //
 //  Find the sum of the digits in the number 100!
 
+[<ProjectEuler.Problem(20)>]
 let problem20() =
 // TODO 
   factorial (bigint 100)

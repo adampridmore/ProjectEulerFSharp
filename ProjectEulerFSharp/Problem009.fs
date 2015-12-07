@@ -21,6 +21,7 @@ let isPythagoreanTriplet a b c=
     | a, b, c when a>b || b>c -> false
     | a, b, c -> sqr a + sqr b = sqr c
 
+[<ProjectEuler.Problem(9)>]
 let problem9() = 
     let sequence = 
         seq {

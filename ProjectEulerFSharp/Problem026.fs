@@ -18,7 +18,8 @@ open FsUnit
 //
 //Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
-let problem26() = 26
+[<ProjectEuler.Problem(26)>]
+let problem26() = ProjectEuler.NotSolved // () //None //26
 
 //let ( ** ) (a: bignum) (b) = BigNum.PowN (a,b)
 //let ( ** ) (a: int) (b) = math.pow a b

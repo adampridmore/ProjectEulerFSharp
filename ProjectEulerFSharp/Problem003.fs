@@ -28,6 +28,7 @@ let problem3Solver num =
   Seq.unfold action (num , true)
   |> Seq.last
 
+[<ProjectEuler.Problem(3)>]
 let problem3() =
   let numToTry = 600851475143L
   problem3Solver numToTry

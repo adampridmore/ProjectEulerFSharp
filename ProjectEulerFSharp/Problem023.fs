@@ -47,7 +47,9 @@ let numbersThatAreSumOfTwoAbundantNumbers maxValue =
   |> Seq.distinct
   |> Seq.sort
   |> Seq.toList
-  
+
+// Slow 
+//[<ProjectEuler.Problem(23)>]  
 let problem23() = 
   let maxValue = 28123
 

@@ -1,84 +1,37 @@
-﻿open problem001
-open problem002
-open problem003
-open problem004
-open problem005
-open problem006
-open problem007
-open problem008
-open problem009
-open problem010
-open problem011
-open problem012
-open problem013
-open problem014
-open problem015
-open problem016
-open problem017
-open problem018
-open problem019
-open problem020
-open problem021
-open problem022
-open problem023
-open problem024
-open problem025
-open problem026
-open problem027
-open problem028
-open problem067
-
-open System
+﻿open System
+open System.Reflection
 
 type s = Skipped
 
+let timespanToString (ts:TimeSpan) =
+    match ts with
+    | ts when ts.TotalSeconds >= 2. -> sprintf "%4d seconds" (ts.TotalSeconds |> int)
+    | ts -> sprintf "%4d ms     " (ts.TotalMilliseconds |> int)
+
+let printAns (ans:Object) =
+    match ans with
+    | null -> "null"
+    | ans -> ans.ToString()
+
+let invokeProblem (meth:MethodInfo) =
+    try 
+        meth.Invoke(null,[||])
+    with | ex ->
+        System.Diagnostics.Debug.WriteLine(meth.Name)
+        System.Diagnostics.Debug.WriteLine(ex) 
+        ex.InnerException.Message :> Object
+
+let executeProblem (meth:MethodInfo, number) =
+    let sw = System.Diagnostics.Stopwatch.StartNew()
+    let ans = meth |> invokeProblem
+    sprintf "Problem %03d %s - %s " number (sw.Elapsed |> timespanToString) (ans |> printAns)
+ 
 [<EntryPoint>]
 let main argv = 
-  let sw = System.Diagnostics.Stopwatch.StartNew()
-
-  let problems : System.Object list = [
-    problem1();
-    problem2() ;
-    problem3() ;
-    problem4() ;
-    problem5() ;
-    problem6() ;
-    problem7() ;
-    problem8() ;
-    problem9() ;
-    problem10() ;
-    problem11() ;
-    problem12() ;
-    problem13() ;
-    problem14();
-    problem15() ;
-    problem16();
-    problem17();
-    problem18();
-    problem19();
-    problem20();
-    problem21();
-    problem22();
-    Skipped; // problem23();
-    Skipped;// problem24();
-    problem25();
-    Skipped; //problem26(); Not solved...
-    problem27();
-    problem28();
-    problem029.problem29();
-    problem030.problem30();
-    Skipped; //problem31() - not solved...
-    problem032.problem32();
-    Skipped; // not solved
-    problem034.problem034();
-    problem67()
-  ]
-
-  problems 
-  |> Seq.mapi (fun i p -> (i+1,p))
-  |> Seq.iter(fun (i,problem) -> printfn "Problem %3i Answer = %A" i problem)
+  ProjectEuler.getAllProblems 
+  |> Seq.map executeProblem
+  |> Seq.iter (printfn "%s") 
     
-  printfn "Total duration %fms" sw.Elapsed.TotalMilliseconds
-
+  
   0
 

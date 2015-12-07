@@ -27,6 +27,7 @@ let isCurious x =
         |> Seq.sum
     (bigint x) = ans
 
+[<ProjectEuler.Problem(34)>]
 let problem034() = 
     seq{3..100000}
     |> PSeq.filter isCurious

@@ -72,7 +72,8 @@ let solver =
   >> Seq.toList
   >> processLines
   >> Seq.head
-  
+
+[<ProjectEuler.Problem(18)>]  
 let problem18() = 
   solver p2
 

@@ -20,7 +20,8 @@ let scoreName (name:string) =
   name.ToCharArray()
   |> Seq.map charToScore 
   |> Seq.sum
- 
+
+[<ProjectEuler.Problem(22)>]
 let problem22() =
   (resources.loadResourceAsText "p022_names.txt").Split(',')
   |> Seq.map (fun quotedName -> quotedName |> removeQuotes)

@@ -50,6 +50,7 @@ let solver numbersToTake =
     |> Seq.map (fun i -> (getNumbersFromBigNumber i numbersToTake) |> productOf)
     |> Seq.max
 
+[<ProjectEuler.Problem(8)>]
 let problem8() = 
  solver 13
 

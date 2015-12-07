@@ -21,6 +21,7 @@ let solver n =
   |> Seq.filter isAmicable
   |> Seq.sum
 
+[<ProjectEuler.Problem(21)>]
 let problem21() =
   solver 10000
 

@@ -17,6 +17,7 @@ let isPandigital x y z =
     
     chars = charMatch
 
+[<ProjectEuler.Problem(32)>]
 let problem32() = 
     seq{
         for x in 1..2000 do
