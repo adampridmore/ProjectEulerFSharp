@@ -44,8 +44,7 @@ let solver index numbers =
   |> arrayToText
   |> toInt64
 
-// Slow
-// [<ProjectEuler.Problem(24)>]
+[<ProjectEuler.Problem(24, Speed=ProjectEuler.Speed.Slow)>]
 let problem24() = 
   seq{0..9} |> solver (1000000-1) // Zero indexed, so -1 for millionth
 

@@ -1,5 +1,6 @@
 ﻿open System
 open System.Reflection
+open ProjectEuler
 
 type s = Skipped
 
@@ -21,17 +22,26 @@ let invokeProblem (meth:MethodInfo) =
         System.Diagnostics.Debug.WriteLine(ex) 
         ex.InnerException.Message :> Object
 
-let executeProblem (meth:MethodInfo, number) =
+let executeProblem (meth:MethodInfo) = 
     let sw = System.Diagnostics.Stopwatch.StartNew()
     let ans = meth |> invokeProblem
-    sprintf "Problem %03d %s - %s " number (sw.Elapsed |> timespanToString) (ans |> printAns)
- 
+    (sw.Elapsed, ans)
+
+let getProblemResultText (meth:MethodInfo, problem:Problem) =
+    match problem.Speed with
+    | Speed.Fast -> (executeProblem meth)
+    | Speed.Slow -> (System.TimeSpan.Zero, "** Slow ** Skipped" :> Object)
+    | sp -> failwith (sprintf "Unknown speed: %A" sp)
+    |> (fun (elapsed, ans ) -> 
+            sprintf "Problem %03d %s -   %s " problem.Number (elapsed |> timespanToString) (ans |> printAns) )
+    
+
 [<EntryPoint>]
 let main argv = 
-  ProjectEuler.getAllProblems 
-  |> Seq.map executeProblem
+  ProjectEuler.getAllProblems
+  |> Seq.map getProblemResultText
   |> Seq.iter (printfn "%s") 
-    
+  
   
   0
 
