@@ -18,33 +18,31 @@ let getRotations lst =
 
 let parseInt = System.Int32.Parse
 
-let isCircularPrime n = 
-    n
-    |> string 
-    |> toCharArray 
-    |> Array.toList
-    |> getRotations
-    |> Seq.map (fun rot -> rot |> Seq.map string |> Seq.reduce(+) |> parseInt)
-    |> Seq.exists  (fun x -> not (isPrime x))
-    |> not
-
 let solver n = 
+    let primeSet = primesSequence |> Seq.takeWhile (fun x -> x < n) |> Set.ofSeq
+
+    let isCircularPrime n = 
+        n
+        |> string 
+        |> toCharArray 
+        |> Array.toList
+        |> getRotations
+        |> Seq.map (fun rot -> rot |> Seq.map string |> Seq.reduce(+) |> parseInt)
+        |> Seq.exists  (fun x -> not (primeSet.Contains(x)))
+        |> not
+        
     seq{2..n-1}
     |> PSeq.filter isCircularPrime
     |> Seq.length
 
-[<ProjectEuler.Problem(35, Speed=ProjectEuler.Speed.Slow)>]
+[<ProjectEuler.Problem(35)>]
 let problem035() = solver 1000000
-
-[<Test>]
-let ``197 is circular prime``() = 
-    197 |> isCircularPrime |> should equal true
 
 [<Test>]
 let ``number of circular primes below 100``() = 
     100 |> solver |> should equal 13
 
-//[<Test>]
-//let solverTest() = 
-//    problem035() |> (printfn "%d")
+[<Test>]
+let solverTest() = 
+    problem035() |> (printfn "%d")
 

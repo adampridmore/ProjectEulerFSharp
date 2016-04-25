@@ -9,6 +9,18 @@ let ``10 is not prime``() =
     isPrime 10 |> should equal false
 
 [<Test>]
+let ``0 is not prime``() =
+    isPrime 0 |> should equal false
+
+[<Test>]
+let ``1 is not prime``() =
+    isPrime 1 |> should equal false
+
+[<Test>]
+let ``2 is prime``() =
+    isPrime 2 |> should equal true
+
+[<Test>]
 let ``11 is prime``() =
     isPrime 11 |> should equal true
   

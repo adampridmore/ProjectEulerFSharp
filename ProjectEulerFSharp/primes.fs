@@ -1,11 +1,14 @@
 ﻿module primes
 
 let isPrime n = 
-    let upperBound = int (sqrt (float n))
-    let hasDivisor =     
-        [2..upperBound]
-        |> List.exists (fun i -> n % i = 0)
-    not hasDivisor
+    match n with
+    | 0 | 1 -> false
+    | n -> 
+        let upperBound = int (sqrt (float n))
+        let hasDivisor =     
+            [2..upperBound]
+            |> List.exists (fun i -> n % i = 0)
+        not hasDivisor
 
 let primes =
   let a = ResizeArray[2]
@@ -26,8 +29,7 @@ let primes =
       grow()
     a.[n]
 
-let primesSequence = 
-  Seq.initInfinite (fun i -> i) |> Seq.map primes
+let primesSequence = Seq.initInfinite id |> Seq.map primes
 
 let primeFactors i = 
   let rec fac n x a = 
