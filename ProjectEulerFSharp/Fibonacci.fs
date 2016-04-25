@@ -7,8 +7,8 @@ open FsUnit
 // can lead to off by one errors. In problem 2 it assume 1,1
 let fibseqgeneral firstTwoTerms add = 
   let action (a,b) =
-    let added = add a b 
-    Some( added, (b, added) )
+    let nextTerm = add a b 
+    Some(nextTerm, (b, nextTerm) )
   let restOfSequence = Seq.unfold action firstTwoTerms
 
   Seq.append  [|fst firstTwoTerms; snd firstTwoTerms|] restOfSequence
@@ -22,4 +22,4 @@ let ``small set``() =
 
 [<Test>]
 let ``specific large item``() = 
-    fibseq |> Seq.nth 20 |> should equal 10946
+    fibseq |> Seq.item 20 |> should equal 10946

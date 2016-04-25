@@ -1,9 +1,9 @@
-﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
-#load "primes.fs"
+﻿module problem035
 
 open Microsoft.FSharp.Collections
-
 open primes
+open FsUnit
+open NUnit.Framework
 
 let toCharArray (s:string) = s.ToCharArray()
 
@@ -28,13 +28,23 @@ let isCircularPrime n =
     |> Seq.exists  (fun x -> not (isPrime x))
     |> not
 
-//let solver() = 
- 
-197 |> isCircularPrime 
+let solver n = 
+    seq{2..n-1}
+    |> PSeq.filter isCircularPrime
+    |> Seq.length
 
+[<ProjectEuler.Problem(35, Speed=ProjectEuler.Speed.Slow)>]
+let problem035() = solver 1000000
 
-seq{2..1000000-1}
-|> PSeq.filter isCircularPrime
-//|> Seq.map (fun x -> (printfn "%d" x);x)
-|> Seq.length
+[<Test>]
+let ``197 is circular prime``() = 
+    197 |> isCircularPrime |> should equal true
+
+[<Test>]
+let ``number of circular primes below 100``() = 
+    100 |> solver |> should equal 13
+
+//[<Test>]
+//let solverTest() = 
+//    problem035() |> (printfn "%d")
 

@@ -30,8 +30,7 @@ let problem3Solver num =
 
 [<ProjectEuler.Problem(3)>]
 let problem3() =
-  let numToTry = 600851475143L
-  problem3Solver numToTry
+  600851475143L |> problem3Solver
 
 [<Test>]
 let ``13195 should equal 29``() =
