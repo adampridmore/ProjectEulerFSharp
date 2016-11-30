@@ -12,10 +12,10 @@ let solver width =
                     | x when x < 3 ->   (value+inc, inc, fourBatch+1)
                     | _ -> (value + inc, (inc+2), 0)
         let (nextValue, _,_) = next
-        Some(nextValue,next)
+        (nextValue,next)
 
     let max = width*width
-    Seq.unfold action (1,2,0)
+    Seq.unfoldInf action (1,2,0)
     |> Seq.takeWhile (fun x -> x <= max)
     |> Seq.sum
     |> addOne

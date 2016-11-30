@@ -24,7 +24,7 @@ open primes
 //What is the value of the first triangle number to have over five hundred divisors?
 
 let triangleNumbers = 
-  Seq.unfold (fun (cur, i) -> Some(cur, (cur+i, i+1) ) ) (1,2)
+  Seq.unfoldInf (fun (cur, i) -> cur, (cur+i, i+1) ) (1,2)
 
 let getFactorsCount i =
   let factors = primeFactors i

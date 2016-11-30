@@ -1,13 +1,21 @@
 ﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
 #load "primes.fs"
+#load "Seq.fs"
 
 open Microsoft.FSharp.Collections
 
-open primes
+Seq.unfold (fun x -> Some(x+1,x+1)) 0
+|> Seq.take 10
+|> Seq.iter (printf "%d\r\n")
 
-//seq{0..1000000} 
-//|> Seq.filter isPrime
-////|> Seq.iter (printfn "%A")
-//|> Seq.length
+Seq.initInfinite (fun x -> x + 1)
+|> Seq.take 10
+|> Seq.sum
+|> printfn "%A"
+ 
 
-primesSequence |> Seq.takeWhile (fun x -> x < 1000000) |> Seq.length
+Seq.unfoldInf (fun x -> x + 1, x + 1) 0
+|> Seq.take 10
+|> Seq.sum
+|> printfn "%A"
+

@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ProjectEulerFSharp</RootNamespace>
     <AssemblyName>ProjectEulerFSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
     <Name>ProjectEulerFSharp</Name>
@@ -58,6 +58,8 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="ProjectEuler.fs" />
+    <Compile Include="Seq.fs" />
+    <Compile Include="SeqTests.fs" />
     <Compile Include="primes.fs" />
     <Compile Include="primesTests.fs" />
     <Compile Include="Fibonacci.fs" />
@@ -107,10 +109,6 @@
     <EmbeddedResource Include="p022_names.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="FSharp.PowerPack">
       <HintPath>..\packages\FSPowerPack.Core.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.dll</HintPath>
       <Private>True</Private>
@@ -137,6 +135,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
