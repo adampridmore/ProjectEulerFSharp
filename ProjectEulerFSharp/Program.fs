@@ -1,6 +1,7 @@
 ﻿open System
 open System.Reflection
 open ProjectEuler
+open Microsoft.FSharp.Collections
 
 type s = Skipped
 
@@ -34,14 +35,17 @@ let getProblemResultText (meth:MethodInfo, problem:Problem) =
     | sp -> failwith (sprintf "Unknown speed: %A" sp)
     |> (fun (elapsed, ans ) -> 
             sprintf "Problem %03d %s -   %s " problem.Number (elapsed |> timespanToString) (ans |> printAns) )
-    
 
 [<EntryPoint>]
 let main argv = 
+// Parallel
+//  ProjectEuler.getAllProblems
+//  |> PSeq.mapi (fun i fn -> i , fn |> getProblemResultText )
+//  |> Seq.sortBy fst
+//  |> Seq.iter (fun (_ , text) -> printfn "%s" text)
+
   ProjectEuler.getAllProblems
   |> Seq.map getProblemResultText
-  |> Seq.iter (printfn "%s") 
-  
+  |> Seq.iter (printfn "%s")
   
   0
-
