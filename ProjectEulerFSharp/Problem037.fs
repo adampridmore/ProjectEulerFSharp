@@ -1,9 +1,10 @@
-﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
-#load "primes.fs"
-#load "Seq.fs"
+﻿module problem037
 
-open primes
+open FsUnit
+open NUnit.Framework
+
 open Microsoft.FSharp.Collections
+open primes
 
 let charArrayToString (ca: char array) = 
     new string(ca |> Seq.toArray)
@@ -48,15 +49,17 @@ let isTruncatablePrime x =
     |> Seq.map isPrime 
     |> Seq.forall isTrue)
 
-Seq.initInfinite id
-|> Seq.where (fun v -> v > 10)
-//|> Seq.map(fun x -> printfn "%d" x; x)
-//|> PSeq.filter isTruncatablePrime
-|> Seq.filter isTruncatablePrime
-//|> Seq.take 11
-|> Seq.takeWhile (fun x -> x < 1000000)
-//|> PSeq.sum
-|> Seq.sum
+let solver() = 
+    Seq.initInfinite id
+    |> Seq.where (fun v -> v > 10)
+    |> Seq.filter isTruncatablePrime
+    |> Seq.take 11
+    |> Seq.sum
 
-//748317
+[<ProjectEuler.Problem(37)>]
+let problem037() = solver()
+
+[<Test>]
+let solverTest() = 
+    problem037() |> should equal 748317
 
