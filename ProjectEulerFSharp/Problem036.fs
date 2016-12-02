@@ -1,6 +1,7 @@
-﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
-#load "primes.fs"
-#load "Seq.fs"
+﻿module problem036
+
+open FsUnit
+open NUnit.Framework
 
 open Microsoft.FSharp.Collections
 
@@ -20,13 +21,16 @@ let isBinaryAndDecimalPalendrome i =
 
     (i |> isBinaryPalendrome) && (i |> isDecimalPalendrome)
 
-585 |> isBinaryAndDecimalPalendrome
-586 |> isBinaryAndDecimalPalendrome
+let solver() = 
+    seq{0..1000000-1}
+    |> Seq.filter isBinaryAndDecimalPalendrome
+    |> Seq.sum
+    //872187
 
-seq{0..1000000-1}
-|> Seq.filter isBinaryAndDecimalPalendrome
-//|> Seq.iter (printfn "%d")
-|> Seq.sum
+[<ProjectEuler.Problem(36)>]
+let problem036() = solver()
 
+[<Test>]
+let solverTest() = 
+    problem036() |> should equal 872187
 
-//872187
