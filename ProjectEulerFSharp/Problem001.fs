@@ -20,7 +20,7 @@ let solver upperBound =
 [<Problem(1)>]
 let problem1() = 
   // Find the sum of all the multiples of 3 or 5 below 1000.
-  solver 1000
+  1000 |> solver 
    
 [<Test>]
 let ``answer``() = 
@@ -31,6 +31,6 @@ let ``answer``() =
 
 [<Test>]
 let ``answer for up to 10 is 23``() = 
-  let answer = solver 10
+  let answer = 10 |> solver 
   answer |> should equal 23
   printfn "%i" answer

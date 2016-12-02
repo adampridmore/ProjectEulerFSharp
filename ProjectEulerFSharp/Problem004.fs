@@ -11,7 +11,8 @@ open textUtils
 
 let isPalindrome i =
   let characters = i |> toCharArray
-  characters = Array.rev characters
+  let revCharacters = ( characters |> Array.rev )
+  characters = revCharacters
   
 let getAllProductsOfNumbersFromTo minNum maxNum =
   seq { 
