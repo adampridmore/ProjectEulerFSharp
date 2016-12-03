@@ -10,7 +10,7 @@ let charArrayToString (ca: char array) =
     new string(ca |> Seq.toArray)
 
 let arrayBackTail = Array.tail 
-let arrayFrontTail = Array.rev >> Array.tail >> Array.rev
+let arrayFrontTail (a : 't array) = a.[0..a.Length-2]
 
 let tryStrip stripper (x: int) = 
     match x.ToString().ToCharArray() with
@@ -50,7 +50,7 @@ let isTruncatablePrime x =
     |> Seq.forall isTrue)
 
 let solver() = 
-    Seq.initInfinite id
+    primesSequence
     |> Seq.where (fun v -> v > 10)
     |> Seq.filter isTruncatablePrime
     |> Seq.take 11
