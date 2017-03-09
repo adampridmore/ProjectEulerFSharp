@@ -58,11 +58,6 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="ProjectEuler.fs" />
-    <Compile Include="Seq.fs" />
-    <Compile Include="SeqTests.fs" />
-    <Compile Include="primes.fs" />
-    <Compile Include="primesTests.fs" />
-    <Compile Include="Fibonacci.fs" />
     <Compile Include="textUtils.fs" />
     <Compile Include="math.fs" />
     <Compile Include="memoize.fs" />
@@ -144,6 +139,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyFSharpHelpers\MyFSharpHelpers.fsproj">
+      <Name>MyFSharpHelpers</Name>
+      <Project>{83f08173-ec13-431a-9862-61b57c5eb829}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

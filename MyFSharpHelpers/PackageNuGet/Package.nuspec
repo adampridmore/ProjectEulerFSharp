@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MyFSharpHelpers</id>
+	<version>$version$</version>
+    <title>$title$</title>
+    <authors>Adam</authors>
+    <owners>Adam</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A FSharp helper library</description>
+    <!-- <releaseNotes>Summary of changes made in this release of the package.</releaseNotes> -->
+    <copyright>Copyright 2017</copyright>
+    <tags>FSharp Prime Sequence</tags>
+    <dependencies>
+      <!-- <dependency id="SampleDependency" version="1.0" /> -->
+    </dependencies>
+  </metadata>
+</package>
