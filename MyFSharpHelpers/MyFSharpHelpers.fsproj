@@ -58,6 +58,7 @@
     <Compile Include="Fibonacci.fs" />
     <Compile Include="Permutations.fs" />
     <Compile Include="PermutationsTests.fs" />
+    <None Include="Script1.fsx" />
     <Content Include="packages.config" />
     <Content Include="App.config" />
   </ItemGroup>

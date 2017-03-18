@@ -45,7 +45,7 @@ let numberOfPermutations pipes =
 
 
 let PGetAllPerms pipes = 
-    let getOtherPerms pipe (otherPipes: int list ) =
+    let getOtherPerms pipe (otherPipes: 'a list ) =
         otherPipes 
         |> getAllPerms
         |> Seq.map (fun perm -> List.concat [[pipe];perm] )
