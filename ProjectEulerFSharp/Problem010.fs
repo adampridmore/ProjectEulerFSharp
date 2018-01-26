@@ -1,8 +1,8 @@
 ﻿module problem010
 
 open primes
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //Summation of primes
 //
@@ -21,11 +21,11 @@ let sumPrimesBelow maxPrime =
 [<ProjectEuler.Problem(10)>]
 let problem10() = sumPrimesBelow 2000000
 
-[<Test>]
+[<Fact>]
 let ``sum of all primes below 10 is 17``() =
   sumPrimesBelow 10 |> should equal 17
    
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem10()
   printfn "%i" ans

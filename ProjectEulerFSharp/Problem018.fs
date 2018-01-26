@@ -1,7 +1,7 @@
 ﻿module problem018
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open textUtils
 open math
 
@@ -77,24 +77,24 @@ let solver =
 let problem18() = 
   solver p2
 
-[<Test>]
+[<Fact>]
 let ans()=
   let ans = problem18()
   printfn "%i" ans
   ans |> should equal 1074
 
-[<Test>]
+[<Fact>]
 let ``simple pyramid solution``()=
   solver p1 |> should equal 23
 
-[<Test>]
+[<Fact>]
 let ``max when a > b should be a``()=
   max 6 5 |> should equal 6
 
-[<Test>]
+[<Fact>]
 let ``max when a < b should be b``()=
   max 4 5 |> should equal 5
 
-[<Test>]
+[<Fact>]
 let ``compress line picks max of all pairs of values``()=
   [1;2;3;4;5] |> compressLine |> should equal [2;3;4;5]

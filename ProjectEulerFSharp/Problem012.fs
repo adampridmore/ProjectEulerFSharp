@@ -1,7 +1,7 @@
 ﻿module problem012
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open primes
 
 //Highly divisible triangular number
@@ -44,39 +44,39 @@ let solver numberOfDivisors =
 let problem12() = 
   solver 500
   
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem12()
   printfn "%i" ans
   ans |> should equal 76576500
 
-[<Test>]
+[<Fact>]
 let ``first 4 triangle numbers``()=
   let ans = triangleNumbers |> Seq.take 4 
   ans |> printfn "%A"
   ans |> should equal [|1;3;6;10|]
 
-[<Test>]
+[<Fact>]
 let ``first triangle number to have over five divisors is 28``()=
   solver 5 |> should equal 28
 
-[<Test>]
+[<Fact>]
 let ``Number of factors of 10 is 4``()=
   getFactorsCount 10 |> should equal 4
 
-[<Test>]
+[<Fact>]
 let ``Number of factors of 0 is 0``()=
   getFactorsCount 0 |> should equal 0
 
-[<Test>]
+[<Fact>]
 let ``Number of factors of 1 is 1``()=
   getFactorsCount 1 |> should equal 0
 
-[<Test>]
+[<Fact>]
 let ``Number of factors of 30 is 8``()=
   getFactorsCount 30 |> should equal 8
 
-[<Test>]
+[<Fact>]
 let ``scratch``() = 
  triangleNumbers |> Seq.take 100|> Seq.iter (printfn "%i")
   
@@ -91,6 +91,6 @@ let getFactors i =
   Seq.init i (fun j -> i - j)
   |> Seq.filter (fun j -> i % j = 0)
 
-[<Test>]
+[<Fact>]
 let ``3rd triangle number is``()=
   triangleNumber 3 |> should equal 6

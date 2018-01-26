@@ -1,7 +1,7 @@
 ﻿module problem023
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open math
 
 
@@ -56,17 +56,17 @@ let problem23() =
   |> oppositeListOfInt
   |> Seq.sum
  
-//[<Test>]
+//[<Fact>]
 //let ans()=
 //  problem23() |> should equal 4179871
   
-[<Test>]
+[<Fact>]
 let ``first 10 abundant numbers``()=
   abundantNumbers 
   |> Seq.take 10 
   |> should equal [12;18;20;24;30;36;40;42;48;54]
 
-[<Test>]
+[<Fact>]
 let ``opposite list``()=
   [4;6;8;9;11]
   |> oppositeListOfInt

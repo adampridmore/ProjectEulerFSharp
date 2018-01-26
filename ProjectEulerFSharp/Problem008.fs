@@ -1,8 +1,8 @@
 ﻿module problem008
 
 open primes
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open textUtils
 
 // The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
@@ -54,13 +54,13 @@ let solver numbersToTake =
 let problem8() = 
  solver 13
 
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem8()
   printfn "%i" ans
   ans |> should equal 23514624000L
 
-[<Test>]
+[<Fact>]
 let ``longest 4 number product is 5832``() =
   let ans = solver 4
   ans |> should equal 5832

@@ -2,7 +2,7 @@
 
 
 #load "Permutations.fs"
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 
 
 [0;1;2;3;4;5;6;7;8;9]

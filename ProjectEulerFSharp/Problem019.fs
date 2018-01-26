@@ -1,7 +1,7 @@
 ﻿module problem019
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 open System
 
 //  You are given the following information, but you may prefer to do some research for yourself.
@@ -35,7 +35,7 @@ let solver =
 let problem19() = 
   solver
 
-[<Test>]
+[<Fact>]
 let ans() =
   let n = solver
   printfn "%i" n

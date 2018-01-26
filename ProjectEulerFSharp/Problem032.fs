@@ -1,7 +1,7 @@
 ﻿module problem032
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
 let stringToOrderedArray (s:string) = 
     s.ToCharArray() |> Array.sort
@@ -30,6 +30,6 @@ let problem32() =
     |> Seq.distinctBy (fun (ans,_) -> ans)
     |> Seq.sumBy (fun (ans,_) -> ans)
 
-[<Test>]
+[<Fact>]
 let ans()=
     problem32() |> should equal 45228

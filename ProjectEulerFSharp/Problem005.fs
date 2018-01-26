@@ -1,7 +1,7 @@
 ﻿module problem005
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 open primes
 
@@ -29,20 +29,20 @@ let smallestNumberDivisibleUpTo upTo =
 [<ProjectEuler.Problem(5)>]
 let problem5() = smallestNumberDivisibleUpTo 20 
 
-[<Test>]
+[<Fact>]
 let ``smallest number divisible up to 10``() =
   smallestNumberDivisibleUpTo 10 |> should equal (bigint 2520)
 
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem5()
   printfn "%A" ans
   ans |> should equal (bigint 232792560)
 
-[<Test>]
+[<Fact>]
 let ``is x divisible by nums for 100``()=
   isXDivisibleByNumsUpTo (bigint 100) 10 |> should equal false
 
-[<Test>]
+[<Fact>]
 let ``is x divisible by nums for 2520``()=
   isXDivisibleByNumsUpTo (bigint 2520) 10 |> should equal true

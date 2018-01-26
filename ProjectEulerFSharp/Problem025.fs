@@ -1,7 +1,7 @@
 ﻿module problem025
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open Fibonacci
 
 //The Fibonacci sequence is defined by the recurrence relation:
@@ -34,13 +34,13 @@ let solver numberOfDigits =
 [<ProjectEuler.Problem(25)>]
 let problem25() = 1 + solver 1000
 
-[<Test>]
+[<Fact>]
 let ans()=
   let ans = problem25()
   printfn "%i" ans
   ans |> should equal 4782
   
-[<Test>]
+[<Fact>]
 let scratch()=
   fibseqbig
   |> Seq.findIndex (fun n -> (digitCount n) = 3  )

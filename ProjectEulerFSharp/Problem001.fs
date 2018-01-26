@@ -1,8 +1,8 @@
 ﻿module problem001
 
 open ProjectEuler
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //Multiples of 3 and 5
 //
@@ -22,14 +22,14 @@ let problem1() =
   // Find the sum of all the multiples of 3 or 5 below 1000.
   1000 |> solver 
    
-[<Test>]
+[<Fact>]
 let ``answer``() = 
   let answer = problem1()
   answer |> should equal 233168
   printfn "%i" answer
 
 
-[<Test>]
+[<Fact>]
 let ``answer for up to 10 is 23``() = 
   let answer = 10 |> solver 
   answer |> should equal 23

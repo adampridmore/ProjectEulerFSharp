@@ -1,7 +1,7 @@
 ﻿module problem020
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open math
 open textUtils
 
@@ -23,7 +23,7 @@ let problem20() =
   |> Seq.sum
   
 
-[<Test>]
+[<Fact>]
 let ans() = 
   let ans = problem20()
   printfn "%A" ans

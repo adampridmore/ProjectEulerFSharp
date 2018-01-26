@@ -1,7 +1,7 @@
 ﻿module textUtils
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 let stringToLines (str:string) = 
   let split (s:string) = 
@@ -49,23 +49,23 @@ let loadResourceAsText name =
   let reader = new System.IO.StreamReader(stream);
   reader.ReadToEnd()  
 
-[<Test>]
+[<Fact>]
 let ``"01 02 03" to numbers``() =
   "01 2 03" |> textLineToNumbers |> should equal [|1;2;3|]
 
-[<Test>]
+[<Fact>]
 let ``char to int for 3``()=
   toInt '3' |> should equal 3
   
-[<Test>]
+[<Fact>]
 let ``number to string``()=
   123 |> toString |> should equal "123"
 
-[<Test>]
+[<Fact>]
 let ``number to char array``()=
   123 |> toString |> should equal [|'1';'2';'3'|]
 
-[<Test>]
+[<Fact>]
 let ``split lines test``()=
 
   let text = "hello
@@ -73,6 +73,6 @@ world"
 
   text |> stringToLines |> should equal [|"hello";"world"|]
 
-[<Test>]
+[<Fact>]
 let ``trim lines``()=
   [" hello "; " world "] |> trimLines |> should equal ["hello";"world"]

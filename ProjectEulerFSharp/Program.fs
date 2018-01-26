@@ -1,7 +1,7 @@
 ﻿open System
 open System.Reflection
 open ProjectEuler
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 
 type s = Skipped
 

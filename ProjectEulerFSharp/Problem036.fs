@@ -1,9 +1,9 @@
 ﻿module problem036
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 
 let intToBinaryString (number: int) = 
     System.Convert.ToString(number, 2)
@@ -30,7 +30,7 @@ let solver() =
 [<ProjectEuler.Problem(36)>]
 let problem036() = solver()
 
-[<Test>]
+[<Fact>]
 let solverTest() = 
     problem036() |> should equal 872187
 

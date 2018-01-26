@@ -1,9 +1,9 @@
 ﻿module problem027
 
 open primes
-open Microsoft.FSharp.Collections
-open FsUnit
-open NUnit.Framework
+open FSharp.Collections.ParallelSeq
+open FsUnit.Xunit
+open Xunit
 
 let sqr x = x * x
 
@@ -35,7 +35,7 @@ let problem27() =
     //|> (fun (a,b,l) -> (a,b,l,(a * b)) )
     |> (fun (a,b,_) -> (a * b) )
 
-[<Test>]
+[<Fact>]
 let ans()=
   let ans = problem27()
   printfn "%i" ans

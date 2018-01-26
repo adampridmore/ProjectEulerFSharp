@@ -1,7 +1,7 @@
 ﻿module problem022
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //Using names.txt (right click and 'Save Link/Target As...'), a 46K text file containing over five-thousand first names, begin by sorting it into alphabetical order. Then working out the alphabetical value for each name, multiply this value by its alphabetical position in the list to obtain a name score.
 //
@@ -30,22 +30,22 @@ let problem22() =
   |> Seq.mapi (fun i score -> (i+1) * score)
   |> Seq.sum
   
-[<Test>]
+[<Fact>]
 let ans()=
   problem22() |> should equal 871198282
   
-[<Test>]
+[<Fact>]
 let ``a is scored 1``()=
   charToScore 'a' |> should equal 1
 
-[<Test>]
+[<Fact>]
 let ``A is scored 1``()=
   charToScore 'A' |> should equal 1
   
-[<Test>]
+[<Fact>]
 let ``z is scored 26``()=
   charToScore 'z' |> should equal 26
 
-[<Test>]
+[<Fact>]
 let ``COLIN  is scored 53``()=
   "COLIN" |> scoreName |> should equal 53

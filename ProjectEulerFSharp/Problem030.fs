@@ -1,8 +1,8 @@
 ﻿module problem030
 
-open FsUnit
-open NUnit.Framework
-open Microsoft.FSharp.Collections
+open FsUnit.Xunit
+open Xunit
+open FSharp.Collections.ParallelSeq
 
 let charToNumber (c:char) = System.Convert.ToInt32(c.ToString()) 
 let pow b e = 
@@ -26,7 +26,7 @@ let problem30() =
     |> PSeq.filter(fun x -> isSumPowerOfDigits x 5)
     |> Seq.sum
 
-[<Test>]
+[<Fact>]
 let ans() = 
     problem30() |> should equal 443839
 

@@ -1,7 +1,7 @@
 ﻿module problem021
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open math
 open primes
 
@@ -25,19 +25,19 @@ let solver n =
 let problem21() =
   solver 10000
 
-[<Test>]
+[<Fact>]
 let ``220 is amicable number``()=
   isAmicable 220 |> should equal true
     
-[<Test>]
+[<Fact>]
 let ``221 is not amicable number``()=
   isAmicable 221 |> should equal false
 
-[<Test>]
+[<Fact>]
 let ``496 is not amicable number as proper divisors sum is itself``()=
   isAmicable 221 |> should equal false
       
-[<Test>]
+[<Fact>]
 let ans() = 
   let ans = problem21()
   printfn "%A" ans

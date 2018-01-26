@@ -1,7 +1,7 @@
 ﻿module problem013
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open textUtils
 
 
@@ -125,7 +125,7 @@ let problem13() =
   |> Seq.sum
   |> takeFirstDigits 10
 
-[<Test>]
+[<Fact>]
 let ans()=
   problem13() |> should equal 5537376230L
   

@@ -1,7 +1,7 @@
 ﻿module problem029
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
 let f a b = 
     System.Math.Pow(float a,float b) |> bigint
@@ -20,7 +20,7 @@ let solver min max =
 let problem29() = 
     solver 2 100
 
-[<Test>]
+[<Fact>]
 let ans() = 
     problem29() |> should equal 9183
 

@@ -1,9 +1,9 @@
 ﻿module problem037
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 open primes
 
 let charArrayToString (ca: char array) = 
@@ -59,7 +59,7 @@ let solver() =
 [<ProjectEuler.Problem(37)>]
 let problem037() = solver()
 
-[<Test>]
+[<Fact>]
 let solverTest() = 
     problem037() |> should equal 748317
 

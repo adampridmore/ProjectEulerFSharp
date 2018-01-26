@@ -12,8 +12,8 @@
 // exceed four million, find 
 // the sum of the even-valued terms.
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open Fibonacci
 
 let evenFibSum maxValue = 
@@ -28,11 +28,11 @@ let evenFibSum maxValue =
 let problem2() = 
   evenFibSum 4000000
 
-[<Test>]
+[<Fact>]
 let ``test``() =
   evenFibSum 89 |> should equal 44
    
-[<Test>]
+[<Fact>]
 let ``answer``() = 
   let answer = problem2()
   answer |> should equal 4613732

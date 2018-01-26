@@ -1,7 +1,7 @@
 ﻿module problem017
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 // Number letter counts
 // Problem 17
@@ -88,40 +88,40 @@ let solver n =
 [<ProjectEuler.Problem(17)>]
 let problem17() = solver 1000
 
-[<Test>]
+[<Fact>]
 let ans()=
   let ans = problem17() 
   printfn "%i" ans
   ans |> should equal 21124
       
-[<Test>]
+[<Fact>]
 let ``biggest number & word for 25``()=
   let n, word = biggestNumberAndWord 25
   n |> should equal 20
   word |> should equal "twenty"
 
-[<Test>]
+[<Fact>]
 let ``1``() = numberToWords 1 |> should equal "one"
 
-[<Test>]
+[<Fact>]
 let ``19``() = numberToWords 19 |> should equal "nineteen"
 
-[<Test>]
+[<Fact>]
 let ``20``() = numberToWords 20 |> should equal "twenty"
 
-[<Test>]
+[<Fact>]
 let ``21``() = numberToWords 21 |> should equal "twenty one"
 
-[<Test>]
+[<Fact>]
 let ``number text length for 'twenty one' is 9``()=
   numberTextLength "twenty one" |> should equal 9
 
-[<Test>]
+[<Fact>]
 let ``342 has 23 letters``()=
   numberToWords 342 |> should equal "three hundred and forty two"
   numberToWords 342 |> numberTextLength |> should equal 23
 
-[<Test>]
+[<Fact>]
 let ``115 has 20 letters``()=
   numberToWords 115 |> should equal "one hundred and fifteen"
   numberToWords 115 |> numberTextLength |> should equal 20

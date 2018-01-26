@@ -1,8 +1,8 @@
 ﻿module problem007
 
 open primes
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //10001st prime
 //Problem 7
@@ -15,12 +15,12 @@ let problem7() =
   // 10,001st prime is at 10,000 index
  primes 10000
 
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem7()
   printfn "%i" ans
   ans |> should equal 104743
 
-[<Test>]
+[<Fact>]
 let ``6th prime is 13``() =
   primes 5 |> should equal 13

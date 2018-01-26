@@ -1,7 +1,7 @@
 ﻿module problem015
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open math
 
 
@@ -26,19 +26,19 @@ let solver (i:int32) =
 [<ProjectEuler.Problem(15)>]
 let problem15() = solver 20
 
-[<Test>]
+[<Fact>]
 let scratch()=
   let n = 4
   let ans = solver n
   printfn "%O" ans
 
-[<Test>]
+[<Fact>]
 let scratch2()=
   let n = 40
   let ans = solver n
   printfn "%O" ans
 
-[<Test>]
+[<Fact>]
 let ans()=
   let ans = solver 20
   printfn "%O" ans

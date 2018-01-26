@@ -1,7 +1,7 @@
 ﻿module problem026
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
 //
@@ -25,8 +25,7 @@ let problem26() = ProjectEuler.NotSolved // () //None //26
 //let ( ** ) (a: int) (b) = math.pow a b
 let ( ** ) (a: bigint) (b: bigint) = bigint.Pow(a,b |> int)
 
-[<Test>]
-[<Ignore("Slow")>]
+[<Fact(Skip="Slow")>]
 let scratch()=
 //  seq{1..999} 
 //  |> Seq.map (fun x -> 1N / bignum.FromInt x)

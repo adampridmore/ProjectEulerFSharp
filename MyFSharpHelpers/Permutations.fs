@@ -1,6 +1,6 @@
 ﻿module Permutations
 
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 
 let rec insertions pre c post =
     seq {

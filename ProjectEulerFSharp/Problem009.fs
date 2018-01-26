@@ -1,8 +1,8 @@
 ﻿module problem009
 
 open primes
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //Special Pythagorean triplet
 //Problem 9
@@ -34,25 +34,25 @@ let problem9() =
     
     a*b*c
 
-[<Test>]
+[<Fact>]
 let ``scratch``() =
   printfn "%i" (problem9())
    
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem9()
   printfn "%i" ans
   ans |> should equal 31875000
     
-[<Test>]
+[<Fact>]
 let ``a=3 b=4 c=5 is a pythagorean triplet ``()=
   isPythagoreanTriplet 3 4 5 |> should equal true
 
-[<Test>]
+[<Fact>]
 let ``a=3 b=4 c=6 is not a pythagorean triplet ``()=
   isPythagoreanTriplet 3 4 6 |> should equal false
 
 
-[<Test>]
+[<Fact>]
 let ``a=5 b=4 c=3 is not a pythagorean triplet ``()=
   isPythagoreanTriplet 5 4 3 |> should equal false

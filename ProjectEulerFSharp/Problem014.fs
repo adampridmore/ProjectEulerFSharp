@@ -1,7 +1,7 @@
 ﻿module problem014
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open memoize
 
 //Longest Collatz sequence
@@ -52,33 +52,33 @@ let problem14() =
   ans |> should equal 837799L
   ans
 
-//[<Test>]
+//[<Fact>]
 //let ans()=
 //  problem14() |> should equal 837799L
 
-[<Test>]
+[<Fact>]
 let ``Solution for up to 100``() = 
   let ans, _ = solver 100L
   printfn "Answer = %i" ans
   ans |> should equal 97L
 
-[<Test>]
+[<Fact>]
 let ``nextNum for 13 is 40``()=
   nextNum 13L |> should equal 40L
 
-[<Test>]
+[<Fact>]
 let ``nextNum for 40 is 20``()=
   nextNum 40L |> should equal 20L
 
-[<Test>]
+[<Fact>]
 let ``collatzLength for 1 is 1``()=
   collatzLength 1L |> should equal 1L
 
-[<Test>]
+[<Fact>]
 let ``collatzLength for 0 is 0``()=
   collatzLength 0L |> should equal 0L
 
-[<Test>]
+[<Fact>]
 let ``collatzLength for 3 is 8``()=
   collatzLength 3L |> should equal 8L
     
@@ -105,33 +105,33 @@ let collatzSeq2 (n:int64) =
 
   fn n []
   
-[<Test>]
+[<Fact>]
 let ``collatzSeq for 13``()=
   let s = collatzSeq 13L
   s |> Seq.iter (printfn "%i")
   s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
 
-[<Test>]
+[<Fact>]
 let ``collatzSeq2 for 13``()=
   let s = collatzSeq2 13L
   s |> Seq.iter (printfn "%i")
   s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
 
-[<Test>]
+[<Fact>]
 let ``collatzSeq for large``()=
   collatzSeq 1000000L |> Seq.iter (printfn "%O")
 
-[<Test>]
+[<Fact>]
 let ``collatzSeq2 for large``()=
   collatzSeq 1000000L |> Seq.iter (printfn "%O")
 
-[<Test>]
+[<Fact>]
 let ``collatzSeq for 0``()=
   let s = collatzSeq 0L
   s |> Seq.iter (printfn "%i")
   s |> should equal [||]
 
-[<Test>]
+[<Fact>]
 let scratch()=
   collatzSeq2 100L 
   |> Seq.iter (printfn "%O")

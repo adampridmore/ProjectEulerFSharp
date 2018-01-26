@@ -1,14 +1,14 @@
 ﻿module problem067
 
 open problem018
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open resources
 
 let problem67() = 
   loadResourceAsText "p067_triangle.txt" |> solver
 
-[<Test>]
+[<Fact>]
 let ans() = 
   let ans = problem67()
   printfn "%A" ans

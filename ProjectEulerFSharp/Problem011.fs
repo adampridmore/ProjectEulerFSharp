@@ -1,8 +1,8 @@
 ﻿module problem011
 
 open primes
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open textUtils
 
 //In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
@@ -91,22 +91,22 @@ let problem11() =
   |> Seq.max
   
 
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem11()
   printfn "%i" ans
   ans |> should equal 70600674
 
-[<Test>]
+[<Fact>]
 let ``scratch``() =
   // 70600674
   printfn "Product: %d" (problem11())
 
-[<Test>]
+[<Fact>]
 let ``line to numbers``()=
   "01 02 03" |> lineToNumbers |> should equal [1;2;3]
 
-[<Test>]
+[<Fact>]
 let ``get cell in cells``()=
   let cells = [|
     [|1;2;3|];
@@ -120,7 +120,7 @@ let ``get cell in cells``()=
   cells |> getCell 1 1 |> should equal 5
   cells |> getCell 2 1 |> should equal 6
 
-[<Test>]
+[<Fact>]
 let ``get cell not in cells``()=
   let cells = [|
     [|1|];
@@ -133,7 +133,7 @@ let ``get cell not in cells``()=
   cells |> getCell -1 0 |> should equal 0
 
 
-[<Test>]
+[<Fact>]
 let ``get cells in cells``()=
   let cells = [|
     [|1;2;3|];

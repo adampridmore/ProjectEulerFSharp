@@ -1,9 +1,9 @@
 ﻿module problem034
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 
 let intToString (x:int) = x.ToString()
 let charToString c = c.ToString()
@@ -33,7 +33,7 @@ let problem034() =
     |> PSeq.filter isCurious
     |> PSeq.sum
     
-[<Test>]
+[<Fact>]
 let ans()=
     problem034() |> should equal 40730
  

@@ -1,7 +1,7 @@
 ﻿module math
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open primes
 
 let pow x y = 
@@ -39,47 +39,47 @@ let properDivisorsSum n =
             |> Seq.reduce (*)
           ) - n
 
-[<Test>]
+[<Fact>]
 let ``proper divisors sum of 120 is 240``()=
   120 |> properDivisorsSum |> should equal 240
 
 
-[<Test>]
+[<Fact>]
 let ``get proper divisors of 10``()=
   10 |> properDivisors |> should equal [1;2;5]
 
-[<Test>]
+[<Fact>]
 let ``pow: 2 to the power of 3 is 8``()=
   pow 2 3 |> should equal 8
 
-[<Test>]
+[<Fact>]
 let ``pow: 1 to the power of 3 is 1``()=
   pow 1 3 |> should equal 1
 
-[<Test>]
+[<Fact>]
 let ``pow: 0 to the power of anything is 0``()=
   pow 0 3 |> should equal 0
 
-[<Test>]
+[<Fact>]
 let ``pow: anything to the power of 0 is 1``()=
   pow 3 0 |> should equal 1
 
-[<Test>]
+[<Fact>]
 let ``pow: 1 to the power of a large is 1``()=
   pow 1 1000000 |> should equal 1
   
-[<Test>]
+[<Fact>]
 let ``factorial 3 equals 6``()=
   factorial (bigint 3) |> should equal (bigint (1*2*3) )
 
-[<Test>]
+[<Fact>]
 let ``factorial 10 equals 3,628,800``()=
   factorial (bigint  10) |> should equal (bigint 3628800 )
 
-[<Test>]
+[<Fact>]
 let ``factorial 0 equals 1``()=
   factorial (bigint 0) |> should equal (bigint.One) 
 
-[<Test>]
+[<Fact>]
 let ``factorial 1 equals 1``()=
   factorial (bigint 1) |> should equal (bigint.One) 

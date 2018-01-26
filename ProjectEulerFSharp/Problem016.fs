@@ -1,7 +1,7 @@
 ﻿module problem016
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //Power digit sum
 //Problem 16
@@ -25,11 +25,11 @@ let solver (v:int32) e =
 [<ProjectEuler.Problem(16)>]
 let problem16() = solver 2 1000
   
-[<Test>]
+[<Fact>]
 let ``2 to pow 15 digit sum is 26``()=
   solver 2 15 |> should equal 26
 
-[<Test>]
+[<Fact>]
 let ``ans``()=
   let ans = problem16()
   printfn "%A" ans

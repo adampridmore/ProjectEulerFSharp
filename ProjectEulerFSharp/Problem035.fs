@@ -1,9 +1,9 @@
 ﻿module problem035
 
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 open primes
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
 let toCharArray (s:string) = s.ToCharArray()
 
@@ -38,11 +38,11 @@ let solver n =
 [<ProjectEuler.Problem(35)>]
 let problem035() = solver 1000000
 
-[<Test>]
+[<Fact>]
 let ``number of circular primes below 100``() = 
     100 |> solver |> should equal 13
 
-[<Test>]
+[<Fact>]
 let solverTest() = 
     problem035() |> (printfn "%d")
 

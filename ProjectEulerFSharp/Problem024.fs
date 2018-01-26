@@ -1,7 +1,7 @@
 ﻿module problem024
 
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 open math
 open textUtils
 
@@ -48,19 +48,19 @@ let solver index numbers =
 let problem24() = 
   seq{0..9} |> solver (1000000-1) // Zero indexed, so -1 for millionth
 
-[<Test>]
+[<Fact>]
 let ``empty list``()=
   [] |>  permutation |> should equal []
 
-[<Test>]
+[<Fact>]
 let ``single item``()=
   [1] |>  permutation |> should equal [[1]]
 
-[<Test>]
+[<Fact>]
 let ``two items``()=
   [1;2] |>  permutation |> should equal [[1;2];[2;1]]
 
-[<Test>]
+[<Fact>]
 let ``three items``()=
   [1;2;3] |>  permutation |> Seq.iter (fun x -> printfn "%A" x)
   [1;2;3] |>  permutation |> should equal [
@@ -69,12 +69,12 @@ let ``three items``()=
                                             [3;1;2];[3;2;1] 
                                           ]
 
-[<Test>]
+[<Fact>]
 let ``solver for two ``()=
   [1;2] |> solver 0 |> should equal 12
   [1;2] |> solver 1 |> should equal 21
 
-//[<Test>]
+//[<Fact>]
 //let ``ans``()=
 //  let ans = problem24()
 //  

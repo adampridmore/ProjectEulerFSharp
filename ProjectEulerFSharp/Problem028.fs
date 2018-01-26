@@ -1,7 +1,7 @@
 ﻿module problem028
 
-open FsUnit
-open NUnit.Framework
+open FsUnit.Xunit
+open Xunit
 
 let addOne x = 
     x + 1
@@ -24,7 +24,7 @@ let solver width =
 let problem28() = 
     solver 1001
 
-[<Test>]
+[<Fact>]
 let ans() = 
     problem28() |> should equal 669171001
  // 669171001

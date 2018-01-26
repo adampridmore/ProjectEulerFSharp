@@ -3,7 +3,7 @@
 #load "Seq.fs"
 
 open primes
-open Microsoft.FSharp.Collections
+open FSharp.Collections.ParallelSeq
 
 let charArrayToString (ca: char array) = 
     new string(ca |> Seq.toArray)

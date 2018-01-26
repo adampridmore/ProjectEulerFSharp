@@ -1,8 +1,8 @@
 ﻿module problem006
 
 open primes
-open NUnit.Framework
-open FsUnit
+open Xunit
+open FsUnit.Xunit
 
 //The sum of the squares of the first ten natural numbers is,
 //
@@ -30,12 +30,12 @@ let solver maxNumber =
 let problem6() = 
   solver 100
 
-[<Test>]
+[<Fact>]
 let ``answer``() =
   let ans = problem6()
   printfn "%i" ans
   ans |> should equal 25164150
 
-[<Test>]
+[<Fact>]
 let ``solver for 10 is 2640``()=
   solver 10 |> should equal 2640

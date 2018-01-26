@@ -1,1 +1,0 @@
-msbuild ..\MyFSharpHelpers.fsproj /P:Config=Release
