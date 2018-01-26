@@ -1,9 +1,7 @@
-﻿#r @"..\packages\FSPowerPack.Parallel.Seq.Community.3.0.0.0\Lib\Net40\FSharp.PowerPack.Parallel.Seq.dll"
-#load "primes.fs"
-#load "Seq.fs"
+﻿#r @"..\MyFSharpHelpers\bin\Debug\netcoreapp2.0\MyFSharpHelpers.dll"
 
 open primes
-open FSharp.Collections.ParallelSeq
+open Microsoft.FSharp.Collections
 
 let charArrayToString (ca: char array) = 
     new string(ca |> Seq.toArray)
