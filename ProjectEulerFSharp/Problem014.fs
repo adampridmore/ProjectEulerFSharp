@@ -107,15 +107,15 @@ let collatzSeq2 (n:int64) =
   
 [<Fact>]
 let ``collatzSeq for 13``()=
-  let s = collatzSeq 13L
+  let s = collatzSeq 13L |> Seq.toList
   s |> Seq.iter (printfn "%i")
-  s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
+  s |> Seq.toList |> should equal [13L;40L;20L;10L;5L;16L;8L;4L;2L;1L]
 
 [<Fact>]
 let ``collatzSeq2 for 13``()=
-  let s = collatzSeq2 13L
+  let s = collatzSeq2 13L |> Seq.toList
   s |> Seq.iter (printfn "%i")
-  s |> should equal [|13L;40L;20L;10L;5L;16L;8L;4L;2L;1L|]
+  s |> Seq.toList |> should equal [13L;40L;20L;10L;5L;16L;8L;4L;2L;1L]
 
 [<Fact>]
 let ``collatzSeq for large``()=
@@ -129,7 +129,7 @@ let ``collatzSeq2 for large``()=
 let ``collatzSeq for 0``()=
   let s = collatzSeq 0L
   s |> Seq.iter (printfn "%i")
-  s |> should equal [||]
+  s |> Seq.toList |> should equal List.empty<int64>
 
 [<Fact>]
 let scratch()=

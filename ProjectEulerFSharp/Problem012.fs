@@ -52,9 +52,9 @@ let ``answer``() =
 
 [<Fact>]
 let ``first 4 triangle numbers``()=
-  let ans = triangleNumbers |> Seq.take 4 
+  let ans = triangleNumbers |> Seq.take 4 |> Seq.toList
   ans |> printfn "%A"
-  ans |> should equal [|1;3;6;10|]
+  ans |> should equal [1;3;6;10]
 
 [<Fact>]
 let ``first triangle number to have over five divisors is 28``()=

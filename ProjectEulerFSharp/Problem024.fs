@@ -4,6 +4,7 @@ open Xunit
 open FsUnit.Xunit
 open math
 open textUtils
+open System.Threading
 
 
 //Lexicographic permutations
@@ -50,7 +51,7 @@ let problem24() =
 
 [<Fact>]
 let ``empty list``()=
-  [] |>  permutation |> should equal []
+  [] |>  permutation |> Seq.toList |> should equal (List.empty<List<'T>>)
 
 [<Fact>]
 let ``single item``()=
@@ -71,8 +72,8 @@ let ``three items``()=
 
 [<Fact>]
 let ``solver for two ``()=
-  [1;2] |> solver 0 |> should equal 12
-  [1;2] |> solver 1 |> should equal 21
+  [1;2] |> solver 0 |> should equal 12L
+  [1;2] |> solver 1 |> should equal 21L
 
 //[<Fact>]
 //let ``ans``()=

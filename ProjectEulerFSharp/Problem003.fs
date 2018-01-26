@@ -34,7 +34,7 @@ let problem3() =
 
 [<Fact>]
 let ``13195 should equal 29``() =
-  problem3Solver 13195L |> should equal 29
+  problem3Solver 13195L |> should equal 29L
 
 [<Fact>]
 let ``10 is a factor of 50``() =
@@ -46,14 +46,14 @@ let ``11 is not a factor of 50``() =
 
 [<Fact>]
 let ``first factor of 10 is 2 ``()=
-  findFirstFactor 10L |> should equal 2
+  findFirstFactor 10L |> should equal 2L
 
 [<Fact>]
 let ``first factor of 25 is 5 ``()=
-  findFirstFactor 25L |> should equal 5
+  findFirstFactor 25L |> should equal 5L
 
 [<Fact>]
 let ``answer``() = 
   let answer = problem3()
-  answer |> should equal 6857
+  answer |> should equal 6857L
   printfn "%i" answer

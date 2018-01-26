@@ -104,7 +104,7 @@ let ``scratch``() =
 
 [<Fact>]
 let ``line to numbers``()=
-  "01 02 03" |> lineToNumbers |> should equal [1;2;3]
+  "01 02 03" |> lineToNumbers |> Seq.toList |> should equal [1;2;3]
 
 [<Fact>]
 let ``get cell in cells``()=

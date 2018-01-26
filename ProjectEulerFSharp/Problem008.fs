@@ -63,5 +63,5 @@ let ``answer``() =
 [<Fact>]
 let ``longest 4 number product is 5832``() =
   let ans = solver 4
-  ans |> should equal 5832
+  ans |> should equal 5832L
     

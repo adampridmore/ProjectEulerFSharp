@@ -35,7 +35,7 @@ let ``answer``() =
 
 [<Fact>]
 let ``get all products from 1 to 2``()=
-  getAllProductsOfNumbersFromTo 1 2 |> should equal [|1;2;2;4|]
+  getAllProductsOfNumbersFromTo 1 2 |> Seq.toList |> should equal [1;2;2;4]
 
 [<Fact>]
 let ``123 is not a palindrome``() =

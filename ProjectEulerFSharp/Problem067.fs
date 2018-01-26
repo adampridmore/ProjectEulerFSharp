@@ -6,7 +6,7 @@ open FsUnit.Xunit
 open resources
 
 let problem67() = 
-  loadResourceAsText "p067_triangle.txt" |> solver
+  loadResourceAsText "ProjectEulerFSharp.p067_triangle.txt" |> solver
 
 [<Fact>]
 let ans() = 

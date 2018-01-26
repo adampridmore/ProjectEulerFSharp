@@ -64,10 +64,12 @@ let problem23() =
 let ``first 10 abundant numbers``()=
   abundantNumbers 
   |> Seq.take 10 
+  |> Seq.toList
   |> should equal [12;18;20;24;30;36;40;42;48;54]
 
 [<Fact>]
 let ``opposite list``()=
   [4;6;8;9;11]
   |> oppositeListOfInt
+  |> Seq.toList
   |> should equal [1;2;3;5;7;10]

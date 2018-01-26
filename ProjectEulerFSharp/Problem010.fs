@@ -23,7 +23,7 @@ let problem10() = sumPrimesBelow 2000000
 
 [<Fact>]
 let ``sum of all primes below 10 is 17``() =
-  sumPrimesBelow 10 |> should equal 17
+  sumPrimesBelow 10 |> should equal 17L
    
 [<Fact>]
 let ``answer``() =

@@ -46,7 +46,7 @@ let ``proper divisors sum of 120 is 240``()=
 
 [<Fact>]
 let ``get proper divisors of 10``()=
-  10 |> properDivisors |> should equal [1;2;5]
+  10 |> properDivisors |> Seq.toList |> should equal [1;2;5]
 
 [<Fact>]
 let ``pow: 2 to the power of 3 is 8``()=

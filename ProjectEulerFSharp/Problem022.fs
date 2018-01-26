@@ -23,7 +23,7 @@ let scoreName (name:string) =
 
 [<ProjectEuler.Problem(22)>]
 let problem22() =
-  (resources.loadResourceAsText "p022_names.txt").Split(',')
+  (resources.loadResourceAsText "ProjectEulerFSharp.p022_names.txt").Split(',')
   |> Seq.map (fun quotedName -> quotedName |> removeQuotes)
   |> Seq.sort
   |> Seq.map scoreName

@@ -51,7 +51,7 @@ let loadResourceAsText name =
 
 [<Fact>]
 let ``"01 02 03" to numbers``() =
-  "01 2 03" |> textLineToNumbers |> should equal [|1;2;3|]
+  "01 2 03" |> textLineToNumbers |> Seq.toList |> should equal [1;2;3]
 
 [<Fact>]
 let ``char to int for 3``()=
@@ -63,7 +63,7 @@ let ``number to string``()=
 
 [<Fact>]
 let ``number to char array``()=
-  123 |> toString |> should equal [|'1';'2';'3'|]
+  123 |> toCharArray |> Seq.toList |> should equal ['1';'2';'3']
 
 [<Fact>]
 let ``split lines test``()=
@@ -71,8 +71,8 @@ let ``split lines test``()=
   let text = "hello
 world"
 
-  text |> stringToLines |> should equal [|"hello";"world"|]
+  text |> stringToLines |> should equal ["hello";"world"]
 
 [<Fact>]
 let ``trim lines``()=
-  [" hello "; " world "] |> trimLines |> should equal ["hello";"world"]
+  [" hello "; " world "] |> trimLines |> Seq.toList |> should equal ["hello";"world"]
