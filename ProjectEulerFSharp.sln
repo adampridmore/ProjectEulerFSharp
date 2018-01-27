@@ -6,6 +6,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MyFSharpHelpers", "MyFSharp
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "ProjectEulerFSharp", "ProjectEulerFSharp\ProjectEulerFSharp.fsproj", "{2FCF643D-D1F2-4E69-8639-A6F799565899}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ProjectEulerFSharpPlain", "ProjectEulerFSharpPlain\ProjectEulerFSharpPlain.fsproj", "{D248850C-5874-4E4D-85D2-1E4977675CE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,18 @@ Global
 		{2FCF643D-D1F2-4E69-8639-A6F799565899}.Release|x64.Build.0 = Release|Any CPU
 		{2FCF643D-D1F2-4E69-8639-A6F799565899}.Release|x86.ActiveCfg = Release|Any CPU
 		{2FCF643D-D1F2-4E69-8639-A6F799565899}.Release|x86.Build.0 = Release|Any CPU
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Debug|x64.ActiveCfg = Debug|x64
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Debug|x64.Build.0 = Debug|x64
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Debug|x86.ActiveCfg = Debug|x86
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Debug|x86.Build.0 = Debug|x86
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Release|x64.ActiveCfg = Release|x64
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Release|x64.Build.0 = Release|x64
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Release|x86.ActiveCfg = Release|x86
+		{D248850C-5874-4E4D-85D2-1E4977675CE2}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

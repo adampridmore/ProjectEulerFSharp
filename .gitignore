@@ -1,5 +1,3 @@
-/MyFSharpHelpers/bin
-/MyFSharpHelpers/obj
-/.vs
-/ProjectEulerFSharp/bin
-/ProjectEulerFSharp/obj
+*/bin
+*/obj
+*/.vs
