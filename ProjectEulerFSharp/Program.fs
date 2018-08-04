@@ -38,14 +38,22 @@ let getProblemResultText (meth:MethodInfo, problem:Problem) =
 
 [<EntryPoint>]
 let main argv = 
-// Parallel
-//  ProjectEuler.getAllProblems
-//  |> PSeq.mapi (fun i fn -> i , fn |> getProblemResultText )
-//  |> Seq.sortBy fst
-//  |> Seq.iter (fun (_ , text) -> printfn "%s" text)
+    let sw = System.Diagnostics.Stopwatch.StartNew()
 
-  ProjectEuler.getAllProblems
-  |> Seq.map getProblemResultText
-  |> Seq.iter (printfn "%s")
+    let run() = 
+        // Parallel
+        ProjectEuler.getAllProblems
+        |> PSeq.mapi (fun i fn -> i , fn |> getProblemResultText )
+        |> Seq.sortBy fst
+        |> Seq.iter (fun (_ , text) -> printfn "%s" text)
+
+        // ProjectEuler.getAllProblems
+        // |> Seq.map getProblemResultText
+        // |> Seq.iter (printfn "%s")
   
-  0
+    // seq{0..5}  |> Seq.iter (fun _ -> run())
+    run()
+    
+    printfn "Duration: %fms" sw.Elapsed.TotalMilliseconds
+
+    0
