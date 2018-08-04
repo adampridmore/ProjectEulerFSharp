@@ -19,34 +19,30 @@ open FsUnit.Xunit
 //Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
 [<ProjectEuler.Problem(26)>]
-let problem26() = ProjectEuler.NotSolved // () //None //26
+let problem026() = 
+    // Stolen from here:
+    // https://github.com/kerams/project-euler-fsharp/blob/master/project-euler-fsharp/Problems21to30.fs
+    // Alternative (but same implementaion) explained here:
+    // https://theburningmonk.com/2010/09/project-euler-problem-26-solution/
+    let repeatingDigitLength n =
+        let rec divide remainder digits =
+            let rem = remainder * 10
+            match rem % n with
+            | 0 -> 0
+            | r -> let d = rem / n
+                   match digits |> List.tryFindIndex ((=) (rem, d)) with
+                   | Some(i) -> i + 1 
+                   | None -> divide r ((rem, d) :: digits)  
 
-//let ( ** ) (a: bignum) (b) = BigNum.PowN (a,b)
-//let ( ** ) (a: int) (b) = math.pow a b
-let ( ** ) (a: bigint) (b: bigint) = bigint.Pow(a,b |> int)
+        divide 1 []
+    
+    [| 1 .. 999 |]
+    |> Array.Parallel.mapi (fun i n -> repeatingDigitLength n, i)
+    |> Array.maxBy fst
+    |> (snd >> (+) 1)
 
-[<Fact(Skip="Slow")>]
-let scratch()=
-//  seq{1..999} 
-//  |> Seq.map (fun x -> 1N / bignum.FromInt x)
-//  |> Seq.iter (fun x -> (printfn "%A") x)
 
-  let repeatCycleLength (n:bigint) = 
-    ((bigint 10 ** (n-bigint.One)) - bigint.One) / n
- 
- // http://en.wikipedia.org/wiki/Repeating_decimal#Other_reciprocals_of_primes
 
-  let res = 
-    seq{for n in 1..1000 do yield bigint n}
-    //|> Seq.map (fun x -> bigint x)
-    |> Seq.map (fun x -> (x, repeatCycleLength x) )
-    |> Seq.iter (fun (i,x) -> printfn "%A - %A" i x)
-
-  
-
-//  seq{for n in 1..1000 do yield bigint n}
-//  //|> Seq.map (fun x -> bigint x)
-//  |> Seq.mapi (fun i x -> (i, repeatCycleLength x) )
-//  |> Seq.iter (fun (i,x) -> printfn "%i - %A" i x)
-  ()
-
+[<Fact>]
+let solverTest() = 
+    problem026() |> should equal 983

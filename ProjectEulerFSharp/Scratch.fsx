@@ -1,60 +1,42 @@
 ﻿#r @"..\MyFSharpHelpers\bin\Debug\netcoreapp2.0\MyFSharpHelpers.dll"
 
-open primes
-open Microsoft.FSharp.Collections
+open System
+open System.Numerics
+open System.Collections.Generic
 
-let charArrayToString (ca: char array) = 
-    new string(ca |> Seq.toArray)
+//A unit fraction contains 1 in the numerator. The decimal representation of the unit fractions with denominators 2 to 10 are given:
+//
+//1/2	= 	0.5
+//1/3	= 	0.(3)
+//1/4	= 	0.25
+//1/5	= 	0.2
+//1/6	= 	0.1(6)
+//1/7	= 	0.(142857)
+//1/8	= 	0.125
+//1/9	= 	0.(1)
+//1/10	= 	0.1
+//Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle. It can be seen that 1/7 has a 6-digit recurring cycle.
+//
+//Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
-let arrayBackTail = Array.tail 
-let arrayFrontTail = Array.rev >> Array.tail >> Array.rev
 
-let tryStrip stripper (x: int) = 
-    match x.ToString().ToCharArray() with
-    | [||] -> None
-    | [|v|] -> None
-    | v ->  v    
-            |> stripper
-            |> charArrayToString 
-            |> System.Int32.Parse
-            |> Some
+// Stolen from here:
+// https://github.com/kerams/project-euler-fsharp/blob/master/project-euler-fsharp/Problems21to30.fs
+// Alternative (but same implementaion) explained here:
+// https://theburningmonk.com/2010/09/project-euler-problem-26-solution/
+let repeatingDigitLength n =
+    let rec divide remainder digits =
+        let rem = remainder * 10
+        match rem % n with
+        | 0 -> 0
+        | r -> let d = rem / n
+               match digits |> List.tryFindIndex ((=) (rem, d)) with
+               | Some(i) -> i + 1 
+               | None -> divide r ((rem, d) :: digits)  
 
-let tryStripLeft (x: int) =  x |> tryStrip arrayBackTail
-let tryStripRight (x: int) =  x |> tryStrip arrayFrontTail
-
-let stripSequence stripper number = 
-    number 
-    |> Some 
-    |> Seq.unfold (fun i -> 
-        match i with
-        | None -> None
-        | Some(v) -> Some(v, v |> stripper) ) 
-        
-let stripLeftSequence = stripSequence tryStripLeft 
-let stripRightSequence = stripSequence tryStripRight
-
-let isTrue x = x = true
-
-let isTruncatablePrime x =
-    (x
-    |> stripLeftSequence 
-    |> Seq.map isPrime 
-    |> Seq.forall isTrue)
-    &&
-    (x
-    |> stripRightSequence
-    |> Seq.map isPrime 
-    |> Seq.forall isTrue)
-
-Seq.initInfinite id
-|> Seq.where (fun v -> v > 10)
-//|> Seq.map(fun x -> printfn "%d" x; x)
-//|> PSeq.filter isTruncatablePrime
-|> Seq.filter isTruncatablePrime
-//|> Seq.take 11
-|> Seq.takeWhile (fun x -> x < 1000000)
-//|> PSeq.sum
-|> Seq.sum
-
-//748317
-
+    divide 1 []
+    
+[| 1 .. 999 |]
+|> Array.Parallel.mapi (fun i n -> repeatingDigitLength n, i)
+|> Array.maxBy fst
+|> (snd >> (+) 1)
