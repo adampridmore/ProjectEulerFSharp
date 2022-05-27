@@ -20,7 +20,7 @@ let isSumPowerOfDigits number exponent =
         
     sumPowerOfDigits = number
 
-[<ProjectEuler.Problem(30)>]
+[<ProjectEuler.Problem(30,"Digit fifth powers")>]
 let problem30() = 
     seq{10..999999}
     |> PSeq.filter(fun x -> isSumPowerOfDigits x 5)

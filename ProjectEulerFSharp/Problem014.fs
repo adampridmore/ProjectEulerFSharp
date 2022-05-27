@@ -46,7 +46,7 @@ let solver upTo =
   |> Seq.map (fun i -> i, collatzLength i)
   |> Seq.maxBy (fun (i, len) -> len)
 
-[<ProjectEuler.Problem(14)>]
+[<ProjectEuler.Problem(14,"Longest Collatz sequence")>]
 let problem14() = 
   let ans, _ = solver 1000000L
   ans |> should equal 837799L

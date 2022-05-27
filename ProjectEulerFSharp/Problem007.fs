@@ -10,7 +10,7 @@ open FsUnit.Xunit
 //
 //What is the 10,001st prime number?
 
-[<ProjectEuler.Problem(7)>]
+[<ProjectEuler.Problem(7,"10001st prime")>]
 let problem7() = 
   // 10,001st prime is at 10,000 index
  primes 10000

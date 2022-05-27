@@ -16,7 +16,7 @@ let solver min max =
     |> Seq.distinct
     |> Seq.length
 
-[<ProjectEuler.Problem(29)>]    
+[<ProjectEuler.Problem(29,"Distinct powers")>]    
 let problem29() = 
     solver 2 100
 

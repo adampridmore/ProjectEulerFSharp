@@ -5,6 +5,7 @@ open Xunit
 open FsUnit.Xunit
 open resources
 
+[<ProjectEuler.Problem(67,"Maximum path sum II")>]
 let problem67() = 
   loadResourceAsText "ProjectEulerFSharp.p067_triangle.txt" |> solver
 

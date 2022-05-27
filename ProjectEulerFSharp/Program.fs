@@ -7,8 +7,8 @@ type s = Skipped
 
 let timespanToString (ts:TimeSpan) =
     match ts with
-    | ts when ts.TotalSeconds >= 2. -> sprintf "%4d seconds" (ts.TotalSeconds |> int)
-    | ts -> sprintf "%4d ms     " (ts.TotalMilliseconds |> int)
+    | ts when ts.TotalSeconds >= 2. -> sprintf "%4ds" (ts.TotalSeconds |> int)
+    | ts -> sprintf "%4dms     " (ts.TotalMilliseconds |> int)
 
 let printAns (ans:Object) =
     match ans with
@@ -34,7 +34,7 @@ let getProblemResultText (meth:MethodInfo, problem:Problem) =
     | Speed.Slow -> (System.TimeSpan.Zero, "** Slow ** Skipped" :> Object)
     | sp -> failwith (sprintf "Unknown speed: %A" sp)
     |> (fun (elapsed, ans ) -> 
-            sprintf "Problem %03d %s -   %s " problem.Number (elapsed |> timespanToString) (ans |> printAns) )
+        sprintf "%03d %s %s -   %s " problem.Number (problem.Description.PadRight(50)) (elapsed |> timespanToString) (ans |> printAns) )
 
 [<EntryPoint>]
 let main argv = 

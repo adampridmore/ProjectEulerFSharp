@@ -20,7 +20,7 @@ let solver width =
     |> Seq.sum
     |> addOne
 
-[<ProjectEuler.Problem(28)>]
+[<ProjectEuler.Problem(28,"Number spiral diagonals")>]
 let problem28() = 
     solver 1001
 

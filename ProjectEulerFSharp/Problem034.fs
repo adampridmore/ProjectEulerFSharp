@@ -27,7 +27,7 @@ let isCurious x =
         |> Seq.sum
     (bigint x) = ans
 
-[<ProjectEuler.Problem(34)>]
+[<ProjectEuler.Problem(34,"Digit factorials")>]
 let problem034() = 
     seq{3..100000}
     |> PSeq.filter isCurious

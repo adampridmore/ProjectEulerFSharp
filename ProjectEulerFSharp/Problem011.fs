@@ -51,7 +51,7 @@ let getCells x y numberToGet translator cells =
   )
   |> Seq.toArray
   
-[<ProjectEuler.Problem(11)>]
+[<ProjectEuler.Problem(11,"Largest product in a grid")>]
 let problem11() =
   let numbersGrid = 
     gridString 

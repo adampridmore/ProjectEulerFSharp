@@ -31,7 +31,7 @@ let solver numberOfDigits =
   fibseqbig
   |> Seq.findIndex (fun n -> (digitCount n) = numberOfDigits  )
 
-[<ProjectEuler.Problem(25)>]
+[<ProjectEuler.Problem(25,"1000-digit Fibonacci number")>]
 let problem25() = 1 + solver 1000
 
 [<Fact>]

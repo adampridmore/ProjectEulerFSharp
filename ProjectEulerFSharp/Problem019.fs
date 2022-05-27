@@ -31,7 +31,7 @@ let solver =
   |> Seq.filter isValid
   |> Seq.length
 
-[<ProjectEuler.Problem(19)>]
+[<ProjectEuler.Problem(19,"Counting Sundays")>]
 let problem19() = 
   solver
 

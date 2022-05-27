@@ -27,7 +27,7 @@ let solver() =
     |> Seq.sum
     //872187
 
-[<ProjectEuler.Problem(36)>]
+[<ProjectEuler.Problem(36,"Double-base palindromes")>]
 let problem036() = solver()
 
 [<Fact>]

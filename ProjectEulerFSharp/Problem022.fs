@@ -21,7 +21,7 @@ let scoreName (name:string) =
   |> Seq.map charToScore 
   |> Seq.sum
 
-[<ProjectEuler.Problem(22)>]
+[<ProjectEuler.Problem(22,"Names scores")>]
 let problem22() =
   (resources.loadResourceAsText "ProjectEulerFSharp.p022_names.txt").Split(',')
   |> Seq.map (fun quotedName -> quotedName |> removeQuotes)

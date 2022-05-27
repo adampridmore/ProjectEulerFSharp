@@ -21,7 +21,7 @@ let getAllProductsOfNumbersFromTo minNum maxNum =
             yield x*y
   }
 
-[<ProjectEuler.Problem(4)>]
+[<ProjectEuler.Problem(4, "Largest palindrome product")>]
 let problem4() = 
   getAllProductsOfNumbersFromTo 900 999
   |> Seq.filter isPalindrome

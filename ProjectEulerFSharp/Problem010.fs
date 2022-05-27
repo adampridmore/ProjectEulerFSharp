@@ -18,7 +18,7 @@ let sumPrimesBelow maxPrime =
   |> Seq.map int64
   |> Seq.sum
 
-[<ProjectEuler.Problem(10)>]
+[<ProjectEuler.Problem(10,"Summation of primes")>]
 let problem10() = sumPrimesBelow 2000000
 
 [<Fact>]

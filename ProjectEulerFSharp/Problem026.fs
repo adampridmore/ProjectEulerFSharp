@@ -18,7 +18,7 @@ open FsUnit.Xunit
 //
 //Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
-[<ProjectEuler.Problem(26)>]
+[<ProjectEuler.Problem(26,"Reciprocal cycles")>]
 let problem026() = 
     // Stolen from here:
     // https://github.com/kerams/project-euler-fsharp/blob/master/project-euler-fsharp/Problems21to30.fs

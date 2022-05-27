@@ -35,7 +35,7 @@ let solver n =
     |> PSeq.filter isCircularPrime
     |> Seq.length
 
-[<ProjectEuler.Problem(35)>]
+[<ProjectEuler.Problem(35,"Circular primes")>]
 let problem035() = solver 1000000
 
 [<Fact>]

@@ -28,7 +28,7 @@ let problem3Solver num =
   Seq.unfold action (num , true)
   |> Seq.last
 
-[<ProjectEuler.Problem(3)>]
+[<ProjectEuler.Problem(3, "Largest prime factor")>]
 let problem3() =
   600851475143L |> problem3Solver
 

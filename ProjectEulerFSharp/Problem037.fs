@@ -56,7 +56,7 @@ let solver() =
     |> Seq.take 11
     |> Seq.sum
 
-[<ProjectEuler.Problem(37)>]
+[<ProjectEuler.Problem(37,"Truncatable primes")>]
 let problem037() = solver()
 
 [<Fact>]

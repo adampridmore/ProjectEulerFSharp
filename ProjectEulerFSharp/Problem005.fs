@@ -26,7 +26,7 @@ let smallestNumberDivisibleUpTo upTo =
   Seq.initInfinite (fun i -> (bigint i + bigint.One) * increment)
   |> Seq.find(fun i -> isXDivisibleByNumsUpTo i upTo)
 
-[<ProjectEuler.Problem(5)>]
+[<ProjectEuler.Problem(5,"Smallest multiple")>]
 let problem5() = smallestNumberDivisibleUpTo 20 
 
 [<Fact>]

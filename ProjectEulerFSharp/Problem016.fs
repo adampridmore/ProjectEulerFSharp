@@ -22,7 +22,7 @@ let solver (v:int32) e =
   |> numberToDigits
   |> Seq.sum
 
-[<ProjectEuler.Problem(16)>]
+[<ProjectEuler.Problem(16,"Power digit sum")>]
 let problem16() = solver 2 1000
   
 [<Fact>]

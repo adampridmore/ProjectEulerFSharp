@@ -73,7 +73,7 @@ let solver =
   >> processLines
   >> Seq.head
 
-[<ProjectEuler.Problem(18)>]  
+[<ProjectEuler.Problem(18,"Maximum path sum I")>]  
 let problem18() = 
   solver p2
 

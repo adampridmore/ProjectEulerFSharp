@@ -24,7 +24,7 @@ let evenFibSum maxValue =
   |> Seq.filter isEven
   |> Seq.sum
 
-[<ProjectEuler.Problem(2)>]
+[<ProjectEuler.Problem(2, "Even Fibonacci numbers")>]
 let problem2() = 
   evenFibSum 4000000
 

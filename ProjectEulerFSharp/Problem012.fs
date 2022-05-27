@@ -40,7 +40,7 @@ let solver numberOfDivisors =
   triangleNumbers 
   |> Seq.find (fun i -> getFactorsCount i >= numberOfDivisors)
 
-[<ProjectEuler.Problem(12)>]
+[<ProjectEuler.Problem(12,"Highly divisible triangular number")>]
 let problem12() = 
   solver 500
   

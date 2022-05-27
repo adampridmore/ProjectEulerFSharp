@@ -85,7 +85,7 @@ let solver n =
   |> Seq.map (numberToWords >> numberTextLength)
   |> Seq.sum
 
-[<ProjectEuler.Problem(17)>]
+[<ProjectEuler.Problem(17,"Number letter counts")>]
 let problem17() = solver 1000
 
 [<Fact>]

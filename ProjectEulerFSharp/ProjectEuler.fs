@@ -6,11 +6,14 @@ type Speed = |Fast=0|Slow=1
 type NoAnswer = |NotSolved
     
 [<AttributeUsageAttribute(AttributeTargets.Method)>]
-type Problem (number:int) =
+type Problem (number:int, description: String)=
+    new(number:int) = Problem(number, "NoDescription")
+
     [<DefaultValue>] val mutable Name : string
     [<DefaultValue>] val mutable Speed : Speed
     inherit Attribute()
     member this.Number = number
+    member this.Description = description
 
 let parseAttributeToNumber (att:Attribute) = 
        (att :?> Problem).Number

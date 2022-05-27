@@ -22,7 +22,7 @@ let tester a b =
     |> Seq.takeWhile id
     |> Seq.length
 
-[<ProjectEuler.Problem(27)>]
+[<ProjectEuler.Problem(27,"Quadratic primes")>]
 let problem27() = 
     let minMaxRange = 999
 
